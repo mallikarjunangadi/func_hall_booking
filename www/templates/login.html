@@ -1,0 +1,19 @@
+<ion-view ng-controller="loginCtrl">
+    <ion-content>
+        <form name="loginForm" ng-click='loginFunc()'>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="loginObj.uname" required>  
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="loginObj.password" required>
+                </label>
+            </div>
+            <button type="submit" class="button" >Login</button>
+        </form>
+        <a href="" ng-click="goToSignUp()">sign up</a><br/>
+        <a href="#">forgot password?</a>
+    </ion-content>
+</ion-view>

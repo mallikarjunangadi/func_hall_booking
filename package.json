@@ -7,5 +7,10 @@
     "gulp-clean-css": "^3.7.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+	  "build": "ionic-app-scripts build",
+"serve": "ionic-app-scripts serve", 
+"watch": "ionic-app-scripts watch"
   }
 }

@@ -1,0 +1,30 @@
+<ion-view ng-controller="signUpCtrl">
+    <ion-content>
+        <form name="signUpForm" ng-submit='signUp()'>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="signUpObj.name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email Id</span>
+                    <input type="email" ng-model="signUpObj.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Mobile No</span>
+                    <input type="tel" ng-model="signUpObj.mobileNo">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="signUpObj.password">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Confirm Password</span>
+                    <input type="password" ng-model="signUpObj.cPassword">
+                </label>
+            </div>
+            <button type="submit" class="button" >Sign Up</button>
+        </form>
+        <a href="#" ng-click="goToLogin()">Sign In?</a>
+    </ion-content>
+</ion-view>
