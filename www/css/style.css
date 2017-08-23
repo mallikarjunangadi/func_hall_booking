@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+.homeButtons{
+   width:90%;
+   margin:1vh;
+   text-align:left;
+   color:black !important;
+}
+.userHome{
+  
+}
+.footer{
+   bottom:0!important;
+}

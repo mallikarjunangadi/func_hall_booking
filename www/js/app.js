@@ -40,6 +40,16 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/signUp',
         templateUrl: 'templates/signUp.html' 
     })
+    .state('userTabs', {
+        url: '/userTabs',
+        templateUrl: 'templates/userTabs.html' 
+    })
+    .state('customerDetails', {
+        url: '/customerDetails',
+        templateUrl: 'templates/customerDetails.html' 
+    })
+    
      
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/customerDetails');
+     
 })
