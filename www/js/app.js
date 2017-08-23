@@ -35,10 +35,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/login.html'
 
     })
-
     .state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html' 
+    })
+    .state('forgotPwdOtp', {
+        url: '/forgotPwdOtp',
+        templateUrl: 'templates/forgotPwdOtp.html' 
     })
      
     $urlRouterProvider.otherwise('/login');
