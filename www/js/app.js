@@ -39,6 +39,14 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/signUp',
         templateUrl: 'templates/signUp.html' 
     })
+    .state('userTabs', {
+        url: '/userTabs',
+        templateUrl: 'templates/userTabs.html' 
+    })
+    .state('customerDetails', {
+        url: '/customerDetails',
+        templateUrl: 'templates/customerDetails.html' 
+    })
     .state('forgotPwdOtp', {
         url: '/forgotPwdOtp',
         templateUrl: 'templates/forgotPwdOtp.html' 

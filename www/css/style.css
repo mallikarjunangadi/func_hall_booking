@@ -1,4 +1,17 @@
-/* ------------------ main home page style ---------------------- */
+
+.homeButtons{
+   width:90%;
+   margin:1vh;
+   text-align:left;
+   color:black !important;
+}
+.userHome{
+  
+}
+.footer{
+   bottom:0!important;
+}
+
 #mainHomeDiv {
    height:100%;
    width:100%;
@@ -11,7 +24,7 @@
 #mainHomeDiv .swiper-pagination-bullet
 {
     background-color: #00BFFF;
-} 
+}  
 
 #mainImgDiv Img {
     position: absolute;
