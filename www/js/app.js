@@ -44,5 +44,5 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/forgotPwdOtp.html' 
     })
      
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/signUp');
 })

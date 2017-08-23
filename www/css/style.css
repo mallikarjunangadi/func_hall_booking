@@ -57,7 +57,6 @@
     margin:1vh;
     border-radius: 1vh;
     height:7vh;
-
 }
  
 #loginForm input#uname {
@@ -93,3 +92,29 @@
 
 
 /* ------------------ login page style end---------------------- */
+
+.signUpImgDiv {
+   height:15vh; 
+}
+
+.signUpImgDiv img{
+   height:7vh;
+   width:12vw;
+   position: absolute;
+   top: 5vh; left: 0; right:0;
+   margin: auto; 
+}
+
+#signUpForm {
+  width:90vw;
+  margin:auto;
+}
+
+#signUpForm .item-input {
+    margin:3vh auto;
+    border-radius: 1vh;
+    height:6.5vh;
+    padding: 4px 24px 8px 28px;
+}
+
+
