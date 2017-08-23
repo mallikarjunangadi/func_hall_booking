@@ -6,18 +6,18 @@ angular.module('hallBooking.service', [])
             Url = "" + Url;
  
             var options = {
-                "method": "POST",
-                "Url": Url,
-                "data": jQuery.param(doc2send),
-                "headers": {
-                    "Content-Type": 'application/x-www-form-urlencoded'
-           //         'Authorization': 'Bearer ' + authentication.getToken()
-                }
-            }
-
+                "method": "POST",  
+                "Url": Url, 
+                "data": jQuery.param(doc2send), 
+                "headers": { 
+                    "Content-Type": 'application/x-www-form-urlencoded' 
+           //       'Authorization': 'Bearer ' + authentication.getToken()
+                }      
+            }    
+  
             $http(options).then(function(res) {
                deferred.resolve(res);
-            }, function() {
+            }, function() { 
                deferred.reject(res);
             })
         },
