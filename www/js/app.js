@@ -36,10 +36,33 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
 
     })
 
+    .state('view', {
+        url: '/view',
+        templateUrl: 'templates/view.html'
+
+    })
+
+    .state('msgList', {
+        url: '/msgList',
+        templateUrl: 'templates/msgList.html'
+
+    })
+
+    .state('client', {
+        url: '/client',
+        templateUrl: 'templates/client.html'
+
+    })
+
     .state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html' 
     })
+
+    .state('openTicket', {
+        url: '/openTicket',
+        templateUrl: 'templates/openTicket.html' 
+    })
      
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/view');
 })

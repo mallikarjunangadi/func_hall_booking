@@ -1,1 +1,54 @@
 /* Empty. Add your own CSS if you like */
+.listToggle {
+    margin: 0vh;
+}
+
+.firstbut {
+    border-radius: 5px;
+    margin: 10vh 8px 20px 8px;
+    height: 5vh;
+}
+
+.length p {
+    font-size:0.7em;
+}
+
+.radiusCard {
+    border-radius: 5px;
+    margin: 8px;
+}
+
+.messtext {
+    margin: 28vh 2vh 3vh 2vh;
+    border-radius: 25px;
+    border: 1px solid blue;
+    padding: 0px 9px 0 13px ;
+    width: 93%;
+    height: 7vh;
+}
+.textarea{
+    font-size: 500vh;
+    float:right;
+    color: blue;
+    background-color:#e4e4e4;
+    border-radius: 25px;
+}
+.text{
+    text-align:left;
+    font-size: 1.2em;
+    color:#545454;
+    font-family:Sans-serif;
+    margin:1vh 8px 10px 10px;
+}
+
+.arrow{
+    font-size:4vh;
+    float:right;
+    color: blue;
+    line-height: 50%;
+}
+
+.arrow1{
+    font-size:14vh;
+    margin:22vh;
+    }
