@@ -1,19 +1,28 @@
 <ion-view ng-controller="loginCtrl">
     <ion-content>
-        <form name="loginForm" ng-click='loginFunc(loginObj)'>
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" ng-model="loginObj.uname" required>  
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" ng-model="loginObj.password" required>
-                </label>
+        <div class="loginDiv">
+            <div id="loginImgDiv">
+                <img src="img/tsrLogo.png"></img>
             </div>
-            <button type="submit" class="button" >Login</button>
-        </form>
-        <a href="" ng-click="goToSignUp()">sign up</a><br/>
-        <a href="#">forgot password?</a>
+            <div class="loginFormDiv">
+                <form id="loginForm" name="loginForm" ng-click='loginFunc(loginObj)'>
+                    <div class="list list-inset">
+                        <label class="item item-input" style="padding:2vw;">
+                            <input type="text" placeholder="user" id="uname" ng-model="loginObj.uname" required>
+                        </label>
+                        <label class="item item-input" style="padding:2vw;">
+                            <input type="password" placeholder="password" id="pwd" ng-model="loginObj.password" required>
+                        </label>
+                        <button type="submit" class="button button-small button-block button-positive">Login</button>
+                    </div>
+                </form>
+                <div class="signUpLinkDiv">
+                    <a href="#/signUp">Sign up</a>
+                </div>
+                <div class="forgotPwdLinkDiv">
+                    <a href="#/forgotPwdOtp">forgot password?</a>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

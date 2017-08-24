@@ -1,30 +1,29 @@
 <ion-view ng-controller="signUpCtrl">
     <ion-content>
-        <form name="signUpForm" ng-submit='signUp(signUpObj)'>
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" ng-model="signUpObj.uName" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Email Id</span>
-                    <input type="email" ng-model="signUpObj.emailId" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Mobile No</span>
-                    <input type="tel" ng-model="signUpObj.mobileNo" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Choose a password</span>
-                    <input type="password" ng-model="signUpObj.password" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Re-type password</span>
-                    <input type="password" ng-model="signUpObj.cPassword" required>
-                </label>
-            </div>
-            <button type="submit" class="button" >Sign Up</button>
-        </form>
-        <a href="#" ng-click="goToLogin()">Sign In?</a>
+        <div class="signUpImgDiv">
+            <img src="../img/user2.png"></img>
+            <h4>Sign Up</h4>
+        </div>
+        
+        <div id="signUpFormDiv">
+            <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
+                <div class="list list-inset">
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="tel" ng-model="signUpObj.mobileNo" placeholder="Phone Number" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="email" ng-model="signUpObj.emailId" placeholder="Email" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="password" ng-model="signUpObj.password" placeholder="Password" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="password" ng-model="signUpObj.cPassword" placeholder="Re-type password" required>
+                    </label>
+                    <button type="submit" class="button button-small button-block button-positive">Continue</button>
+                </div>
+            </form>
+            <a href="#/login">Sign In?</a>
+        </div>
     </ion-content>
 </ion-view>
