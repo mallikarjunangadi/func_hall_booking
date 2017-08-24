@@ -106,21 +106,32 @@
 
 /* ------------------ login page style end---------------------- */
 
+.signUpDiv {
+  height:100%;
+  width:100%;
+  margin:0;
+  background-color:#f6f6f6;
+}
 .signUpImgDiv {
-   height:15vh; 
+   width:100%;
+   padding: 5vh 0 1vh 0;
+
 }
 
 .signUpImgDiv img{
    height:7vh;
    width:12vw;
-   position: absolute;
-   top: 5vh; left: 0; right:0;
-   margin: auto; 
+   margin: auto;
+   display: block; 
+}
+.signUpImgDiv h4 {
+  text-align:center;
 }
 
 #signUpForm {
   width:90vw;
   margin:auto;
+
 }
 
 #signUpForm .item-input {
@@ -130,4 +141,68 @@
     padding: 4px 24px 8px 28px;
 }
 
+#signUpBackDiv {
+   height: 10vh;
+   width:100%;
+   text-align:center;
+   margin-top: 10vh;
+}
+#signUpBackDiv a{
+  font-size: 25px;
+  margin-bottom: 1vh;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+}
 
+ 
+#signUpBackDiv p {
+   background-color:#f6f6f6;
+}
+
+#forgotPwdFormDiv {
+  width:90vw;
+  margin:auto;
+}
+
+#forgotPwdForm {
+  width:90vw;
+  margin:auto;
+}
+
+#forgotPwdForm .item-input {
+    margin:3vh auto;
+    border-radius: 1vh;
+    height:6.5vh;
+    padding: 0px 24px 10px 28px;
+}
+
+#forgotPwdForm .ion-email {
+  font-size:24px;padding:1vh;color:rgba(173, 226, 243, 0.99);
+  margin-right:1vw;
+}
+
+#changePwdBackDiv {
+   height: 10vh;
+   width:100%;
+   text-align:center;
+   margin-top: 30vh;
+}
+
+#changePwdBackDiv a{
+  font-size: 25px;
+  margin-bottom: 1vh;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+}
