@@ -35,10 +35,34 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/login.html'
 
     })
+    .state('view', {
+        url: '/view',
+        templateUrl: 'templates/view.html'
+
+    })
+
+    .state('msgList', {
+        url: '/msgList',
+        templateUrl: 'templates/msgList.html'
+
+    })
+
+    .state('client', {
+        url: '/client',
+        templateUrl: 'templates/client.html'
+
+    })
+
     .state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html' 
     })
+
+    .state('openTicket', {
+        url: '/openTicket',
+        templateUrl: 'templates/openTicket.html' 
+    })
+     
     .state('userTabs', {
         url: '/userTabs',
         templateUrl: 'templates/userTabs.html' 
@@ -51,8 +75,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/forgotPwdOtp',
         templateUrl: 'templates/forgotPwdOtp.html' 
     })
+
+    .state('changePassword', {
+        url: '/changePassword',
+        templateUrl: 'templates/changePassword.html' 
+    })
+      
      
-    $urlRouterProvider.otherwise('/customerDetails');
-    
-     
+
+    $urlRouterProvider.otherwise('/mainHome');
 })
