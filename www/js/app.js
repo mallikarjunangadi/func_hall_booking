@@ -80,8 +80,11 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/changePassword',
         templateUrl: 'templates/changePassword.html' 
     })
-      
+      .state('publicfacility',{
+         url: '/publicfacility',
+        templateUrl: 'templates/publicfacility.html'  
+      })
      
 
-    $urlRouterProvider.otherwise('/mainHome');
+    $urlRouterProvider.otherwise('/customerDetails');
 })

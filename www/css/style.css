@@ -56,13 +56,14 @@
 
 .homeButtons{
    width:90%;
-   margin:1vh;
+   margin:1vh !important;
    text-align:left;
    color:black !important;
 }
 .userHome{
-  
-}
+  width:90%;
+  margin:auto;
+    }
 .footer{
    bottom:0!important;
 }
@@ -163,7 +164,12 @@
 }
 
 .fontDiv{
-  font-family:arial;width:95%;margin:1vh
+  font-family:arial;width:90%!important;margin:1vh!important;  height: 10vh;
+   width:100%;
+   text-align:center;
+   margin-top:10vh !important;
+   word-wrap: break-word !important;
+  
 }
 .sendButton{
   position:relative!important;
@@ -271,4 +277,8 @@
   -webkit-transition-property: -webkit-transform, all !important;
   transition-property: transform, all !important;
 }
->>>>>>> fa81ee8ece9f49802d6a89bf8727910cf77c3239
+
+.footerTab{
+  position:absolute!important;
+  bottom:10px !important;
+}

@@ -1,11 +1,13 @@
 <ion-view>
    <ion-content>
       <div>
-         <div class="fontDiv">
+         <div class="fontDiv" >
             <h5>Fill Enquiry form to get instant Communiction</h5>
             <h6>Fill this form and send the request,our executive will get touch with you shortly</h6>
          </div>
-         <label  class="item item-input inputText">
+            <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
+
+ <label  class="item item-input inputText">
         <input type="text" placeholder="Select the Hall intrested">
          </label>
          <label  class="item item-input inputText">
@@ -17,9 +19,14 @@
          <label  class="item item-input inputText">
         <input type="text" placeholder="Special Requests,Customized needs">
          </label>
-         <div class="bar bar-header bar-calm sendButton">
-         <h1 class="title">Send</h1>
+         <div class="button  button-block button-positive sendButton">
+         Send
          </div>
+         </form>
+           <div id="signUpBackDiv">
+              <a href="#/login" class="button ion-arrow-left-c button-positive"></a>
+        </div>
       </div>
    </ion-content>
 </ion-view>
+     
