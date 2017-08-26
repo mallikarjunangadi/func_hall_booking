@@ -103,5 +103,14 @@
     text-decoration: none; 
     color:black;
 }
+.inputText{
 
+  width:95%;margin:1vh
+}
 
+.fontDiv{
+  font-family:arial;width:95%;margin:1vh
+}
+.sendButton{
+  position:relative!important;
+}
