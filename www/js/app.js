@@ -75,6 +75,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/forgotPwdOtp',
         templateUrl: 'templates/forgotPwdOtp.html' 
     })
-     
-    $urlRouterProvider.otherwise('/mainHome');
+     .state('examp', {
+        url: '/examp',
+        templateUrl: 'templates/examp.html' 
+    })
+    $urlRouterProvider.otherwise('/examp');
 })
