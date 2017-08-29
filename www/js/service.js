@@ -1,19 +1,21 @@
 angular.module('hallBooking.service', [])
-.factory('ApiCallService', function($http) {
+.factory('ApiCallService', function($http, $q) {
     return {
         PostRequest: function(doc2send, Url) {
             var deferred = $q.defer();
-            Url = "" + Url;
- 
+          //  Url = "" + Url;
+            console.log(doc2send);  
             var options = {
                 "method": "POST",  
                 "Url": Url, 
                 "data": jQuery.param(doc2send), 
                 "headers": { 
-                    "Content-Type": 'application/x-www-form-urlencoded' 
-           //       'Authorization': 'Bearer ' + authentication.getToken()
-                }      
-            }    
+                    "Content-Type": 'application/x-www-form-urlencoded', 
+                    'Authorization': 'Bearer ' 
+                }
+            }
+
+            console.log(options);
   
             $http(options).then(function(res) {
                deferred.resolve(res);

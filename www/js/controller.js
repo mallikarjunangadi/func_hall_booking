@@ -16,26 +16,32 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         $state.go('login');
     }
 
-}).controller('loginCtrl', function($scope, $state, ApiCallService) {
+}).controller('loginCtrl', function($scope, $state, ApiCallService, $location) {
 
     $scope.loginObj = {};
     $scope.loginFunc = function(loginObj) {
         console.log('login func');
-        if (!loginObj.uName) {
-            console.log('username is required');
+        if (!loginObj.EmailId) {
+            console.log('email id is required');
             return;
         }
-        if (!loginObj.password) {
+        if (!loginObj.Password) {
             console.log('password is required');
             return;
         }
 
+        if(loginObj.EmailId == "public" && loginObj.Password == "12345") {
+            $location.path('customerDetails')
+        } 
+
+/*
         var promise = ApiCallService.PostRequest($scope.loginObj, '/loginAuth');
         promise.then(function(res) {
             console.log(res);
         }, function() {
             console.log('error')
         })
+*/        
     }
 
 }).controller('signUpCtrl', function($scope, $state) {
@@ -44,27 +50,27 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 
     $scope.signUp = function(signUpObj) {
         console.log('signup');
-        if (!signUpObj.uName) {
-            console.log('user name is required');
-            return;
-        }
-        if (!signUpObj.emailId) {
-            console.log('email is required');
-            return;
-        }
-        if (!signUpObj.mobileNo) {
+        
+        if (!signUpObj.PhoneNumber) {
             console.log('mobile number is required');
             return;
         }
-        if (signUpObj.mobileNo != 10) {
+        
+        if (signUpObj.PhoneNumber != 10) {
             console.log('invalid mobile number');
             return;
         }
-        if (!signUpObj.password) {
+        
+        if (!signUpObj.EmailId) {
+            console.log('email is required');
+            return;
+        }
+        
+        if (!signUpObj.Password) {
             console.log('password is required');
             return;
         }
-        if (signUpObj.password != signUpObj.cPassword) {
+        if (signUpObj.Password != signUpObj.cPassword) {
             console.log('Password doesnt match');
             return;
         }
