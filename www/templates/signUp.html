@@ -1,21 +1,23 @@
 <ion-view ng-controller="signUpCtrl">
-    <ion-content>
+    <ion-content style="background-color:#f6f6f6;">
+     <div class="signUpDiv">
         <div class="signUpImgDiv">
-            <img src="../img/user2.png"></img>
+            <img src="../img/user3.png"></img>
             <h4>Sign Up</h4>
         </div>
         
-        <div id="signUpFormDiv">
+        <div id="signUpFormDiv">  
             <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
-                <div class="list list-inset">
+                <div class="list list-inset" style="background-color:transparent;">
+                    <p>Create new user id</p>
                     <label class="item item-input" style="padding:2vw;">
-                        <input type="tel" ng-model="signUpObj.mobileNo" placeholder="Phone Number" required>
+                        <input type="tel" ng-model="signUpObj.PhoneNumber" placeholder="Phone Number" required>
                     </label>
                     <label class="item item-input" style="padding:2vw;">
-                        <input type="email" ng-model="signUpObj.emailId" placeholder="Email" required>
+                        <input type="email" ng-model="signUpObj.EmailId" placeholder="Email" required>
                     </label>
                     <label class="item item-input" style="padding:2vw;">
-                        <input type="password" ng-model="signUpObj.password" placeholder="Password" required>
+                        <input type="password" ng-model="signUpObj.Password" placeholder="Password" required>
                     </label>
                     <label class="item item-input" style="padding:2vw;">
                         <input type="password" ng-model="signUpObj.cPassword" placeholder="Re-type password" required>
@@ -23,7 +25,11 @@
                     <button type="submit" class="button button-small button-block button-positive">Continue</button>
                 </div>
             </form>
-            <a href="#/login">Sign In?</a>
         </div>
+        <div id="signUpBackDiv">
+              <a href="#/login" class="button ion-arrow-left-c button-positive"></a>
+              <p>go back</p>
+        </div>
+      </div>  
     </ion-content>
 </ion-view>
