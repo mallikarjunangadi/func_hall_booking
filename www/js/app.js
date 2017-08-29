@@ -44,13 +44,11 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
     .state('msgList', {
         url: '/msgList',
         templateUrl: 'templates/msgList.html'
-
     })
 
     .state('client', {
         url: '/client',
         templateUrl: 'templates/client.html'
-
     })
 
     .state('signUp', {
@@ -81,7 +79,5 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/changePassword.html' 
     })
       
-     
-
     $urlRouterProvider.otherwise('/mainHome');
 })
