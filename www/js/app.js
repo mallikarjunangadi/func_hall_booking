@@ -70,6 +70,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
     })
     .state('customerDetails', {
         url: '/customerDetails',
+        controller:'publicFacility',
         templateUrl: 'templates/customerDetails.html' 
     })
     .state('forgotPwdOtp', {
@@ -85,7 +86,10 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
          url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'  
       })
-     
+     .state('publicView',{
+         url: '/publicView',
+        templateUrl: 'templates/publicView.html'  
+      })
 
-    $urlRouterProvider.otherwise('/msgList');
+    $urlRouterProvider.otherwise('/publicfacility');
 })

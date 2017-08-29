@@ -43,3 +43,16 @@ angular.module('hallBooking.service', [])
         }
     }
 })
+
+.factory('setPublicFacility', function() {
+ var facility={};
+return {
+  getFacility : function () {
+    return facility.name;
+},
+
+setFacility: function (name) {
+    facility.name = name;
+   }
+}
+})

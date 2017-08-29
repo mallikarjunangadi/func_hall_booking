@@ -41,6 +41,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 }).controller('signUpCtrl', function($scope, $state) {
 
     $scope.signUpObj = {};
+
     $scope.signUp = function(signUpObj) {
         console.log('signup');
         if (!signUpObj.uName) {
@@ -76,7 +77,18 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         })
     }
 })
-.controller('publicFacility', function($scope, $state) {
+.controller('publicFacility', function($scope, setPublicFacility,$state) {
+    $scope.publicMsg={};
+    
+  $scope.getFacilityList=function(){
+    $state.go('publicfacility');  
+  }
+  $scope.selectedFacility=function(name){
+      setPublicFacility.setFacility(name);
+      $scope.facility=setPublicFacility.getFacility();
+      console.log($scope.facility);
+      $state.go('customerDetails')
+  }  
  $scope.slides = [{
         "head":"Welcome to TSR Hall booking app",
         "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
@@ -98,5 +110,27 @@ img:"img/201.jpg"},
 {name:"PRE FUNCTION HALL",
  img:"img/205.jpg"}
 ];
+
+$scope.publicMsgList=[];
+
+$scope.sendPublicMsg=function(){
+
+    $scope.publicMsg={
+        publicUserId:1,
+        publicImage:'img/user1.png',
+        publicMssge:$scope.senderMsg,
+        date:new Date().getTime()
+    }
+    $scope.managerMsg={
+        managerUserId:2,
+        managerImage:'img/user2.jpg',
+        managerMsg:'Customer want to book a hall',
+        date:new Date()
+    }
+
+$scope.publicMsgList.push({publicMsgs:$scope.publicMsg,managerMsgs:$scope.managerMsg});
+$scope.senderMsg="";
+console.log($scope.senderMsg);
+}
 
 })

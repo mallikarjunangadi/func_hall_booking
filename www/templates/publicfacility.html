@@ -8,7 +8,7 @@
     <ion-content scroll="false" class="scrolling">
         <div class="list"> 
             <ion-item style="padding:0" ng-repeat="facility in publicfacility">
-                <div id="publicFacilityDiv">
+                <div id="publicFacilityDiv" ng-click="selectedFacility(facility.name)">
                     <p>{{facility.name}}</p>
                     <img ng-src="{{facility.img}}" width="100%" height="auto" />
                 </div>

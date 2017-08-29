@@ -1,19 +1,25 @@
-<ion-view style="background-color:#e4e4e4;">
-            <ion-tabs class="tabs-icon-bottom">
-            <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-                <div class="userHome">
-                    <button   class="button icon-right icon-accessory ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Browse through the facilities</p></button>
-                    <button  class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Service bundles</p></button>
-                    <button  class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Contact executive</p></button>
-                </div>
-            </ion-tab>
+<ion-view ng-controller="publicFacility" style="background-color:#e4e4e4;">
 
-            <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-                <!-- Tab 2 content -->
-            </ion-tab>
+    <ion-tabs class="tabs-icon-bottom">
+        <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline">
 
-            <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-                <!-- Tab 3 content -->
-            </ion-tab>
-        </ion-tabs>
-    </ion-view>
+            <div class="userHome">
+                <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons" ng-click="getFacilityList()"><p style="color:black;margin:3vh;margin-right:0!important">Browse through the facilities</p></button>
+                <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black;margin:3vh;margin-right:0!important">Service bundles</p></button>
+                <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black;margin:3vh">Contact executive</p></button>
+            </div>
+        </ion-tab>
+
+        <ion-tab icon-on="ion-android-textsms" icon-off="ion-android-textsms">
+            <!-- Tab 2 content -->
+        </ion-tab>
+
+        <ion-tab icon-on="ion-ios-briefcase" icon-off="ion-ios-briefcase-outline">
+            <!-- Tab 3 content -->
+        </ion-tab>
+        <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+            <!-- Tab 3 content -->
+        </ion-tab>
+    </ion-tabs>
+
+</ion-view>
