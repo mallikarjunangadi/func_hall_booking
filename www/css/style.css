@@ -20,7 +20,8 @@
 }
 
 .messtext {
-    margin: 28vh 2vh 3vh 2vh;
+ margin: 28vh 2vh 3vh 2vh;
+     bottom:0!important;
     border-radius: 25px;
     border: 1px solid blue;
     padding: 0px 9px 0 13px ;
@@ -56,13 +57,19 @@
 
 .homeButtons{
    width:90%;
-   margin:1vh !important;
-   text-align:left;
-   color:black !important;
+   margin:1vh!important;
+   text-align:center;
+   color:blue!important;
+   line-height: 31px;
+   background:white!important;
 }
 .userHome{
   width:90%;
   margin:auto;
+  text-align:center;
+  postion:absolute;
+  top:55vh;
+  background-color:#e4e4e4;
     }
 .footer{
    bottom:0!important;
@@ -281,4 +288,11 @@
 .footerTab{
   position:absolute!important;
   bottom:10px !important;
+}
+#publicFacilityDiv{
+  text-align:center;
+  height:auto;
+}
+.scrolling{
+  overflow-y:auto;
 }

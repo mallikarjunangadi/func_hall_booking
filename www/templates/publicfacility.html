@@ -1,6 +1,18 @@
-<ion-card>
-
-  <ion-item>
-   
-   </ion-item>
-  </ion-card>
+<ion-view ng-controller="publicFacility">
+    <ion-nav-bar class="bar">
+        <ion-nav-buttons side="left">
+            <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
+        </ion-nav-buttons>
+        <ion-nav-title>Catalogue of Facilities</ion-nav-title>
+    </ion-nav-bar>
+    <ion-content scroll="false" class="scrolling">
+        <div class="list"> 
+            <ion-item style="padding:0" ng-repeat="facility in publicfacility">
+                <div id="publicFacilityDiv">
+                    <p>{{facility.name}}</p>
+                    <img ng-src="{{facility.img}}" width="100%" height="auto" />
+                </div>
+            </ion-item>
+        </div>
+   </ion-content>
+</ion-view>

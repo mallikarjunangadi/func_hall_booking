@@ -23,7 +23,8 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
   });
 }) 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
     $stateProvider
     .state('mainHome', {
         url: '/mainHome',
@@ -86,5 +87,5 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
       })
      
 
-    $urlRouterProvider.otherwise('/customerDetails');
+    $urlRouterProvider.otherwise('/msgList');
 })

@@ -1,25 +1,19 @@
-<ion-view>
-   <ion-content>
-   <div >
-      <div class="userHome">
-         <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons">Browse through the facilities</button>
-         <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons">Service bundles</button>
-         <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons">Contact executive</button>
-      </div>
-      <div class="tabs footerTab tabs-icon-only">
-         <a class="tab-item">
-         <i class="icon ion-ios-bell-outline"></i>
-         </a>
-         <a class="tab-item">
-         <i class="icon ion-star"></i>
-         </a>
-         <a class="tab-item">
-         <i class="icon ion-gear-a"></i>
-         </a>
-          <a class="tab-item">
-         <i class="icon ion-gear-a"></i>
-         </a>
-      </div>
-      </div>
-   </ion-content>
-</ion-view>
+<ion-view style="background-color:#e4e4e4;">
+            <ion-tabs class="tabs-icon-bottom">
+            <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+                <div class="userHome">
+                    <button   class="button icon-right icon-accessory ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Browse through the facilities</p></button>
+                    <button  class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Service bundles</p></button>
+                    <button  class="button icon-right ion-chevron-right  button-outline button-stable homeButtons"><p style="color:black">Contact executive</p></button>
+                </div>
+            </ion-tab>
+
+            <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+                <!-- Tab 2 content -->
+            </ion-tab>
+
+            <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+                <!-- Tab 3 content -->
+            </ion-tab>
+        </ion-tabs>
+    </ion-view>
