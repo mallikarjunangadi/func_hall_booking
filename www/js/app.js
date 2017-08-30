@@ -71,6 +71,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
             })
 
 
+
             .state('publicView', {
                 url: '/publicView',
                 templateUrl: 'templates/publicView.html'
@@ -81,6 +82,12 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
                 url: '/publicfacility',
                 templateUrl: 'templates/publicfacility.html'
             })
-        $urlRouterProvider.otherwise('/openTicket');
+
+
+     .state('examp', {
+        url: '/examp',
+        templateUrl: 'templates/examp.html' 
+    })
+    $urlRouterProvider.otherwise('/openTicket');
 
     })
