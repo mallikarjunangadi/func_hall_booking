@@ -82,7 +82,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
-<<<<<<< HEAD
+
 
      .state('examp', {
         url: '/examp',
