@@ -64,6 +64,15 @@
    background:white!important;
   font-size:2vh;
 }
+.enquiryButtons{
+  width:96%;
+  margin:1vh!important;
+  text-align:left;
+  line-height: 0px!important;
+  background:white!important;
+  border:rgba(0, 0, 0, 0.48);
+
+}
 .userHome{
   width:90%;
   margin:auto;
@@ -170,6 +179,7 @@
 .inputText{
 
   width:95%;margin:1vh
+
 }
 
 .fontDiv{
@@ -348,3 +358,19 @@
   line-height:7vh!important;
 }
 
+.inpuText{
+  padding-left:4vw!important;
+  font-size:4vw!important
+}
+.inpuDate{
+  padding:0!important;
+  margin-left:1vw!important;
+}
+.buttonDiv{
+  margin-top:10vh!important;
+}
+.fontDivision{
+margin-top:13vh!important;
+margin-left:5vh!important;
+margin-right:5vh!important;
+}
