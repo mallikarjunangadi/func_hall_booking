@@ -89,20 +89,22 @@
     }
 
 .homeButtons{
-   width:90%;
+   width:96%;
    margin:1vh!important;
-   text-align:center;
-   color:blue!important;
-   line-height: 31px;
+   text-align:left;
+   color:#00BFFF!important;
+   line-height: 1px!important;
    background:white!important;
+  font-size:2vh;
 }
 .userHome{
   width:90%;
   margin:auto;
   text-align:center;
   postion:absolute;
-  top:55vh;
-  background-color:#e4e4e4;
+  top:35vh;
+  background-color:#f6f6f6;
+   
     }
 .footer{
    bottom:0!important;
@@ -457,4 +459,15 @@ $stable:                          #f8f8f8 !default;
   overflow-y:auto;
 }
 
- 
+
+#penIcon{
+  margin:auto;
+  font-size:4vh;
+  color:blue;
+  float:rigth;
+ }
+.tabs-icon-top > .tabs .tab-item, .tabs-icon-top.tabs .tab-item, .tabs-icon-bottom > .tabs .tab-item, .tabs-icon-bottom.tabs .tab-item{
+  line-height:7vh!important;
+}
+
+

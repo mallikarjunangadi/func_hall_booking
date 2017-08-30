@@ -57,8 +57,12 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/userTabs.html'
     }).state('customerDetails', {
         url: '/customerDetails',
-        templateUrl: 'templates/customerDetails.html'
-    }).state('forgotPwdOtp', {
+
+        controller:'publicFacility',
+        templateUrl: 'templates/customerDetails.html' 
+    })
+  .state('forgotPwdOtp', {
+
         url: '/forgotPwdOtp',
         templateUrl: 'templates/forgotPwdOtp.html'
     })
@@ -66,14 +70,24 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/changePassword',
         templateUrl: 'templates/changePassword.html'
     })
+
+      
+     .state('publicView',{
+         url: '/publicView',
+        templateUrl: 'templates/publicView.html'  
+      })
+
+ 
     .state('publicfacility', {
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
+<<<<<<< HEAD
 
      .state('examp', {
         url: '/examp',
         templateUrl: 'templates/examp.html' 
     })
     $urlRouterProvider.otherwise('/examp');
+
 })
