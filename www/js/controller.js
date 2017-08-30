@@ -135,7 +135,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
         $scope.messages.push({
-            userId:  '12345',
+            userId:  'me',
             text: $scope.data.message,
             time: d
             
@@ -143,8 +143,8 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 
         
         $timeout(function () {
-            $scope.incmessages.push({
-            userId:  '12345',
+            $scope.messages.push({
+            userId:  'you',
             text: 'hi,hello...',
             time: d
             
@@ -181,6 +181,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.data = {};
     $scope.myId = '12345';
     $scope.messages = [];
+    
 
 })
 
