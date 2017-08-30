@@ -82,6 +82,6 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
-    $urlRouterProvider.otherwise('/mainHome');
+    $urlRouterProvider.otherwise('/userTabs');
 
 })

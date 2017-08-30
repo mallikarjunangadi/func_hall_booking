@@ -85,9 +85,13 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 })
 .controller('publicFacility', function($scope, setPublicFacility,$state) {
     $scope.publicMsg={};
-    
-  $scope.getFacilityList=function(){
-    $state.go('publicfacility');  
+    $scope.$on('$ionicView.beforeEnter', function(){
+    $scope.facility=setPublicFacility.getFacility();
+   console.log($scope.facility);
+   })
+ 
+   $scope.getFacilityList=function(){
+   $state.go('publicfacility');  
   }
   $scope.selectedFacility=function(name){
       setPublicFacility.setFacility(name);
