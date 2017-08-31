@@ -68,5 +68,54 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
-    $urlRouterProvider.otherwise('/mainHome');
+  
+    .state('mainTab', {
+      url: "/mainTab",
+      
+      templateUrl: "templates/mainTab.html"
+    })
+    .state('mainTab.openTicket', {
+      url: "/openTicket",
+      views: {
+        'openTicket-tab': {
+          templateUrl: "templates/openTicket.html"
+          
+        }
+      }
+    })
+    .state('mainTab.tab1', {
+      url: "/tab1",
+      views: {
+        'tab1-tab': {
+          templateUrl: "templates/tab1.html"
+        }
+      }
+    })
+    .state('mainTab.tab3', {
+      url: "/tab3",
+      views: {
+        'tab3-tab': {
+          templateUrl: "templates/tab3.html"
+        }
+      }
+    })
+    .state('mainTab.tab4', {
+      url: "/tab4",
+      views: {
+        'tab4-tab': {
+          templateUrl: "templates/tab4.html"
+        }
+      }
+    })
+    .state('mainTab.tab5', {
+      url: "/tab5",
+      views: {
+        'tab5-tab': {
+          templateUrl: "templates/tab5.html"
+        }
+      }
+    })
+
+
+  $urlRouterProvider.otherwise('/mainHome');
 })

@@ -6,32 +6,31 @@
 .colorright{
    color:green;
    margin:-1px;
+   margin-bottom:0px;
    padding:0px;
    float:left;
 }
 .colorright1{
    color:green;
-   margin:-1px;
+   margin:-2px;
+   margin-bottom:0px;
    padding:0px;
    float:left;
 }
-.time{
-  text-align:left;
-  color:blue;
-  float:left;
-  margin:0 0 0 0vh;
-  padding:0px;
-  
-}
 
+.msgListbut{
+   padding:0px;margin:0px;
+}
 .imgCol{
   background-image:url('/img/user2.jpg');
     
     background-size: 7vh 7vh;
     background-repeat: no-repeat;
     padding:0px;
+    
 
 }
+
 .imgCol i{
   padding-top:4vh ;
   float:left;
@@ -43,10 +42,11 @@
     height: 5vh;
 }
 
-.length p {
+.opetextsize p {
     font-size:0.7em;
+    padding:0px;
+    margin:0px;
 }
-
 .radiusCard {
     border-radius: 5px;
     margin: 8px;
@@ -269,10 +269,11 @@
   color:grey; 
 }
 
+/*
 .iconsmall1 i{
   font-size:6vh;
   color:grey;
-}
+}*/
 
 
 

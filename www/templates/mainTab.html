@@ -1,0 +1,59 @@
+<ion-view>
+<ion-pane>
+<ion-tabs class="tabs tabs-icon-top">
+
+  <ion-tab title="Home" icon-on="ion-ios-bell-outline" icon-off="ion-ios-bell-outline" href="#/mainTab/tab1">
+    <ion-nav-view name="tab1-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="About" icon-on="ion-ios-icon ion-android-textsms" icon-off="ion-ios-icon ion-android-textsms" href="#/mainTab/openTicket">
+    <i class="icon ion-android-textsms arrow1"></i>
+        <p style="text-align:center">Open Ticket</p>
+        <div class="text">Open Ticket</div>
+        <div class="card radiusCard" ng-repeat = "x in openmesg">
+            <a class="item item-avatar length" href="#msgList">
+                <img src="/img/user2.jpg">
+                <p>{{x.cusName}}</p>
+                <p>{{x.msg}}<i class="icon ion-chevron-right arrow"></i></p>
+                <p>{{x.lastCon}}</p>
+            </a>
+        </div>
+  </ion-tab>
+  <ion-tab title="About" icon-on="ion-speakerphone" icon-off="ion-speakerphone">
+    <ion-nav-view name="tab3-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Settings" icon-on="icon ion-stats-bars" icon-off="icon ion-stats-bars">
+    <ion-nav-view name="tab4-tab"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab title="Settings" icon-on="ion-ios-person-outline" icon-off="ion-ios-person-outline">
+    <ion-nav-view name="tab5-tab"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>
+<!---
+    <div class="tabs-striped tabs-color-blue">
+        <div class="tabs iconsmall">
+            <a class="tab-item" href="#">
+                <i class="ion-ios-bell-outline"></i>
+            </a>
+            <a class="tab-item iconsmall1" href="#openTicket">
+
+                <i class="ion-ios-icon ion-android-textsms"></i>
+            </a>
+            <a class="tab-item active iconsmall1" href="#">
+                <i class="ion-speakerphone"></i>
+            </a>
+            <a class="tab-item iconsmall1" href="#">
+                <i class="icon ion-stats-bars"></i>
+            </a>
+            <a class="tab-item" href="#">
+                <i class="ion-ios-person-outline"></i>
+            </a>
+        </div>
+    </div>-->
+    </ion-pane>
+</ion-view>
