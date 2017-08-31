@@ -498,9 +498,4 @@ margin-top:13vh!important;
 margin-left:5vh!important;
 margin-right:5vh!important;
 }
-
-.userTabs .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
-    color: #6bd4f7;
-    border:0;
-}
  
