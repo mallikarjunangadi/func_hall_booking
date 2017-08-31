@@ -119,8 +119,25 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         }
     }
 })
+.controller('openticCtrl', function($scope, $location){
+    $scope.openmesg = [
+                 {cusName:'Daniel Benitez',
+                 msg:'for date 22/10/2017,for le grandHall',
+                 lastCon:'last contact 14/3/2017'},
+                 {cusName:'Espera',
+                 msg:'for date 22/10/2017,for le grandHall',
+                 lastCon:'last contact 14/3/2017'}
+    ]
+    $scope.msgList = function(){
+        $location.path('msgList')
+    }
+})
+.controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location) {
 
-.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
+    $scope.back = function(){
+
+        $location.path('openTicket');
+    }
 
     $scope.hideTime = true;
     $scope.incmessages=[];
