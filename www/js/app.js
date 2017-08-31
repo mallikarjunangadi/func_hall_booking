@@ -133,6 +133,3 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
  $urlRouterProvider.otherwise('/openTicket');
 
 })
-
-  $urlRouterProvider.otherwise('/mainHome');
-})
