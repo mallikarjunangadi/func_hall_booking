@@ -1,25 +1,35 @@
 <ion-view style="background-color:#f6f6f6;">
     <ion-content>
         <div>
-            <div class="fontDiv">
-                <h5>Fill Enquiry form to get instant Communiction</h5>
-                <h6>Fill this form and send the request,our executive will get touch with you shortly</h6>
+            <div class="fontDivision">
+                <p style="font-size:14px;font-family: -apple-system,Helvetica Neue, Roboto, Segoe UI, sans-serif;">Fill Enquiry form to get instant communiction</p>
+                <p style="font-size:12px;font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">Fill this form and send the request,our executive will get touch with you shortly</p>
             </div>
             <div id="signUpFormDiv">
-            <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
-                <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons" ng-if="facility==undefined" ng-click="getFacilityList()"><p style="color:black;margin:3vh;margin-right:0!important"  >Select the Hall intrested</p></button>
-                 <button class="button icon-right ion-chevron-right  button-outline button-stable homeButtons" ng-if="facility!=undefined" ng-click="getFacilityList()"><p style="color:black;margin:3vh;margin-right:0!important" >{{facility}}</p></button>
-        <label class="item item-input inputText">
-       <span> Begining Date:</span><input type="date">
-         </label>
-                <label class="item item-input inputText">
-       <span> End Date:</span> <input type="date" >
-         </label>
-                <label class="item item-input inputText">
-        <input type="text" placeholder="Special Requests,Customized needs">
-         </label>
-            <button type="submit" class="button button-small button-block button-positive">Send</button>
-            </form>
+                <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
+                    <label class="item item-input inpuText" ng-if="facility==undefined" ng-click="getFacilityList()">
+                        <p style="color:black;text-align:center;   font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">Select the Hall intrested</p>
+                    </label>
+
+                    <label class="item item-input inpuText" ng-if="facility!=undefined" ng-click="getFacilityList()">
+                        <p style="color:black;text-align:center;    font-family:-apple-system,Helvetica Neue, Roboto, Segoe UI, sans-serif;">{{facility}}</p>
+                    </label>
+
+                    <label class="item item-input inpuText">
+                        <span style="font-size:14px;font-family:-apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;"> Begining Date:</span>
+                        <input class="inpuDate" type="date">
+                    </label>
+                    <label class="item item-input inpuText">
+                        <span style="font-size:14px;font-family:-apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;"> End Date:</span>
+                        <input class="inpuDate" type="date">
+                    </label>
+                    <label class="item item-input inpuText">
+                        <input type="text" placeholder="Special Requests,Customized needs">
+                    </label>
+                    <div class="buttonDiv">
+                        <button type="submit" class="button button-medium button-block button-positive">Send</button>
+                    </div>
+                </form>
             </div>
             <div id="signUpBackDiv">
                 <a href="#/login" class="button ion-arrow-left-c button-positive"></a>

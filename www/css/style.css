@@ -97,6 +97,15 @@
    background:white!important;
   font-size:2vh;
 }
+.enquiryButtons{
+  width:96%;
+  margin:1vh!important;
+  text-align:left;
+  line-height: 0px!important;
+  background:white!important;
+  border:rgba(0, 0, 0, 0.48);
+
+}
 .userHome{
   width:90%;
   margin:auto;
@@ -203,6 +212,7 @@
 .inputText{
 
   width:95%;margin:1vh
+
 }
 
 .fontDiv{
@@ -425,7 +435,7 @@ $stable:                          #f8f8f8 !default;
     padding: 4px 24px 8px 28px;
 }
 
-.changePwdDiv {
+.changePwdDiv { 
   height:100%;
   width:100%;
   margin:0;
@@ -471,4 +481,21 @@ $stable:                          #f8f8f8 !default;
   line-height:7vh!important;
 }
 
+
+.inpuText{
+  padding-left:4vw!important;
+  font-size:4vw!important
+}
+.inpuDate{
+  padding:0!important;
+  margin-left:1vw!important;
+}
+.buttonDiv{
+  margin-top:10vh!important;
+}
+.fontDivision{
+margin-top:13vh!important;
+margin-left:5vh!important;
+margin-right:5vh!important;
+}
 
