@@ -1,0 +1,62 @@
+<ion-view title="Mensajes" ng-controller="publicFacility" style="background-color:#e4e4e4;">
+    <ion-nav-bar class="bar">
+        <ion-nav-buttons side="left">
+            <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+        <!--<div class="bar bar-header">
+            <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
+            <h1 class="title">Mensajes</h1>
+        </div>
+        
+        <button class="button button-small button-positive listToggle">Open Ticket</button>-->
+        <div class="text">Daniel Benitez</div>
+        <div ng-repeat="messages in publicMsgList">
+        <div class="card radiusCard">
+            <a ng-if="messages.publicMsgs.publicUserId!=undefined"class="item item-avatar-right item-text-wrap length" href="#">
+                <img ng-src="{{messages.publicMsgs.publicImage}}">
+                <p>{{messages.publicMsgs.publicMssge}}</p>
+                <p style="text-align: left;color:blue;">
+                    <span style="color:green;">&#x2714;&#x2714;</span>
+                    <tt>{{messages.publicMsgs.date| date: "HH:mm:ss"}}</tt><br/>
+                  
+                 </p>
+            </a>
+        </div>
+       <div class="card radiusCard">
+            <a ng-if="messages.managerMsgs.managerUserId!=undefined" class="item item-avatar item-text-wrap length" href="#">
+                <img ng-src="{{messages.managerMsgs.managerImage}}">
+                <p>{{messages.managerMsgs.managerMsg}}
+                    <br>
+                   </p>
+                <p style="text-align: right;color:blue;">12.37 p.m.</p>
+            </a>
+            </div>
+        </div>
+       <!--  <div class="card radiusCard">
+            <a class="item item-avatar-right length" href="#">
+                <img src="/img/user2.jpg">
+                <p style="text-wrap:normal;">Hello Mr.Allison,thanks for contacting us,we have high demand for the hall on the day you are looking for, our executive will communicate to help you go through the booking process
+                    </p>
+                <p style="text-align: left;color:blue;">
+                    <span style="color:green;">&#x2714;&#x2714;</span>
+                    12.40 p.m.           
+                
+                
+                </p>
+            </a>
+        </div>-->
+
+    </ion-content>
+    <ion-footer-bar class="messtext " style="background-color:#e4e4e4!important;">
+        <div>
+            <div style="width:75vw;height:100%">
+                <input type="text" placeholder="Escribir mensajes" ng-model="senderMsg"style="width:100%;;height:100%;padding:0px;margin:0px;background-color:#e4e4e4;border-radius: 25px;">
+            </div>
+        </div>
+        <div id="penIcon">
+            <i class="icon ion-android-send" ng-click="sendPublicMsg()"></i>
+        </div>
+    </ion-footer-bar>
+</ion-view>

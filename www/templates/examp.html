@@ -1,0 +1,65 @@
+<ion-pane "class=" messaging-view " ng-controller=" Messages ">
+    <ion-header-bar class=" bar ">
+      <a class=" button icon-left ion-chevron-left button-clear button-positive "></a>
+      <h1 class=" title ">Customer Name</h1>
+    </ion-header-bar>
+
+    <ion-content >
+
+        <div class=" card firstbut ">
+            <div class=" button-bar ">
+                <a class=" button button-small button-positive " style=" padding:0px;margin:0px;">Open Ticket</a>
+                <a class=" button button-small " style=" padding:0px;margin:0px;">Close Ticket</a>
+            </div>
+        </div>
+
+      <div ng-repeat=" message in messages " class=" messages1 ">
+
+        <div class=" message card radiusCard " ng-if="message.userId=='me'">
+            <a class=" item item-avatar-right length " href=" #">
+                <img src=" /img/user1.png ">
+                <p>{{ message.text }}</p>
+                <p style="text-align:left;">
+                    <span class="colorright">&#x2714;</span><span class="colorright1">&#x2714;</span> {{message.time}}
+               </p>
+            </a>
+        </div>
+
+        <div class=" message card radiusCard "  ng-if="message.userId=='you'" class="messages">
+          <a class="item item-avatar length " href="#">
+            <img src="/img/user2.jpg ">
+            <p>{{ message.text }}</p>
+            <p style="text-align:left;">{{message.time}}</p>
+          
+          </a>
+        </div>
+    </div>
+
+    <div style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</div>
+    <div class="card radiusCard ">
+    <div class="row " style="height:9vh;">
+        <div class="col imgCol">
+        <i class="icon ion-minus-circled" style="color:green;"></i>
+        </div>
+        <div class="col imgCol">
+            
+            <i class="icon ion-minus-circled" style="color:red;"> </i>
+        </div>
+        <div class="col imgCol">
+            <i class="icon ion-minus-circled" style="color:red;"> </i>
+        </div>
+        <div class="col imgCol">
+            <i class="icon ion-minus-circled" style="color:yellow;"> </i>
+        </div>
+    </div>
+</div>
+</ion-content>
+<ion-footer-bar keyboard-attach class="bar-stable item-input-inset " style="border-radius:15vh;">
+    <label class="item-input-wrapper ">
+        <input type="text " style="border:none;" placeholder="Type your message " on-return="sendMessage();closeKeyboard()" ng-model="data.message " on-focus="inputUp()" on-blur="inputDown()"/>
+    </label>
+    <button class="button button-clear " ng-click="sendMessage()">
+        <i class="icon ion-navigate "></i>
+    </button>
+</ion-footer-bar>
+</ion-pane>
