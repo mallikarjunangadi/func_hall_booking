@@ -30,8 +30,11 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             return;
         }
 
-        if(loginObj.EmailId == "public" && loginObj.Password == "12345") {
-            $location.path('customerDetails')
+        if(loginObj.EmailId == "public" && loginObj.Password == "123") {
+            $location.path('userTabs');
+        }
+        if(loginObj.EmailId == "manager" && loginObj.Password == "123") {
+            $location.path('openTicket');
         } 
 
 /*

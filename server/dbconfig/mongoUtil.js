@@ -8,9 +8,9 @@ module.exports = {
             _db = db;  
             
             return callback(err);
-        })
+        }) 
     },
-   getDb: function() {
+   getDb: function() { 
        return _db;
    } 
 }
