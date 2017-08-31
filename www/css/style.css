@@ -270,9 +270,9 @@
 
 .iconsmall i{
   font-size:6vh;
-  color:grey;
-
+  color:grey; 
 }
+
 /*
 .iconsmall1 i{
   font-size:6vh;
@@ -494,7 +494,7 @@ $stable:                          #f8f8f8 !default;
   padding:0!important;
   margin-left:1vw!important;
 }
-.buttonDiv{
+.buttonDiv{ 
   margin-top:10vh!important;
 }
 .fontDivision{
@@ -503,3 +503,8 @@ margin-left:5vh!important;
 margin-right:5vh!important;
 }
 
+.userTabs .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: #6bd4f7;
+    border:0;
+}
+ 
