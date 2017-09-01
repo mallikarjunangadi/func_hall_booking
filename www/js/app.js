@@ -112,6 +112,6 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
             }
         }
     })
-  $urlRouterProvider.otherwise('/internalTabs');
+  $urlRouterProvider.otherwise('/mainHome');
 
 })

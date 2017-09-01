@@ -33,7 +33,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             $location.path('userTabs');
         }
         if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
-            $location.path('/mainTab');
+            $location.path('internalTabs');
         }
 
         /*
@@ -192,7 +192,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 .controller('openticCtrl', function($scope, $location) {
     $scope.openmesg = [{
         cusName: 'Sowmya',
-        agentName: 'Daniel vettori', 
+        agentName: 'Un Usigned', 
         img: '../img/user2.jpg',
         bookingDate:'22/10/2017',
         hallName: 'grandHall',
@@ -204,7 +204,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         bookingDate:'22/10/2017',
         hallName: 'KRHall',
         img: '../img/user2.jpg', 
-        lastCon: '14/6/2017',
+        lastCon: '14/6/2017', 
         status: 'offline'
     },{
         cusName: 'Mallikarjun',
