@@ -166,7 +166,7 @@
     text-align: center;
     text-decoration: none;
     color: black;
-}
+} 
 
 .slidingCard {
     height: 45vh;
@@ -534,3 +534,26 @@ $stable: #f8f8f8 !default; .scroll {
     color:orange;
 }
 
+#forgotPwdBackDiv {
+    height: 10vh;
+    width: 100%;
+    text-align: center;
+    margin-top: 26vh; 
+}
+
+#forgotPwdBackDiv a {
+    font-size: 25px;
+    margin-bottom: 1vh;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important; 
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transition: 0.2s linear !important;
+    transition: 0.2s linear !important;
+    -webkit-transition-property: -webkit-transform, all !important;
+    transition-property: transform, all !important;
+}
+
+#forgotPwdBackDiv p {
+    background-color: #f6f6f6;
+}
