@@ -5,7 +5,7 @@
         <div class="text">Open Ticket</div>
 
         
-        <div class="card radiusCard" ng-repeat="x in openmesg">
+        <div class="card radiusCard" ng-repeat="x in openmesg" ng-click="msgList()">
             <div class="row" style="padding:0px;">
                 <div class="col imgCol">
                     <i class="icon ion-minus-circled" style="color:green;"></i>
@@ -14,7 +14,7 @@
                 <div class="col col-75 opetextsize">
                     <h6 style="margin:0px;">{{x.cusName}}</h6>
                     <p>
-                        {{x.msg}}<i class="icon ion-chevron-right arrow" ng-click="msgList()"></i>
+                        {{x.msg}}<i class="icon ion-chevron-right arrow" ></i>
                     </p>
                     <p>{{x.lastCon}}</p>
                 </div>

@@ -118,6 +118,6 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
 
 
 
-  $urlRouterProvider.otherwise('/mainHome');
+  $urlRouterProvider.otherwise('/openTicket');
 
 })
