@@ -190,7 +190,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     }
 })
 
-.controller('openticCtrl', function($scope, $location){
+.controller('openticCtrl', function($scope, $location, myService){
     $scope.openmesg = [
                  {cusName:'Daniel Benitez',
                  msg:'for date 22/10/2017,for le grandHall',
@@ -199,11 +199,21 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                  msg:'for date 22/10/2017,for le grandHall',
                  lastCon:'last contact 14/3/2017'}
     ]
-    $scope.msgList = function(){
-        $location.path('msgList')
+    
+               
+    $scope.msgList = function(x){
+        console.log(x);
+        myService.set(x);
+        $location.path('msgList');
     }
 })
-.controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location) {
+.controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
+
+    
+    $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.cusdetail = myService.get();
+        console.log($scope.cusdetail);
+    })
 
     $scope.back = function(){
 
@@ -265,4 +275,18 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.myId = '12345';
     $scope.messages = [];
 
+})
+.factory('myService', function() {
+    var savedData;
+    function set(data) {
+        console.log(data);
+        savedData = data;
+    }
+    function get() {
+        return savedData;
+    }
+     return {
+        set: set,
+        get: get,
+     }
 })
