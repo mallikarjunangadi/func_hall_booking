@@ -12,11 +12,14 @@
                 <div class="col col-22 imgCol" >
                     <img src="{{x.img}}" style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
                     <i class="icon ion-record" ng-class= "{'online' : x.status == 'online','offline' : x.status == 'offline', 'waiting' : x.status == 'waiting' }"></i>
-                    <p style="font-size:0.7em;margin:0;text-align:center;">{{x.agentName}}</p>
+                    <p style="font-size:0.7em;margin:0;text-align:center;">{{x.cusName}}</p>
                 </div>
                 <div class="col col-75 opetextsize">
-                    <h6 style="margin:0 0 5px 0;">{{x.cusName}}</h6>
-                    <p>for date {{x.bookingDate}} ,for le {{x.hallName}}<i style="margin-right:2vw;" class="icon ion-chevron-right arrow" ng-click="msgList()"></i>
+
+                    <h6 style="margin:0 0 5px 0;">{{x.agentName}}</h6>
+                    <p>
+                        for date {{x.bookingDate}} ,for le {{x.hallName}}<i style="margin-right:2vw;" class="icon ion-chevron-right arrow" ng-click="msgList()"></i>
+
                     </p> 
                     <p>last contact {{x.lastCon}}</p>
 
