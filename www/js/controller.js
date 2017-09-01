@@ -1,21 +1,20 @@
 angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state) {
+        $scope.slides = [{
+            "head": "Welcome to TSR Hall booking app",
+            "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "This is a basic Card which contains an item that has wrapping text."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "This is a basic Card which contains an item that has wrapping text."
+        }];
 
-    $scope.slides = [{
-        "head": "Welcome to TSR Hall booking app",
-        "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
-    }];
+        $scope.getStarted = function() {
+            $state.go('login');
+        }
 
-    $scope.getStarted = function() {
-        $state.go('login');
-    }
-
-}).controller('loginCtrl', function($scope, $state, ApiCallService, $location) {
+    }).controller('loginCtrl', function($scope, $state, ApiCallService, $location) {
 
         $scope.loginObj = {};
         $scope.loginFunc = function(loginObj) {
@@ -84,21 +83,42 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 
         }
     })
-    .controller('publicFacility', function($scope, setPublicFacility, $state) {
+   .controller('publicFacility', function($rootScope,$scope, setPublicFacility, $state, $ionicModal,ApiCallService) {
         $scope.publicMsg = {};
+        var promise =ApiCallService.GetRequest( {},'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry');
+         promise.then(function(res) {
+                console.log(res);
+            }, function() {
+                console.log('error')
+            })
         $scope.$on('$ionicView.beforeEnter', function() {
             $scope.facility = setPublicFacility.getFacility();
             console.log($scope.facility);
         })
-
+        $scope.model1 = $ionicModal.fromTemplateUrl('templates/imgDescription.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.model1 = modal;
+        });
+        $scope.selectedFacilitydescription = function(image) {
+            $scope.image = image;
+            $scope.model1.show();
+        }
         $scope.getFacilityList = function() {
             $state.go('publicfacility');
+        }
+        $scope.closeModel = function() {
+            $scope.model1.hide();
         }
         $scope.selectedFacility = function(name) {
             setPublicFacility.setFacility(name);
             $scope.facility = setPublicFacility.getFacility();
             console.log($scope.facility);
             $state.go('customerDetails')
+        }
+        $scope.getFacilities = function() {
+            $state.go('catalogueFacility')
         }
         $scope.slides = [{
                 "head": "Welcome to TSR Hall booking app",
@@ -132,6 +152,10 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         $scope.publicMsgList = [];
 
         $scope.sendPublicMsg = function() {
+            if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
+               $rootScope.ShowToast('Hai');
+                return false
+            }
 
             $scope.publicMsg = {
                 publicUserId: 1,
@@ -154,112 +178,104 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             console.log($scope.senderMsg);
         }
 
+    }) //example//
 
-      
-    }
-)//example//
-
-.directive('input', function($timeout) {
-    return {
-        restrict: 'E',
-        scope: {
-            'returnClose': '=',
-            'onReturn': '&',
-            'onFocus': '&',
-            'onBlur': '&'
-        },
-        link: function(scope, element, attr) {
-            element.bind('focus', function(e) {
-                if (scope.onFocus) {
-                    $timeout(function() {
-                        scope.onFocus();
-                    });
-                }
-            });
-            element.bind('blur', function(e) {
-                if (scope.onBlur) {
-                    $timeout(function() {
-                        scope.onBlur();
-                    });
-                }
-            });
-            element.bind('keydown', function(e) {
-                if (e.which == 13) {
-                    if (scope.returnClose)
-                        element[0].blur();
-                    if (scope.onReturn) {
+    .directive('input', function($timeout) {
+        return {
+            restrict: 'E',
+            scope: {
+                'returnClose': '=',
+                'onReturn': '&',
+                'onFocus': '&',
+                'onBlur': '&'
+            },
+            link: function(scope, element, attr) {
+                element.bind('focus', function(e) {
+                    if (scope.onFocus) {
                         $timeout(function() {
-                            scope.onReturn();
+                            scope.onFocus();
                         });
                     }
-                }
-            });
+                });
+                element.bind('blur', function(e) {
+                    if (scope.onBlur) {
+                        $timeout(function() {
+                            scope.onBlur();
+                        });
+                    }
+                });
+                element.bind('keydown', function(e) {
+                    if (e.which == 13) {
+                        if (scope.returnClose)
+                            element[0].blur();
+                        if (scope.onReturn) {
+                            $timeout(function() {
+                                scope.onReturn();
+                            });
+                        }
+                    }
+                });
+            }
         }
-    }
-})
+    })
 
-.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
+    .controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
 
-    $scope.hideTime = true;
-    $scope.incmessages=[];
+        $scope.hideTime = true;
+        $scope.incmessages = [];
 
-    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-    $scope.sendMessage = function() {
-        console.log('enter');
-        
+        $scope.sendMessage = function() {
+            console.log('enter');
 
-        var d = new Date();
-        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
-        $scope.messages.push({
-            userId:  'me',
-            text: $scope.data.message,
-            time: d
-            
-        });
+            var d = new Date();
+            d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
-        
-        $timeout(function () {
             $scope.messages.push({
-            userId:  'you',
-            text: 'hi,hello...',
-            time: d
-            
-        });
-        }, 2000)
+                userId: 'me',
+                text: $scope.data.message,
+                time: d
 
-        delete $scope.data.message;
-        $ionicScrollDelegate.scrollBottom(true);
+            });
 
-    }
-    ;
 
-    $scope.inputUp = function() {
-        if (isIOS)
-            $scope.data.keyboardHeight = 216;
-        $timeout(function() {
+            $timeout(function() {
+                $scope.messages.push({
+                    userId: 'you',
+                    text: 'hi,hello...',
+                    time: d
+
+                });
+            }, 2000)
+
+            delete $scope.data.message;
             $ionicScrollDelegate.scrollBottom(true);
-        }, 300);
 
-    }
-    ;
+        };
 
-    $scope.inputDown = function() {
-        if (isIOS)
-            $scope.data.keyboardHeight = 0;
-        $ionicScrollDelegate.resize();
-    }
-    ;
+        $scope.inputUp = function() {
+            if (isIOS)
+                $scope.data.keyboardHeight = 216;
+            $timeout(function() {
+                $ionicScrollDelegate.scrollBottom(true);
+            }, 300);
 
-    $scope.closeKeyboard = function() {// cordova.plugins.Keyboard.close();
-    }
-    ;
+        };
 
-    $scope.data = {};
-    $scope.myId = '12345';
-    $scope.messages = [];
-    
+        $scope.inputDown = function() {
+            if (isIOS)
+                $scope.data.keyboardHeight = 0;
+            $ionicScrollDelegate.resize();
+        };
 
-})
+        $scope.closeKeyboard = function() { // cordova.plugins.Keyboard.close();
+        };
 
+        $scope.data = {};
+        $scope.myId = '12345';
+        $scope.messages = [];
+
+
+    })

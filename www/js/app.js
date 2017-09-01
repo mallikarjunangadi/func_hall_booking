@@ -2,7 +2,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.service'])
+angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -51,15 +51,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
                 url: '/openTicket',
                 templateUrl: 'templates/openTicket.html'
             })
-            .state('userTabs', {
-                url: '/userTabs',
-                templateUrl: 'templates/userTabs.html'
-            }).state('customerDetails', {
-                url: '/customerDetails',
-
-                controller: 'publicFacility',
-                templateUrl: 'templates/customerDetails.html'
-            })
+           
             .state('forgotPwdOtp', {
 
                 url: '/forgotPwdOtp',
@@ -70,24 +62,30 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
                 templateUrl: 'templates/changePassword.html'
             })
 
-
-
+            .state('catalogueFacility', {
+                url: '/catalogueFacility',
+                templateUrl: 'templates/catalogueFacility.html'
+            })
+            .state('examp', {
+                url: '/examp',
+                templateUrl: 'templates/examp.html'
+            })
             .state('publicView', {
                 url: '/publicView',
                 templateUrl: 'templates/publicView.html'
             })
-
-
-            .state('publicfacility', {
+             .state('publicfacility', {
                 url: '/publicfacility',
                 templateUrl: 'templates/publicfacility.html'
             })
-
-
-     .state('examp', {
-        url: '/examp',
-        templateUrl: 'templates/examp.html' 
-    })
-    $urlRouterProvider.otherwise('/openTicket');
-
+             .state('userTabs', {
+                url: '/userTabs',
+                templateUrl: 'templates/userTabs.html'
+            })
+             .state('customerDetails', {
+                url: '/customerDetails',
+                controller: 'publicFacility',
+                templateUrl: 'templates/customerDetails.html'
+            })
+        $urlRouterProvider.otherwise('/publicView');
     })
