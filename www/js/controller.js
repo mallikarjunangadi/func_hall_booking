@@ -189,23 +189,46 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         }
     }
 })
-
-.controller('openticCtrl', function($scope, $location){
-    $scope.openmesg = [
-                 {cusName:'Daniel Benitez',
-                 msg:'for date 22/10/2017,for le grandHall',
-                 lastCon:'last contact 14/3/2017'},
-                 {cusName:'Espera',
-                 msg:'for date 22/10/2017,for le grandHall',
-                 lastCon:'last contact 14/3/2017'}
-    ]
-    $scope.msgList = function(){
+.controller('openticCtrl', function($scope, $location) {
+    $scope.openmesg = [{
+        cusName: 'Sowmya',
+        agentName: 'Daniel vettori', 
+        img: '../img/user2.jpg',
+        bookingDate:'22/10/2017',
+        hallName: 'grandHall',
+        lastCon: '14/3/2017',
+        status:'online'
+    }, {
+        cusName: 'Bhagya',
+        agentName: 'Chaminda vaas', 
+        bookingDate:'22/10/2017',
+        hallName: 'KRHall',
+        img: '../img/user2.jpg', 
+        lastCon: '14/6/2017',
+        status: 'offline'
+    },{
+        cusName: 'Mallikarjun',
+        agentName: 'Tendulkar', 
+        bookingDate:'22/10/2017',
+        hallName: 'GPHall', 
+        img: '../img/user2.jpg', 
+        lastCon: '14/7/2017',
+        status: 'waiting'
+    },{
+        cusName: 'Sindhu',
+        agentName: 'Swagat', 
+        bookingDate:'22/10/2017',
+        hallName: 'ACHall', 
+        img: '../img/user2.jpg', 
+        lastCon: '14/10/2017',
+        status: 'offline'
+    }]
+    $scope.msgList = function() {
         $location.path('msgList')
     }
-})
-.controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location) {
+}).controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location) {
 
-    $scope.back = function(){
+    $scope.back = function() {
 
         $location.path('openTicket');
     }
@@ -240,7 +263,8 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         delete $scope.data.message;
         $ionicScrollDelegate.scrollBottom(true);
 
-    };
+    }
+    ;
 
     $scope.inputUp = function() {
         if (isIOS)
@@ -249,13 +273,15 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             $ionicScrollDelegate.scrollBottom(true);
         }, 300);
 
-    };
+    }
+    ;
 
     $scope.inputDown = function() {
         if (isIOS)
             $scope.data.keyboardHeight = 0;
         $ionicScrollDelegate.resize();
-    };
+    }
+    ;
 
     $scope.closeKeyboard = function() {// cordova.plugins.Keyboard.close();
     }
