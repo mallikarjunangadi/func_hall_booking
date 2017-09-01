@@ -1,70 +1,71 @@
 <ion-view title="Customer Name" style="background-color:#f6f6f6;">
-    <ion-nav-bar class="bar">
-        <ion-nav-buttons side="left">
-            <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
-        </ion-nav-buttons>
+   
+<ion-pane "class="messaging-view " ng-controller="Messages ">
+    <ion-header-bar class="bar ">
+      <a class="button icon-left ion-chevron-left button-clear button-positive " ng-click="back()"></a>
+      <h1 class="title ">{{cusdetail.cusName}}</h1>
+    </ion-header-bar>
 
-    </ion-nav-bar>
-    <ion-content>
-    <div>
-        <div class="card firstbut">
-            <div class="button-bar">
-                <a class="button button-small button-positive" style="padding:0px;margin:0px;">Open Ticket</a>
-                <a class="button button-small" style="padding:0px;margin:0px;">Close Ticket</a>
+
+    <ion-content >
+
+        <div class="card firstbut ">
+            <div class="button-bar ">
+                <a class="button button-small button-positive msgListbut ">Open Ticket</a>
+                <a class="button button-small msgListbut ">Close Ticket</a>
             </div>
         </div>
-        <div class="card radiusCard">
-            <a class="item item-avatar length" href="#">
-                <img src="/img/user2.jpg">
-                <p>
-                    Customer want to book a hall<br>for 1day on 22/10/2017
-                                                   
-                </p>
-                <p style="text-align: right;color:blue;">12.30 p.m.</p>
+       <div class="card radiusCard " style="height:15vh;">
+            <a class="item item-avatar length " href="#">
+                <img src="/img/user2.jpg ">
+                <p>Customer want to book a hall<br>for 1day on 22/10/2017</p>
+                <p style="text-align:right;color:blue;">12.37 p.m.</p>
             </a>
         </div>
-        <div class="card radiusCard">
-            <a class="item item-text-wrap item-avatar-right length " href="#">
-                <img src="/img/user1.png">
-                <p>Hello Mr.Allison,thanks for contacting us,we have high demand for the hall on the day you are looking for, our executive will communicate to help you go through the booking process
-                    </p>
-                <p style="text-align: left;color:blue;">
-                    <span style="color:green;">&#x2714;&#x2714;</span>
-                    12.30 p.m.
-                    
-                    
-                
-                </p>
+      <div ng-repeat="message in messages " class="messages1 ">
+
+        <div class="message card radiusCard " ng-if="message.userId=='me'">
+            <a class="item item-avatar-right length " href="#">
+                <img src="/img/user1.png ">
+                <p>{{ message.text }}</p>
+                <span class="colorright ">&#x2714;</span><span class="colorright1 ">&#x2714;</span>
+                <p style="text-align:left;padding:3px;color:blue;">{{message.time}}</p>
+              
             </a>
         </div>
-        <div style="text-align:center;font-size: 1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</div>
-        <div class="card radiusCard">
-            <div class="row">
-                <div class="col">
-                    <img src="/img/user2.jpg " style="width:7vh;height:7vh;margin:2vh;">
-                </div>
-                <div class="col">
-                    <img src="/img/user2.jpg " style="width:7vh;height:7vh;margin:2vh;">
-                </div>
-                <div class="col">
-                    <img src="/img/user2.jpg " style="width:7vh;height:7vh;margin:2vh;">
-                </div>
-                <div class="col">
-                    <img src="/img/user2.jpg " style="width:7vh;height:7vh;margin:2vh;">
-                </div>
-            </div>
+
+        <div class="message card radiusCard "  ng-if="message.userId=='you'" class="messages ">
+          <a class="item item-avatar length " href="#">
+            <img src="/img/user2.jpg ">
+            <p>{{ message.text }}</p>
+            <p style="text-align:left;color:blue;">{{message.time}}</p>
+          
+          </a>
         </div>
-       
-        <div class="row messtext">
-            <div class="col col-75" style="padding:0px;margin0px;">
-                <input type="text" placeholder="escribir mensajes" style="width:100%;padding:0px;margin:0px;background-color:#e4e4e4;">
-            </div>
-            <div class="col" style="padding:0px;margin0px;">
-                <button class="button button-small textarea">
-                    <i class="icon ion-android-create"></i>
-                </button>
-            </div>
+    </div>
+
+    <div style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</div>
+    <div class="card radiusCard ">
+    <div class="row " style="height:auto;">
+        <div class="col " ng-repeat="y in aggent">
+        <img src="{{y.img}}" style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
+         <i class="icon ion-record imgicon" ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
+         <p style="font-size:0.7em;margin:0;text-align:center;bottom:4vh;;position: relative;">{{y.agentName}}</p>
         </div>
-        </div>
-    </ion-content>
-</ion-view>
+        
+    </div>
+</div>
+</ion-content>
+<ion-footer-bar keyboard-attach class="bar-stable item-input-inset " style="border-radius:15vh;">
+    <label class="item-input-wrapper ">
+        <input type="text " style="border:none;" placeholder="Type your message " on-return="sendMessage();closeKeyboard()" ng-model="data.message " on-focus="inputUp()" on-blur="inputDown()"/>
+    </label>
+    <button class="button button-clear " ng-click="sendMessage()">
+        <i class="icon ion-navigate "style="color:blue;"></i>
+    </button>
+</ion-footer-bar>
+</ion-pane>
+
+
+
+
