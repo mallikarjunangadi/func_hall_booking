@@ -21,20 +21,21 @@
 .msgListbut{
    padding:0px;margin:0px;
 }
+
 .imgCol{
-  background-image:url('/img/user2.jpg');
-    
+  /*
+    background-image:url('/img/user2.jpg');
     background-size: 7vh 7vh;
     background-repeat: no-repeat;
     padding:0px;
-     background-position: 26% 28%; 
-
+    background-position: 26% 28%; 
+  */
 }
 
 .imgCol i{
-  padding-top:5vh;
-  margin-left:7px;
-  float:left;
+  position:absolute;
+  padding-top:4vh;
+  left:20px;
 }
 
 .firstbut {
@@ -43,11 +44,11 @@
     height: 5vh;
 }
 .opetextsize{
-  padding-left:0px;
+  padding:10px 0 5px 5px;
 }
 .opetextsize p {
     font-size:0.8em;
-    line-height: 170%;
+    line-height: 180%;
     padding:0px;
     margin:0px;
 }
@@ -501,10 +502,5 @@ $stable:                          #f8f8f8 !default;
 margin-top:13vh!important;
 margin-left:5vh!important;
 margin-right:5vh!important;
-}
-
-.userTabs .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
-    color: #6bd4f7;
-    border:0;
 }
  

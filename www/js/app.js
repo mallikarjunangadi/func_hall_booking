@@ -69,55 +69,51 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
         templateUrl: 'templates/publicfacility.html'
     })
   
-    .state('mainTab', {
-      url: "/mainTab",
-      
-      templateUrl: "templates/mainTab.html"
-    })
-    .state('mainTab.openTicket', {
-      url: "/openTicket",
-      views: {
-        'openTicket-tab': {
-          templateUrl: "templates/openTicket.html"
-          
+    .state('internalTabs', {
+        url: '/internalTabs',
+        templateUrl: 'templates/internalTabs.html'
+    }).state('internalTabs.openTicket', {
+        url: '/openTicket',
+        views: {
+            'tab-openTicket': {
+                templateUrl: 'templates/openTicket.html'
+            }
         }
-      }
-    })
-    .state('mainTab.tab1', {
-      url: "/tab1",
-      views: {
-        'tab1-tab': {
-          templateUrl: "templates/tab1.html"
+    }).state('internalTabs.tab2', { 
+        url: '/tab2',
+        views: {
+            'tab-tab2': {
+                templateUrl: 'templates/tab2.html'
+            }
         }
-      }
-    })
-    .state('mainTab.tab3', {
-      url: "/tab3",
-      views: {
-        'tab3-tab': {
-          templateUrl: "templates/tab3.html"
+
+    }).state('internalTabs.tab3', {
+        url: '/tab3',
+        views: {
+            'tab-tab3': {
+                templateUrl: 'templates/tab3.html'
+            }
         }
-      }
-    })
-    .state('mainTab.tab4', {
-      url: "/tab4",
-      views: {
-        'tab4-tab': {
-          templateUrl: "templates/tab4.html"
+
+    }).state('internalTabs.tab4', {
+        url: '/tab4',
+        views: {
+            'tab-tab4': {
+                templateUrl: 'templates/tab4.html'
+            }
         }
-      }
+
     })
-    .state('mainTab.tab5', {
-      url: "/tab5",
-      views: {
-        'tab5-tab': {
-          templateUrl: "templates/tab5.html"
+    .state('internalTabs.tab5', {
+        url: '/tab5',
+        views: {
+            'tab-tab5': {
+                templateUrl: 'templates/tab5.html'
+            }
         }
-      }
     })
 
+  $urlRouterProvider.otherwise('/internalTabs');
 
-
-  $urlRouterProvider.otherwise('/openTicket');
 
 })

@@ -32,8 +32,8 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         if (loginObj.EmailId == "public" && loginObj.Password == "123") {
             $location.path('userTabs');
         }
-        if (loginObj.EmailId == "manager" && loginObj.Password == "123") {
-            $location.path('openTicket');
+        if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
+            $location.path('/mainTab');
         }
 
         /*

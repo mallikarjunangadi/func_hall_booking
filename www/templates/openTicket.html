@@ -1,26 +1,27 @@
-<ion-view title="Mensajes" style="background-color:#f6f6f6;" ng-controller="openticCtrl">
+<ion-view title="Messages" style="background-color:#f6f6f6;" ng-controller="openticCtrl">
     <ion-content>
         <i class="icon ion-android-textsms arrow1"></i>
-        <p style="text-align:center">Open Ticket</p>
-        <div class="text">Open Ticket</div>
+        <p style="text-align:center">Open Tickets</p>
+        <p class="text">Open Tickets</p>
+
 
         
         <div class="card radiusCard" ng-repeat="x in openmesg" ng-click="msgList()">
+
             <div class="row" style="padding:0px;">
-                <div class="col imgCol">
+                <div class="col col-22 imgCol" >
+                    <img src="/img/user2.jpg" style="width:7vh;height:7vh;margin:0 3vw;">
                     <i class="icon ion-minus-circled" style="color:green;"></i>
-                    <p style="padding-top:9vh;font-size:0.7em;margin:0 0 0 2px; ">Daniel Benitez</p>
+                    <p style="font-size:0.7em;margin:0;">Daniel Benitez</p>
                 </div>
                 <div class="col col-75 opetextsize">
-                    <h6 style="margin:0px;">{{x.cusName}}</h6>
+                    <h6 style="margin:0 0 5px 0;">{{x.cusName}}</h6>
                     <p>
                         {{x.msg}}<i class="icon ion-chevron-right arrow" ></i>
                     </p>
                     <p>{{x.lastCon}}</p>
                 </div>
             </div>
-  
+        </div>
     </ion-content>
-
-    
 </ion-view>
