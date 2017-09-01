@@ -236,6 +236,29 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         console.log($scope.cusdetail);
     })
 
+    $scope.aggent = [
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Daniel vettori', 
+       status: 'offline'  
+    },
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Swagat', 
+       status: 'offline'  
+    },
+    {
+      img: '../img/user2.jpg',
+      agentName: 'rosee',  
+       status: 'online'  
+    },
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Daniel', 
+       status: 'waiting'  
+    }
+    ]
+
     $scope.back = function() {
 
         $location.path('openTicket');

@@ -5,7 +5,7 @@
 
 .colorright {
     color: green;
-    margin: -1px;
+    margin-right: -4px;
     margin-bottom: 0px;
     padding: 0px;
     float: left;
@@ -13,7 +13,7 @@
 
 .colorright1 {
     color: green;
-    margin: -2px;
+    margin-left: -3px;
     margin-bottom: 0px;
     padding: 0px;
     float: left;
@@ -39,7 +39,12 @@
     padding-top: 4vh;
     left: 20px;
 }
-
+.imgicon {
+    position: relative;
+    padding-bottom: 14vh;
+    left: 8px;
+    bottom:20px;
+}
 .firstbut {
     border-radius: 5px;
     margin: 5vh 8px 20px 8px;
