@@ -35,9 +35,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.s
     }).state('msgList', {
         url: '/msgList',
         templateUrl: 'templates/msgList.html'
-    }).state('client', {
-        url: '/client',
-        templateUrl: 'templates/client.html'
+    }).state('assign', {
+        url: '/assign',
+        templateUrl: 'templates/assign.html'
     }).state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html'

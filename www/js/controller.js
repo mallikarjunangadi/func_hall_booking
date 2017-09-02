@@ -261,7 +261,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 
     $scope.back = function() {
 
-        $location.path('openTicket');
+        $location.path('internalTabs');
     }
 
     $scope.hideTime = true;
@@ -322,9 +322,17 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.myId = '12345';
     $scope.messages = [];
 
+
+    $scope.moveAssigner = function(y){
+        console.log(y);
+        myService.setAggent(y);
+        $location.path('assign');
+    }
+
 })
 .factory('myService', function() {
     var savedData;
+    var saveaData;
     function set(data) {
         console.log(data);
         savedData = data;
@@ -332,8 +340,94 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     function get() {
         return savedData;
     }
+    function setAggent(data) {
+        console.log(data);
+        saveaData = data;
+    }
+    function getAggent() {
+        return saveaData;
+    }
      return {
         set: set,
         get: get,
+        setAggent: setAggent,
+        getAggent: getAggent,
      }
+})
+.controller('assignerCtrl', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
+     
+$scope.$on('$ionicView.beforeEnter', function() {
+        $scope.cusdetail = myService.get();
+        console.log($scope.cusdetail);
+    })
+     $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.Aggentdetail = myService.getAggent();
+        console.log($scope.Aggentdetail);
+    })
+
+    
+    $scope.back = function() {
+
+        $location.path('internalTabs');
+    }
+
+$scope.hideTime = true;
+    $scope.incmessages = [];
+
+    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+    $scope.sendMessage = function() {
+        console.log('enter');
+
+        var d = new Date();
+        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+
+        $scope.messages.push({
+            userId: 'me',
+            text: $scope.data.message,
+            time: d
+
+        });
+
+        $timeout(function() {
+            $scope.messages.push({
+                userId: 'you',
+                text: 'hi,hello...',
+                time: d
+
+            });
+        }, 2000)
+
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
+
+    }
+    ;
+
+    $scope.inputUp = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 216;
+        $timeout(function() {
+            $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
+
+    }
+    ;
+
+    $scope.inputDown = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    }
+    ;
+
+    $scope.closeKeyboard = function() {// cordova.plugins.Keyboard.close();
+    }
+    ;
+
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
+
+
 })
