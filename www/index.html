@@ -22,13 +22,17 @@
         <script src="lib/ionic/js/ionic.bundle.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
         <!-- cordova script (this will be a 404 during development) -->
+        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
         <script src="cordova.js"></script>
         <!-- your app's js -->
         <script src="js/app.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/service.js"></script>
+        <script src="js/global.js"></script>
+       
     </head>
-    <body ng-app="hallBooking">
+    <body ng-app="hallBooking" >
+    <div ng-controller="global"></div>
         <ion-nav-view></ion-nav-view>
     </body>
 </html>

@@ -3,37 +3,34 @@ angular.module('hallBooking.service', [])
         return {
             PostRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-                //  Url = "" + Url;
-                console.log(doc2send);
+                 console.log(doc2send);
                 var options = {
-                    "method": "POST",
-                    "Url": Url,
-                    "data": jQuery.param(doc2send),
-                    "headers": {
+                    method: "POST",
+                    url: Url,
+                    data: jQuery.param(doc2send),
+                    headers: {
                         "Content-Type": 'application/x-www-form-urlencoded',
                         'Authorization': 'Bearer '
                     }
                 }
 
                 console.log(options);
-
                 $http(options).then(function(res) {
                     deferred.resolve(res);
                 }, function() {
                     deferred.reject(res);
                 })
+                 return deferred.promise;
             },
             GetRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-                Url = "" + Url;
+                Url =  Url;
 
                 var options = {
-                    "method": "GET",
-                    "Url": Url,
-                    "data": jQuery.param(doc2send),
-                    "headers": {
+                    method: "GET",
+                    url: 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry',
+                     headers: {
                         "Content-Type": 'application/x-www-form-urlencoded'
-                        //         'Authorization': 'Bearer ' + authentication.getToken()
                     }
                 }
 
@@ -42,6 +39,7 @@ angular.module('hallBooking.service', [])
                 }, function() {
                     deferred.reject(res);
                 })
+                return deferred.promise;
             }
         }
     })
