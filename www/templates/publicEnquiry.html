@@ -2,20 +2,29 @@
     <ion-content style="background-color:#f6f6f6;">
      <div class="signUpDiv">
         <div class="signUpImgDiv">
-            <img src="img/user3.png"></img>
-            <h4>Enquiry</h4>
+            <img src="../img/user3.png"></img>
+            <h4>Sign Up</h4>
         </div>
         
         <div id="signUpFormDiv">  
             <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
                 <div class="list list-inset" style="background-color:transparent;">
-                    <p></p>
+                    <p>Create new user id</p>
                    
                     <label class="item item-input" style="padding:2vw;">
                         <input type="tel" ng-model="signUpObj.PhoneNumber" placeholder="Phone Number" required>
                     </label>
-                <button type="submit" class="button button-small button-block button-positive">Continue</button>
-
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="email" ng-model="signUpObj.EmailId" placeholder="Email" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="password" ng-model="signUpObj.Password" placeholder="Password" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="password" ng-model="signUpObj.cPassword" placeholder="Re-type password" required>
+                    </label>
+                    <button type="submit" class="button button-small button-block button-positive" >Continue</button>
+                </div>
             </form>
         </div>
         <div id="signUpBackDiv">
