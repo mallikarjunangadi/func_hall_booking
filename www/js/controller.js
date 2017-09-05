@@ -14,8 +14,10 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             $state.go('login');
         }
 
-    }).controller('loginCtrl', function($scope, $state, ApiCallService, $location) {
+    })
+    .controller('loginCtrl', function($scope, $state, ApiCallService, $location, $rootScope) {
 
+    $rootScope.loginUser = "";
     $scope.loginObj = {};
     $scope.loginFunc = function(loginObj) {
         console.log('login func');
@@ -27,11 +29,14 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             console.log('password is required');
             return;
         }
-
+$rootScope.loginUser = loginObj.EmailId;
         if (loginObj.EmailId == "public" && loginObj.Password == "123") {
             $location.path('userTabs');
         }
         if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
+
+            $location.path('internalTabs');
+        }else if (loginObj.EmailId == "executive" && loginObj.Password == "123") {
             $location.path('internalTabs');
         }
 
@@ -264,13 +269,34 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         myService.set(x);
         $location.path('msgList');
     }
-}).controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
+})
+.controller('Messages', function($scope, $timeout, $ionicScrollDelegate, $location, $http, myService) {
     
  $scope.$on('$ionicView.beforeEnter', function() {
         $scope.cusdetail = myService.get();
         console.log($scope.cusdetail);
     })
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response){
+    console.log(response);
+    $scope.aggent =response.data;
+})
+/*
+  var req = {
+            method: 'POST',
+            url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
+            data: jQuery.param({
+                EnquiryId:
+                AssigneeId: 
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
 
+        $http(req).then(function(res) {
+            console.log(res);
+         
+        
     $scope.aggent = [
     {
       img: '../img/user2.jpg', 
@@ -292,7 +318,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
       agentName: 'Daniel', 
        status: 'waiting'  
     }
-    ]
+    ]}*/
 
     $scope.back = function() {
 
@@ -359,17 +385,17 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.myId = '12345';
     $scope.messages = [];
 
-
-    $scope.moveAssigner = function(y){
+ 
+   /* $scope.moveAssigner = function(y){
         console.log(y);
         myService.setAggent(y);
         $location.path('assign');
-    }
+    }*/
 
 })
 .factory('myService', function() {
     var savedData;
-    var saveaData;
+    //var saveaData;
     function set(data) {
         console.log(data);
         savedData = data;
@@ -377,22 +403,22 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     function get() {
         return savedData;
     }
-    function setAggent(data) {
+    /*function setAggent(data) {
         console.log(data);
         saveaData = data;
     }
     function getAggent() {
         return saveaData;
-    }
+    }*/
      return {
         set: set,
         get: get,
-        setAggent: setAggent,
-        getAggent: getAggent,
+        //setAggent: setAggent,
+        //getAggent: getAggent,
      }
 })
-<<<<<<< HEAD
-.controller('assignerCtrl', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
+
+/*.controller('assignerCtrl', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
      
 $scope.$on('$ionicView.beforeEnter', function() {
         $scope.cusdetail = myService.get();
@@ -468,7 +494,4 @@ $scope.hideTime = true;
     $scope.messages = [];
 
 
-})
-=======
-
->>>>>>> a21ab1c200687aecbb0fc9e4b0447767db761c7b
+})*/

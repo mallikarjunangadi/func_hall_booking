@@ -42,8 +42,8 @@
 .imgicon {
     position: relative;
     padding-bottom: 14vh;
-    left: 8px;
-    bottom:20px;
+    right: 10vh;
+    bottom:5px;
 }
 .firstbut {
     border-radius: 5px;

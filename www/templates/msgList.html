@@ -1,8 +1,6 @@
-<ion-view title="Customer Name" style="background-color:#f6f6f6;">
-   
-<ion-pane "class="messaging-view " ng-controller="Messages ">
+<ion-pane "class="messaging-view " ng-controller="Messages " style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
-      <a class="button icon-left ion-chevron-left button-clear button"style="color:#67aded" ng-click="back()"></a>
+      <a class="button icon-left ion-chevron-left button-clear button "style="color:#67aded " ng-click="back()"></a>
       <h1 class="title ">{{cusdetail.cusName}}</h1>
     </ion-header-bar>
 
@@ -44,15 +42,15 @@
         </div>
     </div>
 
-    <div style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</div>
+    <div ng-if="loginUser == 'internal'"> <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
     <div class="card radiusCard ">
-    <div class="row " style="height:auto;">
-        <div class="col " ng-repeat="y in aggent" ng-click="moveAssigner(y)">
-        <img src="{{y.img}}" style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
-         <i class="icon ion-record imgicon" ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
-         <p style="font-size:0.7em;margin:0;text-align:center;bottom:4vh;;position: relative;">{{y.agentName}}</p>
+    <div class="row " style="height:auto;overflow-x: visible;">
+        <div class="col " ng-repeat="y in aggent " ng-click="moveAssigner(y)">
+        <img src=" ../img/user2.jpg " style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
+         <i class="icon ion-record imgicon " ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
+         <p style="font-size:0.7em;margin:0;text-align:;bottom:1vh;;position:relative;">{{y.DisplayName}}</p>
         </div>
-        
+     </div>
     </div>
 </div>
 </ion-content>
@@ -65,6 +63,7 @@
     </button>
 </ion-footer-bar>
 </ion-pane>
+
 
 
 
