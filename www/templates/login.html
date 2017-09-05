@@ -5,15 +5,15 @@
                 <img src="img/tsrLogo.png"></img>
             </div>
             <div class="loginFormDiv">
-                <form id="loginForm" name="loginForm" ng-click='loginFunc(loginObj)'>
-                    <div class="list list-inset">
+                <form id="loginForm" name="loginForm" >
+                    <div class="list list-inset" style="margin:0!important">
                         <label class="item item-input" style="padding:2vw;">
                             <input type="text" placeholder="email id" id="uname" ng-model="loginObj.EmailId" required>
                         </label>
                         <label class="item item-input" style="padding:2vw;">
                             <input type="password" placeholder="password" id="pwd" ng-model="loginObj.Password" required>
                         </label>
-                        <button type="submit" class="button button-small button-block button-positive">Login</button>
+                        <button type="submit" class="button button-small button-block button-positive" ng-click='loginFunc(loginObj)'>Login</button>
                     </div>
                 </form>
                 <div class="signUpLinkDiv">
@@ -22,6 +22,9 @@
                 <div class="forgotPwdLinkDiv">
                     <a href="#/forgotPwdOtp">forgot password?</a>
                 </div>
+                <div id="signUpBackDiv">
+              <a href="#/entry" class="button ion-arrow-left-c button-positive"></a>
+                         </div>
             </div>
         </div>
     </ion-content>

@@ -1,39 +1,39 @@
-<ion-view style="background-color:#f6f6f6;">
-    <ion-content>
+<ion-model-view>
+    <ion-content style="background:#f6f6f6">
         <div>
             <div class="fontDivision">
                 <p style="font-size:14px;font-family: -apple-system,Helvetica Neue, Roboto, Segoe UI, sans-serif;">Fill Enquiry form to get instant communiction</p>
                 <p style="font-size:12px;font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">Fill this form and send the request,our executive will get touch with you shortly</p>
             </div>
             <div id="signUpFormDiv">
-                <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
-                    <label class="item item-input inpuText" ng-if="facility==undefined" ng-click="getFacilityList()">
-                        <p style="color:black;text-align:center;   font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">Select the Hall intrested</p>
+                <form id="signUpForm" name="signUpForm">
+                    <label class="item item-input inpuText" ng-click="getFacilityList()">
+                        <input type="text" placeholder="Select the Hall intrested" ng-model="facility" readonly >
                     </label>
+                    <!-- <label class="item item-input inpuText" >
+                        <p style="color:black;text-align:center;   font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;" placeholder="Select the Hall intrested">{{facility}}</p>
+                    </label>-->
 
-                    <label class="item item-input inpuText" ng-if="facility!=undefined" ng-click="getFacilityList()">
-                        <p style="color:black;text-align:center;    font-family:-apple-system,Helvetica Neue, Roboto, Segoe UI, sans-serif;">{{facility}}</p>
-                    </label>
 
                     <label class="item item-input inpuText">
                         <span style="font-size:14px;font-family:-apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;"> Begining Date:</span>
-                        <input class="inpuDate" type="date">
+                        <input class="inpuDate" type="date" style="height:100%">
                     </label>
-                    <label class="item item-input inpuText">
+                    <!--  <label class="item item-input inpuText">
                         <span style="font-size:14px;font-family:-apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;"> End Date:</span>
                         <input class="inpuDate" type="date">
-                    </label>
+                    </label>-->
                     <label class="item item-input inpuText">
                         <input type="text" placeholder="Special Requests,Customized needs">
                     </label>
                     <div class="buttonDiv">
-                        <button type="submit" class="button button-medium button-block button-positive">Send</button>
+                        <button type="submit" class="button button-medium button-block button-positive" ng-click="goBack()">Send</button>
                     </div>
                 </form>
             </div>
             <div id="signUpBackDiv">
-                <a href="#/login" class="button ion-arrow-left-c button-positive"></a>
+                <a class="button ion-arrow-left-c button-positive" ng-click="closeModel('model2')"></a>
             </div>
         </div>
     </ion-content>
-</ion-view>
+</ion-model-view>

@@ -28,7 +28,7 @@ angular.module('hallBooking.service', [])
 
                 var options = {
                     method: "GET",
-                    url: 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry',
+                    url: Url,
                      headers: {
                         "Content-Type": 'application/x-www-form-urlencoded'
                     }
