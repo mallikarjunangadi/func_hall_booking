@@ -305,7 +305,7 @@ $rootScope.loginUser = loginObj.EmailId;
         $scope.openmesg = [{
             cusName: 'Sowmya',
             agentName: 'Un Usigned',
-            img: '../img/user2.jpg',
+            img: 'img/user2.jpg',
             bookingDate: '22/10/2017',
             hallName: 'grandHall',
             lastCon: '14/3/2017',
@@ -315,7 +315,7 @@ $rootScope.loginUser = loginObj.EmailId;
             agentName: 'Chaminda vaas',
             bookingDate: '22/10/2017',
             hallName: 'KRHall',
-            img: '../img/user2.jpg',
+            img: 'img/user2.jpg',
             lastCon: '14/6/2017',
             status: 'offline'
         }, {
@@ -323,7 +323,7 @@ $rootScope.loginUser = loginObj.EmailId;
             agentName: 'Tendulkar',
             bookingDate: '22/10/2017',
             hallName: 'GPHall',
-            img: '../img/user2.jpg',
+            img: 'img/user2.jpg',
             lastCon: '14/7/2017',
             status: 'waiting'
         }, {
@@ -331,7 +331,7 @@ $rootScope.loginUser = loginObj.EmailId;
             agentName: 'Swagat',
             bookingDate: '22/10/2017',
             hallName: 'ACHall',
-            img: '../img/user2.jpg',
+            img: 'img/user2.jpg',
             lastCon: '14/10/2017',
             status: 'offline'
         }]
@@ -401,37 +401,7 @@ $rootScope.loginUser = loginObj.EmailId;
         $location.path('internalTabs');
     }
 
-    $scope.hideTime = true;
-    $scope.incmessages = [];
-        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-
-
-        $scope.aggent = [{
-                img: '../img/user2.jpg',
-                agentName: 'Daniel vettori',
-                status: 'offline'
-            },
-            {
-                img: '../img/user2.jpg',
-                agentName: 'Swagat',
-                status: 'offline'
-            },
-            {
-                img: '../img/user2.jpg',
-                agentName: 'rosee',
-                status: 'online'
-            },
-            {
-                img: '../img/user2.jpg',
-                agentName: 'Daniel',
-                status: 'waiting'
-            }
-        ]
-
-        $scope.back = function() {
-
-            $location.path('openTicket');
-        }
+   
 
         $scope.hideTime = true;
         $scope.incmessages = [];
