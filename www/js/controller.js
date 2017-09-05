@@ -43,11 +43,7 @@ angular.module('hallBooking.controller', [])
         }
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
-        if ($scope.loginObj.EmailId == "public" && $scope.loginObj.Password == "123") {
-            console.log('openTicket')
-            $scope.loginObj={}
-          $location.path('/userTabs')
-        }else if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+         if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
                  console.log('internal')
               $scope.loginObj={}
             $location.path('/internalTabs')
@@ -112,7 +108,7 @@ angular.module('hallBooking.controller', [])
     $scope.publicMsgList = [];
     $scope.facility = '';
     $scope.publicSignOut=function(){
-        $state.go('entry')
+        $state.go('mainHome')
     }
     var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
     promise.then(function(res) {
