@@ -1,18 +1,32 @@
-<ion-view ng-controller="publicFacility">
-    <ion-nav-bar class="bar">
+<ion-model-view>
+  <ion-header-bar class="bar ">
+      <a class="button icon-left ion-chevron-left button-clear button-positive " ng-click="closeModel('model3')"></a>
+      <h1 class="title">Catalogue of Facilities</h1>
+    </ion-header-bar>
+<!--<div style="background:#f6f6f6;padding:1vh!important">
+<i class="icon ion-chevron-left" style="font-size:5vh;color:#1E90FF;padding-left:1vw;" ng-click="closeModel('model3')"></i>	
+<span style="width:50vw;margin-left:10vw;font-size:5vw">Catalogue of Facilities</span>
+ </div>-->
+<!--<ion-nav-bar class="bar">
         <ion-nav-buttons side="left">
-            <a class="button icon-left ion-chevron-left button-clear button-positive" ng-click="goBack()"></a>
+            <a class="button icon-left ion-chevron-left button-clear button-positive" ng-click="closeModel('model3')"></a>
         </ion-nav-buttons>
         <ion-nav-title>Catalogue of Facilities</ion-nav-title>
-    </ion-nav-bar>
-    <ion-content scroll="false" class="scrolling">
+    </ion-nav-bar>-->
+<ion-content class="has-header">
+    
+<!--<div style="background:White;padding:1vh!important">
+<i class="icon ion-chevron-left" style="font-size:5vh;color:#1E90FF;padding-left:1vw;" ng-click="closeModel('model1')"></i>	
+
+ </div>-->
         <div class="list"> 
             <ion-item style="padding:0" ng-repeat="facility in publicfacility">
-                <div id="publicFacilityDiv" ng-click="selectedFacility(facility.name)">
+                <div id="publicFacilityDiv" ng-click="selectedFacility(facility)">
                     <p>{{facility.name}}</p>
                     <img ng-src="{{facility.img}}" width="100%" height="auto" />
                 </div>
             </ion-item>
         </div>
    </ion-content>
-</ion-view>
+
+</ion-model-view>

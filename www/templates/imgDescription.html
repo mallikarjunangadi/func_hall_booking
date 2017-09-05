@@ -1,10 +1,16 @@
 <ion-model-view>
-<div style="background:White;padding:1vh!important">
-<i class="icon ion-chevron-left" style="font-size:5vh;color:#1E90FF;padding-left:1vw;" ng-click="closeModel()"></i>	
+<!--<div style="background:White;padding:1vh!important">
+<i class="icon ion-chevron-left" style="font-size:5vh;color:#1E90FF;padding-left:1vw;" ng-click="closeModel('model1')"></i>	
 
- </div>
-    <ion-slide-box does-continue="true" auto-play="true" style=" color:black!important;background-color:white!important;height:100vh!important;">
+ </div>-->
+   <ion-header-bar class="bar ">
+      <a class="button icon-left ion-chevron-left button-clear button-positive " ng-click="closeModel('model1')"></a>
+      <h1 class="title">Catalogue Facility Discription</h1>
+    </ion-header-bar>
+   <!-- <ion-slide-box does-continue="true" auto-play="true" style=" color:black!important;background-color:white!important;height:100vh!important;">-->
      <!--   <ion-slide>-->
+     <div style="background:#f6f6f6;height:100vh">
+     <ion-content class="has-header">
             <ion-card>
                 <ion-card-header>
                     <img src="{{image}}" width="100%" height="auto"></img>
@@ -56,4 +62,7 @@
             </div>
         </ion-slide>-->
 
-    </ion-slide-box>
+    <!--</ion-slide-box>-->
+    </ion-content>
+    </div>
+    </ion-model-view>

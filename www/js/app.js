@@ -115,8 +115,19 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
                 templateUrl: 'templates/tab5.html'
             }
         }
+    }).state('catalogueFacility', {
+        url: '/catalogueFacility',
+        templateUrl:'templates/catalogueFacility.html'
     })
-
+    .state('entry', {
+        url: '/entry',
+        templateUrl:'templates/Entry.html'
+    })
+    .state('publicEnquiry', {
+        url: '/publicEnquiry',
+        templateUrl:'templates/publicEnquiry.html'
+    })
+    
   $urlRouterProvider.otherwise('/mainHome');
 
 })
