@@ -39,10 +39,10 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     }).state('msgList', {
         url: '/msgList',
         templateUrl: 'templates/msgList.html'
-    }).state('client', {
-        url: '/client',
-        templateUrl: 'templates/client.html'
-    }).state('signUp', {
+    })/*.state('assign', {
+        url: '/assign',
+        templateUrl: 'templates/assign.html'
+    })*/.state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html'
     }).state('openTicket', {

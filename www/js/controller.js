@@ -16,15 +16,20 @@ angular.module('hallBooking.controller', [])
         }
 
     })
-    .controller('loginCtrl', function($scope, $state, ApiCallService, $location) {
+
+    .controller('loginCtrl', function($scope, $state, ApiCallService, $location,$rootScope) {
 
         $scope.loginObj = {};
+		 $rootScope.loginUser = "";
+		 
         $scope.enquiry=function(){
            $state.go('publicEnquiry');
-        }
-        $scope.login=function(){
+		}
+$scope.login=function(){
            $state.go('login');
         }
+
+  
         $scope.loginFunc = function(loginObj) {
             console.log('login func');
             if (!loginObj.EmailId) {
@@ -35,13 +40,17 @@ angular.module('hallBooking.controller', [])
                 console.log('password is required');
                 return;
             }
+$rootScope.loginUser = loginObj.EmailId;
+           if (loginObj.EmailId == "public" && loginObj.Password == "123") {
+            $location.path('userTabs');
+        }
+        if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
 
-            if (loginObj.EmailId == "public" && loginObj.Password == "123") {
-                $location.path('userTabs');
-            }
-            if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
-                $location.path('internalTabs');
-            }
+            $location.path('internalTabs');
+        }else if (loginObj.EmailId == "executive" && loginObj.Password == "123") {
+            $location.path('internalTabs');
+
+        }
 
             /*
                         var promise = ApiCallService.PostRequest($scope.loginObj, '/loginAuth');
@@ -54,7 +63,9 @@ angular.module('hallBooking.controller', [])
         }
         $scope.signIn=function(){
             $state.go('login');
-        }
+		}
+
+        
 
     })
     .controller('signUpCtrl', function($scope, $state) {
@@ -289,6 +300,7 @@ angular.module('hallBooking.controller', [])
     })
 
 
+
     .controller('openticCtrl', function($scope, $location, myService) {
         $scope.openmesg = [{
             cusName: 'Sowmya',
@@ -328,7 +340,7 @@ angular.module('hallBooking.controller', [])
             myService.set(x);
             $location.path('msgList');
         }
-    }).controller('Messages', function($timeout, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
+    }).controller('Messages', function($timeout,$http, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
         $scope.data = {};
         $scope.myId = '12345';
         $scope.messages = [];
@@ -338,6 +350,60 @@ angular.module('hallBooking.controller', [])
             $scope.cusdetail = myService.get();
             console.log($scope.cusdetail);
         })
+
+
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response){
+    console.log(response);
+    $scope.aggent =response.data;
+})
+/*
+  var req = {
+            method: 'POST',
+            url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
+            data: jQuery.param({
+                EnquiryId:
+                AssigneeId: 
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+
+        $http(req).then(function(res) {
+            console.log(res);
+         
+        
+    $scope.aggent = [
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Daniel vettori', 
+       status: 'offline'  
+    },
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Swagat', 
+       status: 'offline'  
+    },
+    {
+      img: '../img/user2.jpg',
+      agentName: 'rosee',  
+       status: 'online'  
+    },
+    {
+      img: '../img/user2.jpg', 
+      agentName: 'Daniel', 
+       status: 'waiting'  
+    }
+    ]}*/
+
+    $scope.back = function() {
+
+        $location.path('internalTabs');
+    }
+
+    $scope.hideTime = true;
+    $scope.incmessages = [];
+        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
 
         $scope.aggent = [{
@@ -420,20 +486,118 @@ angular.module('hallBooking.controller', [])
 
 
 
-    })
-    .factory('myService', function() {
-        var savedData;
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
 
-        function set(data) {
-            console.log(data);
-            savedData = data;
-        }
+ 
+   /* $scope.moveAssigner = function(y){
+        console.log(y);
+        myService.setAggent(y);
+        $location.path('assign');
+    }*/
 
-        function get() {
-            return savedData;
-        }
-        return {
-            set: set,
-            get: get,
-        }
+})
+.factory('myService', function() {
+    var savedData;
+    //var saveaData;
+    function set(data) {
+        console.log(data);
+        savedData = data;
+    }
+    function get() {
+        return savedData;
+    }
+    /*function setAggent(data) {
+        console.log(data);
+        saveaData = data;
+    }
+    function getAggent() {
+        return saveaData;
+    }*/
+     return {
+        set: set,
+        get: get,
+        //setAggent: setAggent,
+        //getAggent: getAggent,
+     }
+})
+
+/*.controller('assignerCtrl', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
+     
+$scope.$on('$ionicView.beforeEnter', function() {
+        $scope.cusdetail = myService.get();
+        console.log($scope.cusdetail);
     })
+     $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.Aggentdetail = myService.getAggent();
+        console.log($scope.Aggentdetail);
+    })
+
+    
+    $scope.back = function() {
+
+        $location.path('internalTabs');
+    }
+
+$scope.hideTime = true;
+    $scope.incmessages = [];
+
+    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+    $scope.sendMessage = function() {
+        console.log('enter');
+
+        var d = new Date();
+        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+
+        $scope.messages.push({
+            userId: 'me',
+            text: $scope.data.message,
+            time: d
+
+        });
+
+        $timeout(function() {
+            $scope.messages.push({
+                userId: 'you',
+                text: 'hi,hello...',
+                time: d
+
+            });
+        }, 2000)
+
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
+
+    }
+    ;
+
+    $scope.inputUp = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 216;
+        $timeout(function() {
+            $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
+
+    }
+    ;
+
+    $scope.inputDown = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    }
+    ;
+
+    $scope.closeKeyboard = function() {// cordova.plugins.Keyboard.close();
+    }
+    ;
+
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
+
+
+})*/
+

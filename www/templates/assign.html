@@ -1,13 +1,11 @@
-
-<ion-pane class="messaging-view " ng-controller="Messages " style="background-color:#f6f6f6;">
+<ion-pane "class="messaging-view " ng-controller="assignerCtrl">
     <ion-header-bar class="bar ">
-      <a class="button icon-left ion-chevron-left button-clear button "style="color:#67aded " ng-click="back()"></a>
+      <a class="button icon-left ion-chevron-left button-clear button"style="color:#67aded" ng-click="back()"></a>
       <h1 class="title ">{{cusdetail.cusName}}</h1>
-
     </ion-header-bar>
 
     <ion-content >
-
+<div class="text">{{Aggentdetail.agentName}}</div>
         <div class="card firstbut ">
             <div class="button-bar ">
                 <a class="button button-small button-positive msgListbut ">Open Ticket</a>
@@ -17,7 +15,7 @@
        <div class="card radiusCard " style="height:15vh;">
             <a class="item item-avatar length " href="#">
                 <img src="/img/user2.jpg ">
-                 <p>Customer want to book a hall<br>for 1day on 22/10/2017</p>
+                <p>Customer want to book a hall<br>for 1day on 22/10/2017</p>
                 <p style="text-align:right;color:blue;">12.37 p.m.</p>
             </a>
         </div>
@@ -43,17 +41,7 @@
         </div>
     </div>
 
-    <div ng-if="loginUser == 'internal'"> <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
-    <div class="card radiusCard ">
-    <div class="row " style="height:auto;overflow-x: visible;">
-        <div class="col " ng-repeat="y in aggent " ng-click="moveAssigner(y)">
-        <img src=" ../img/user2.jpg " style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
-         <i class="icon ion-record imgicon " ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
-         <p style="font-size:0.7em;margin:0;text-align:;bottom:1vh;;position:relative;">{{y.DisplayName}}</p>
-        </div>
-     </div>
-    </div>
-</div>
+    
 </ion-content>
 <ion-footer-bar keyboard-attach class="bar-stable item-input-inset " style="border-radius:15vh;">
     <label class="item-input-wrapper ">
@@ -64,6 +52,7 @@
     </button>
 </ion-footer-bar>
 </ion-pane>
+
 
 
 

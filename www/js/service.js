@@ -36,7 +36,7 @@ angular.module('hallBooking.service', [])
 
                 $http(options).then(function(res) {
                     deferred.resolve(res);
-                }, function() {
+                }, function(res) {
                     deferred.reject(res);
                 })
                 return deferred.promise;
