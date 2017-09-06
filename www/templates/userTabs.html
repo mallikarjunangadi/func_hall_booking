@@ -1,5 +1,37 @@
-<ion-view ng-controller="publicFacility" style="background-color:#f6f6f6;">
+<ion-view ng-controller="publicFacility">
     <ion-tabs class="tabs-icon-bottom userTabs">
+        <ion-tab icon-on="ion-help" icon-off="ion-help" >
+            <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)' style="margin-top:20vh">
+                <div class="list list-inset" style="background-color:transparent;">
+                    <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
+
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="tel" ng-model="signUpObj.PhoneNumber" placeholder="Phone Number" required>
+                    </label>
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="email" ng-model="signUpObj.EmailId" placeholder="Email" required>
+                    </label>
+
+
+        <label class="item item-input item-select" style="padding:1vh;">
+   <div class = "input-label"  style="color:grey">
+      Select Event Type:
+   </div>
+	
+   <select>
+      <option>Option 1</option>
+      <option selected>Option 2</option>
+      <option>Option 3</option>
+   </select>
+</label>
+
+   <label class="item item-input" style="padding:2vw;">
+                        <input type="date" ng-model="signUpObj.cPassword" placeholder="Re-type password" required>
+                    </label>
+                    <button type="submit" class="button button-small button-block button-positive" style="background:#8A2BE2 !important">Send Enquiry</button>
+                </div>
+            </form>
+        </ion-tab>
         <ion-tab icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline">
             <div class="userHome">
 
@@ -16,10 +48,10 @@
             </div>
         </ion-tab>
         <ion-tab icon-on="ion-android-textsms" icon-off="ion-android-textsms" href="#/publicView">
-             <ion-nav-view></ion-nav-view>
+            <ion-nav-view name="publicView"></ion-nav-view>
         </ion-tab>
         <ion-tab icon-on="ion-ios-briefcase" icon-off="ion-ios-briefcase-outline"></ion-tab>
-        <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"></ion-tab>                                                           
+        <ion-tab icon-on="ion-ios-person" icon-off="ion-ios-person-outline"></ion-tab>
+        <ion-tab icon-on="ion-log-out" icon-off="ion-log-out" ng-click="publicSignOut()"></ion-tab>
     </ion-tabs>
 </ion-view>
- 

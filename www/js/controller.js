@@ -1,4 +1,5 @@
-angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state) {
+angular.module('hallBooking.controller', [])
+.controller('mainHomeCtrl', function($scope, $state) {
     $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
         "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
@@ -23,42 +24,39 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.enquiry = function() {
         $state.go('publicEnquiry');
     }
+    $scope.publicLogin=function(){
+        $state.go('publicLogin');
+    }
     $scope.login = function() {
         $state.go('login');
     }
 
-    $scope.loginFunc = function(loginObj) {
+    $scope.loginFunc = function() {
         console.log('login func');
-        if (!loginObj.EmailId) {
+        if (!$scope.loginObj.EmailId) {
             console.log('email id is required');
             return;
         }
-        if (!loginObj.Password) {
+        if (!$scope.loginObj.Password) {
             console.log('password is required');
             return;
         }
-        $rootScope.loginUser = loginObj.EmailId;
-        console.log(loginObj);
-        if (loginObj.EmailId=="public" && loginObj.Password=="123") {
-            $location.path('userTabs');
-        }
-        else if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
 
-            $location.path('internalTabs');
-        } else if (loginObj.EmailId == "executive" && loginObj.Password == "123") {
-            $location.path('internalTabs');
+        console.log($scope.loginObj);
+        $rootScope.loginUser = $scope.loginObj.EmailId;
+         if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+                 console.log('internal')
+              $scope.loginObj={}
+            $location.path('/internalTabs')
+        } else if ($scope.loginObj.EmailId == "executive" && $scope.loginObj.Password == "123") {
+            console.log('executive')
+              $scope.loginObj={}
+       }
 
-        }
 
-        /*
-                        var promise = ApiCallService.PostRequest($scope.loginObj, '/loginAuth');
-                        promise.then(function(res) {
-                            console.log(res);
-                        }, function() {
-                            console.log('error')
-                        })
-            */
     }
+   
+
     $scope.signIn = function() {
         $state.go('login');
     }
@@ -102,11 +100,18 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         })
 
     }
+     $scope.publicView=function(){
+        console.log('HAi')
+       $state.go('userTabs'); 
+    }
 }).controller('publicFacility', function($rootScope, $scope, setPublicFacility, $state, $ionicModal, ApiCallService) {
     $scope.publicMsg = {};
     $scope.imgDes = false;
     $scope.publicMsgList = [];
     $scope.facility = '';
+    $scope.publicSignOut=function(){
+        $state.go('mainHome')
+    }
     var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
     promise.then(function(res) {
         console.log(res);
@@ -279,62 +284,64 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         }
     }
 })
-.controller('openticCtrl', function($scope, $location, myService) {
-    $scope.openmesg = [{
-        cusName: 'Sowmya',
-        agentName: 'Un Usigned',
-        img: '../img/user2.jpg',
-        bookingDate: '22/10/2017',
-        hallName: 'grandHall',
-        lastCon: '14/3/2017',
-        status: 'online'
-    }, {
-        cusName: 'Bhagya',
-        agentName: 'Chaminda vaas',
-        bookingDate: '22/10/2017',
-        hallName: 'KRHall',
-        img: '../img/user2.jpg',
-        lastCon: '14/6/2017',
-        status: 'offline'
-    }, {
-        cusName: 'Mallikarjun',
-        agentName: 'Tendulkar',
-        bookingDate: '22/10/2017',
-        hallName: 'GPHall',
-        img: '../img/user2.jpg',
-        lastCon: '14/7/2017',
-        status: 'waiting'
-    }, {
-        cusName: 'Sindhu',
-        agentName: 'Swagat',
-        bookingDate: '22/10/2017',
-        hallName: 'ACHall',
-        img: '../img/user2.jpg',
-        lastCon: '14/10/2017',
-        status: 'offline'
-    }]
-    $scope.msgList = function(x) {
-        console.log(x);
-        myService.set(x);
-        $location.path('msgList');
-    }
-})
-.controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
-    $scope.data = {};
-    $scope.myId = '12345';
-    $scope.messages = [];
-    console.log($scope)
-    $scope.$on("$ionicView.beforeEnter", function() {
-        console.log('Hai')
-        $scope.cusdetail = myService.get();
-        console.log($scope.cusdetail);
-    })
 
-    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
-        console.log(response);
-        $scope.aggent = response.data;
-    })
-    /*
+
+    .controller('openticCtrl', function($scope, $location, myService) {
+        $scope.openmesg = [{
+            cusName: 'Sowmya',
+            agentName: 'Un Usigned',
+            img: 'img/user2.jpg',
+            bookingDate: '22/10/2017',
+            hallName: 'grandHall',
+            lastCon: '14/3/2017',
+            status: 'online'
+        }, {
+            cusName: 'Bhagya',
+            agentName: 'Chaminda vaas',
+            bookingDate: '22/10/2017',
+            hallName: 'KRHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/6/2017',
+            status: 'offline'
+        }, {
+            cusName: 'Mallikarjun',
+            agentName: 'Tendulkar',
+            bookingDate: '22/10/2017',
+            hallName: 'GPHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/7/2017',
+            status: 'waiting'
+        }, {
+            cusName: 'Sindhu',
+            agentName: 'Swagat',
+            bookingDate: '22/10/2017',
+            hallName: 'ACHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/10/2017',
+            status: 'offline'
+        }]
+        $scope.msgList = function(x) {
+            console.log(x);
+            myService.set(x);
+            $location.path('msgList');
+        }
+    }).controller('Messages', function($timeout,$http, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
+        $scope.data = {};
+        $scope.myId = '12345';
+        $scope.messages = [];
+        console.log($scope)
+        $scope.$on("$ionicView.beforeEnter", function() {
+            console.log('Hai')
+            $scope.cusdetail = myService.get();
+            console.log($scope.cusdetail);
+        })
+
+
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response){
+    console.log(response);
+    $scope.aggent =response.data;
+})
+/*
   var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
@@ -379,9 +386,12 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         $location.path('internalTabs');
     }
 
-    $scope.hideTime = true;
-    $scope.incmessages = [];
-    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+
+        $scope.hideTime = true;
+        $scope.incmessages = [];
+        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
 
     $scope.sendMessage = function() {
         console.log('enter');

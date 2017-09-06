@@ -48,9 +48,6 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     }).state('openTicket', {
         url: '/openTicket',
         templateUrl: 'templates/openTicket.html'
-    }).state('userTabs', {
-        url: '/userTabs',
-        templateUrl: 'templates/userTabs.html'
     }).state('customerDetails', {
         url: '/customerDetails',
 
@@ -123,9 +120,15 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/entry',
         templateUrl:'templates/Entry.html'
     })
-    .state('publicEnquiry', {
+    .state('publicLogin', {
         url: '/publicEnquiry',
-        templateUrl:'templates/publicEnquiry.html'
+        templateUrl:'templates/publicLogin.html'
+    }).state('userTabs', {
+        url: '/userTabs',
+        templateUrl: 'templates/userTabs.html'
+    }).state('publicEnquiry', {
+        url: '/publicEnquiry',
+        templateUrl: 'templates/publicEnquiry.html'
     })
     
   $urlRouterProvider.otherwise('/mainHome');

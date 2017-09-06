@@ -1,0 +1,29 @@
+<ion-view ng-controller="signUpCtrl">
+    <ion-content style="background-color:white;">
+      <div id="loginImgDiv">
+                <img src="img/tsrLogo.png"></img>
+            </div>
+     <div class="signUpDiv" style="background:white">
+        <div class="signUpImgDiv" style="padding:0">
+            <img src="img/user3.png"></img>
+            <h4>Public</h4>
+        </div>
+        <div id="signUpFormDiv" style="background:white">  
+            <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)'>
+                <div class="list list-inset" style="background-color:transparent;margin:0">
+                    <p></p>
+                   
+                    <label class="item item-input" style="padding:2vw;">
+                        <input type="tel" ng-model="signUpObj.PhoneNumber" placeholder="Phone Number" required>
+                    </label>
+                <button type="submit" class="button button-small button-block button-positive" ng-click="publicView()">Continue</button>
+
+            </form>
+        </div>
+        <div id="signUpBackDiv">
+              <a href="#/entry" class="button ion-arrow-left-c button-positive"></a>
+              <p>go back</p>
+        </div>
+      </div>  
+    </ion-content>
+</ion-view>
