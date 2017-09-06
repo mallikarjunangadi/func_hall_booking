@@ -38,10 +38,11 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             return;
         }
         $rootScope.loginUser = loginObj.EmailId;
-        if (loginObj.EmailId == "public" && loginObj.Password == "123") {
+        console.log(loginObj);
+        if (loginObj.EmailId=="public" && loginObj.Password=="123") {
             $location.path('userTabs');
         }
-        if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
+        else if (loginObj.EmailId == "internal" && loginObj.Password == "123") {
 
             $location.path('internalTabs');
         } else if (loginObj.EmailId == "executive" && loginObj.Password == "123") {
@@ -462,6 +463,12 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         get: get,
         //setAggent: setAggent,
         //getAggent: getAggent,
+    }
+})
+
+.controller('interCtrl', function($scope, $location,) {
+    $scope.logout = function(){
+         $location.path('login');
     }
 })
 

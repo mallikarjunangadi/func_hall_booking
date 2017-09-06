@@ -1,4 +1,4 @@
-<ion-view ng-controller="publicFacility" style="background-color:#f6f6f6;">
+<ion-view ng-controller="interCtrl" style="background-color:#f6f6f6;">
     <ion-tabs class="tabs-icon-bottom userTabs ">
         <ion-tab icon-on="ion-ios-bell tabsicon-on" icon-off="ion-ios-bell-outline" href="#/internalTabs/openTicket">
             <ion-nav-view name="tab-tab2"></ion-nav-view>
@@ -12,7 +12,7 @@
         <ion-tab icon-on="ion-stats-bars tabsicon-on" icon-off="ion-stats-bars" href="#/internalTabs/tab4">
             <ion-nav-view name="tab-tab4"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon-on="ion-ios-person tabsicon-on" icon-off="ion-ios-person-outline" href="#/internalTabs/tab5">
+        <ion-tab icon-on="ion-log-out tabsicon-on" icon-off="ion-log-out" href="#/internalTabs/tab5" ng-click="logout()">
             <ion-nav-view name="tab-tab4"></ion-nav-view>
         </ion-tab>
     </ion-tabs>
