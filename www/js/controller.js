@@ -41,6 +41,7 @@ angular.module('hallBooking.controller', [])
             console.log('password is required');
             return;
         }
+
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
          if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
@@ -51,6 +52,7 @@ angular.module('hallBooking.controller', [])
             console.log('executive')
               $scope.loginObj={}
        }
+
 
     }
    
@@ -340,13 +342,6 @@ angular.module('hallBooking.controller', [])
     $scope.aggent =response.data;
 })
 /*
-=======
-    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
-        console.log(response);
-        $scope.aggent = response.data;
-    })
-    /*
->>>>>>> c3d1fd3ed6881d67ed74e5b8e979edba368def30
   var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
@@ -478,6 +473,12 @@ angular.module('hallBooking.controller', [])
         get: get,
         //setAggent: setAggent,
         //getAggent: getAggent,
+    }
+})
+
+.controller('interCtrl', function($scope, $location,) {
+    $scope.logout = function(){
+         $location.path('login');
     }
 })
 
