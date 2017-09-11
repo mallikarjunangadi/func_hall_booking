@@ -43,16 +43,21 @@ angular.module('hallBooking.service', [])
             }
         }
     })
-
-    .factory('setPublicFacility', function() {
-        var facility = {};
+ .factory('loginCrd', function() {
+        var longinCr= {};
         return {
-            getFacility: function() {
-                return facility.name;
+            getLoinCredentials: function() {
+                return localStorage.getItem('loginCrendential');
+            },setLoginCredentials: function(longinCred) {
+                longinCr.phoneNumb = longinCred.PhoneNumber;
+                longinCr.emailId=longinCred.EmailId;
+                longinCr.passwrd=longinCred.Password;
+                localStorage.setItem("loginCrendential",JSON.stringify(longinCr));
             },
-
-            setFacility: function(name) {
-                facility.name = name;
+            removeCredentials:function() {
+           localStorage.removeItem('loginCrendential');
             }
+
+            
         }
     })
