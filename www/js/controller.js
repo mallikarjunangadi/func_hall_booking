@@ -1,5 +1,6 @@
 angular.module('hallBooking.controller', [])
-.controller('mainHomeCtrl', function($scope, $state) {
+.controller('mainHomeCtrl', function($scope, $state,loginCrd) {
+    var loginCred={};
     $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
         "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
@@ -10,13 +11,25 @@ angular.module('hallBooking.controller', [])
         "head": "Welcome to TSR Hall booking app",
         "content": "This is a basic Card which contains an item that has wrapping text."
     }];
-
+ 
     $scope.getStarted = function() {
+    loginCred  =JSON.parse(loginCrd.getLoinCredentials());
+   console.log(loginCred);
+    if(loginCred==undefined||loginCred==null){
+        console.log('HAi')
         $state.go('entry');
+    }else if( loginCred.phoneNumb!=undefined|| loginCred.phoneNumb!=null)
+    {
+       $state.go('userTabs');
+    }else if( loginCred.emailId!=undefined&& loginCred.passwrd!=undefined){
+       $state.go('internalTabs');
+    } else{
+        $state.go('entry');
+    }  
     }
 
 })
-.controller('loginCtrl', function($scope, $state, ApiCallService, $location, $rootScope) {
+.controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope) {
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
@@ -24,14 +37,21 @@ angular.module('hallBooking.controller', [])
     $scope.enquiry = function() {
         $state.go('publicEnquiry');
     }
-    $scope.publicLogin=function(){
-        $state.go('publicLogin');
-    }
+    
     $scope.login = function() {
         $state.go('login');
     }
-
-    $scope.loginFunc = function() {
+     $scope.publicView=function(){
+         if($scope.loginObj.PhoneNumber==undefined){
+             return false;
+         }
+       loginCrd.setLoginCredentials($scope.loginObj)
+       $state.go('userTabs'); 
+    }
+   $scope.publicLogin=function(){
+       $state.go('publicLogin');
+    }
+    $scope.intrernalogin = function() {
         console.log('login func');
         if (!$scope.loginObj.EmailId) {
             console.log('email id is required');
@@ -41,6 +61,7 @@ angular.module('hallBooking.controller', [])
             console.log('password is required');
             return;
         }
+       loginCrd.setLoginCredentials($scope.loginObj);
 
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
@@ -100,16 +121,14 @@ angular.module('hallBooking.controller', [])
         })
 
     }
-     $scope.publicView=function(){
-        console.log('HAi')
-       $state.go('userTabs'); 
-    }
-}).controller('publicFacility', function($rootScope, $scope, setPublicFacility, $state, $ionicModal, ApiCallService) {
+    
+}).controller('publicFacility', function(loginCrd,$rootScope, $scope, $state, $ionicModal, ApiCallService) {
     $scope.publicMsg = {};
     $scope.imgDes = false;
     $scope.publicMsgList = [];
     $scope.facility = '';
     $scope.publicSignOut=function(){
+        loginCrd.removeCredentials()
         $state.go('mainHome')
     }
     var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
@@ -474,8 +493,9 @@ angular.module('hallBooking.controller', [])
     }
 })
 
-.controller('interCtrl', function($scope, $location,) {
+.controller('interCtrl', function($scope, $location,loginCrd) {
     $scope.logout = function(){
+        loginCrd.removeCredentials();
          $location.path('login');
     }
 })

@@ -575,3 +575,9 @@ $stable: #f8f8f8 !default; .scroll {
 #forgotPwdBackDiv p {
     background-color: #f6f6f6;
 }
+.ion-arrow-left-c{
+    line-height:45px!important;
+    text-align:center;
+    min-height:0!important;
+    
+    }
