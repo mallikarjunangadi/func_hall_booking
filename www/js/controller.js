@@ -386,8 +386,6 @@ angular.module('hallBooking.controller', [])
         $location.path('internalTabs');
     }
 
-
-
         $scope.hideTime = true;
         $scope.incmessages = [];
         var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
