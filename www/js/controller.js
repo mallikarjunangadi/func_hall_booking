@@ -15,17 +15,18 @@ angular.module('hallBooking.controller', [])
     $scope.getStarted = function() {
     loginCred  =JSON.parse(loginCrd.getLoinCredentials());
    console.log(loginCred);
+  
     if(loginCred==undefined||loginCred==null){
-        console.log('HAi')
+        
         $state.go('entry');
-    }else if( loginCred.phoneNumb!=undefined|| loginCred.phoneNumb!=null)
+    }else if( loginCred.phoneNumb!=undefined && loginCred.phoneNumb!="")
     {
        $state.go('userTabs');
-    }else if( loginCred.emailId!=undefined&& loginCred.passwrd!=undefined){
+    }else if( loginCred.emailId!=undefined && loginCred.passwrd!=undefined){
        $state.go('internalTabs');
-    } else{
-        $state.go('entry');
-    }  
+    }else{
+       $state.go('entry');
+    }
     }
 
 })
@@ -39,8 +40,14 @@ angular.module('hallBooking.controller', [])
     }
     
     $scope.login = function() {
+         loginCred  =JSON.parse(loginCrd.getLoinCredentials());
+   console.log(loginCred);
+   if(loginCred==undefined||loginCred==null){
         $state.go('login');
     }
+    else if( loginCred.emailId!=undefined && loginCred.passwrd!=undefined){
+       $state.go('internalTabs');
+    }}
      $scope.publicView=function(){
          if($scope.loginObj.PhoneNumber==undefined){
              return false;
@@ -49,8 +56,14 @@ angular.module('hallBooking.controller', [])
        $state.go('userTabs'); 
     }
    $scope.publicLogin=function(){
+     loginCred  =JSON.parse(loginCrd.getLoinCredentials());
+   console.log(loginCred);
+   if(loginCred==undefined||loginCred==null){
        $state.go('publicLogin');
+    }else if(loginCred.phoneNumb!=undefined&&loginCred.phoneNumb!=null){
+        $state.go('userTabs');
     }
+   }
     $scope.intrernalogin = function() {
         console.log('login func');
         if (!$scope.loginObj.EmailId) {
@@ -61,8 +74,8 @@ angular.module('hallBooking.controller', [])
             console.log('password is required');
             return;
         }
-       loginCrd.setLoginCredentials($scope.loginObj);
-
+    
+         loginCrd.setLoginCredentials($scope.loginObj);
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
          if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
@@ -72,8 +85,11 @@ angular.module('hallBooking.controller', [])
         } else if ($scope.loginObj.EmailId == "executive" && $scope.loginObj.Password == "123") {
             console.log('executive')
               $scope.loginObj={}
+              $location.path('/internalTabs')
        }
 
+    
+     
 
     }
    
@@ -122,18 +138,20 @@ angular.module('hallBooking.controller', [])
 
     }
     
-}).controller('publicFacility', function(loginCrd,$rootScope, $scope, $state, $ionicModal, ApiCallService) {
+}).controller('publicFacility', function($filter,loginCrd,$rootScope, $scope, $state, $ionicModal, ApiCallService) {
     $scope.publicMsg = {};
     $scope.imgDes = false;
     $scope.publicMsgList = [];
     $scope.facility = '';
+    $scope.events=[];
     $scope.publicSignOut=function(){
         loginCrd.removeCredentials()
         $state.go('mainHome')
     }
     var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
     promise.then(function(res) {
-        console.log(res);
+        console.log(res.data)
+      $scope.events= res.data;
     }, function() {
         console.log('error')
     })
@@ -149,6 +167,19 @@ angular.module('hallBooking.controller', [])
     }, function() {
         console.log('error')
     })
+    $scope.enquiryForm=function(enquiryObj){
+     enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
+        console.log(enquiryObj);
+        enquiryObj['Others']="Nan";
+        enquiryObj['Remarks']="Nan";
+          var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+    promise.then(function(res) {
+        console.log(res);
+    }, function(err) {
+        console.log(err)
+    })
+
+    }
     $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
         "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
@@ -220,7 +251,6 @@ angular.module('hallBooking.controller', [])
     }
 
     $scope.sendPublicMsg = function() {
-
         if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
             $rootScope.ShowToast('Hai');
             return false

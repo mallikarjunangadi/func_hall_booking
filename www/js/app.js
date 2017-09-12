@@ -3,7 +3,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova'])
+angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova','hallBooking.directiv'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
             if (window.cordova && window.cordova.plugins.Keyboard) {

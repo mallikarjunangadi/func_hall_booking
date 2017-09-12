@@ -5,29 +5,34 @@
    </div>
    <ion-tabs class="tabs-icon-bottom userTabs">
       <ion-tab icon-on="ion-help tabsicon-on" icon-off="ion-help">
-         <form id="signUpForm" name="signUpForm" ng-submit='signUp(signUpObj)' style="margin-top:20vh">
+         <form id="signUpForm" name="enquiryFor" ng-submit='enquiryForm(enquiryObj)' style="margin-top:20vh">
             <div class="list list-inset" style="background-color:transparent;">
                <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
-               <label class="item item-input" style="padding:2vw;">
-               <input type="tel" ng-model="signUpObj.PhoneNumber" placeholder="Phone Number" required>
+              <label class="item item-input" style="padding:2vw;">
+               <input type="text"ng-model="enquiryObj.FirstName"  limit="13"   placeholder="First Name" />
+               </label>
+                <label class="item item-input" style="padding:2vw;">
+               <input type="text"ng-model="enquiryObj.LastName"  limit="13"   placeholder="Last Name" />
                </label>
                <label class="item item-input" style="padding:2vw;">
-               <input type="email" ng-model="signUpObj.EmailId" placeholder="Email" required>
+               <input type="tel"ng-model="enquiryObj.ContactNo"  limit="13"   placeholder="Phone Number" />
+               </label>
+               <label class="item item-input" style="padding:2vw;">
+               <input type="email" ng-model="enquiryObj.Email" placeholder="Email" required/>
                </label>
                <label class="item item-input item-select" style="padding:1vh;">
                   <div class = "input-label"  style="color:grey">
                      Select Event Type:
                   </div>
-                  <select>
-                     <option>Option 1</option>
-                     <option selected>Option 2</option>
-                     <option>Option 3</option>
+                  <select ng-model="enquiryObj.EventId" convert-to-number>
+                     <option ng-repeat="event in events" value={{event.EventId}} >{{event.EventName}}</option>
+                     
                   </select>
                </label>
                <label class="item item-input" style="padding:2vw;">
-               <input type="date" ng-model="signUpObj.cPassword" placeholder="Re-type password" required>
+               <input type="date" ng-model="enquiryObj.EventDate " placeholder="Re-type password" required date-format>
                </label>
-               <button type="submit" class="button button-small button-block button-positive" style="background:#8A2BE2 !important">Send Enquiry</button>
+               <button type="submit" class="button button-small button-block button-positive"style="background:#8A2BE2 !important">Send Enquiry</button>
             </div>
          </form>
       </ion-tab>
