@@ -1,26 +1,24 @@
 <ion-view ng-controller="loginCtrl">
-    <ion-content>
-        <div class="loginDiv">
-            <div id="loginImgDiv">
-                <img src="img/tsrLogo.png"></img>
-            </div>
-            <div class="loginFormDiv" >
-                <form id="loginForm" name="loginForm" >
-                    <div class="list list-inset" >
-                        <div class="Enquiry">
-                      
-                       <button class="button button-stable" style="background:#8A2BE2 !important;color:white" ng-click="publicLogin()">
-                          Enquiry
-                         </button>
-
-                        </div>
-                        <div class="signUpLinkDiv">
-                             <button class="button button-stable" style="background:#8A2BE2 !important;color:white" ng-click="login()">
-                              Sign In
-                            </button>
-                        </div>
-                </form>
-                </div>
-            </div>
-    </ion-content>
+   <ion-content>
+      <div class="loginDiv">
+      <div id="loginImgDiv">
+         <img src="img/tsrLogo.png"></img>
+      </div>
+      <div class="loginFormDiv" >
+         <form id="loginForm" name="loginForm" >
+            <div class="list list-inset" >
+               <div class="Enquiry">
+                  <button class="button button-stable" style="background:#8A2BE2 !important;color:white" ng-click="publicLogin()">
+                  Public
+                  </button>
+               </div>
+               <div class="signUpLinkDiv">
+                  <button class="button button-stable" style="background:#8A2BE2 !important;color:white" ng-click="login()">
+                  Internal
+                  </button>
+               </div>
+         </form>
+         </div>
+      </div>
+   </ion-content>
 </ion-view>

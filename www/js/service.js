@@ -3,21 +3,25 @@ angular.module('hallBooking.service', [])
         return {
             PostRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-                 console.log(doc2send);
-                var options = {
+                 console.log(jQuery.param(doc2send));
+               var req = {
                     method: "POST",
-                    url: Url,
-                    data: jQuery.param(doc2send),
-                    headers: {
-                        "Content-Type": 'application/x-www-form-urlencoded',
-                        'Authorization': 'Bearer '
-                    }
+                    url: 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry',
+                    data: JSON.stringify(doc2send),
+                     headers: {
+                       'Content-type': 'application/json; charset=utf-8'
+                        },
+                    
+                   
                 }
+               
 
-                console.log(options);
-                $http(options).then(function(res) {
+               
+                $http(req).then(function(res) {
+                    console.log(res)
                     deferred.resolve(res);
-                }, function() {
+                }, function(res) {
+                    console.log(res)
                     deferred.reject(res);
                 })
                  return deferred.promise;
@@ -43,16 +47,21 @@ angular.module('hallBooking.service', [])
             }
         }
     })
-
-    .factory('setPublicFacility', function() {
-        var facility = {};
+ .factory('loginCrd', function() {
+        var longinCr= {};
         return {
-            getFacility: function() {
-                return facility.name;
+            getLoinCredentials: function() {
+                return localStorage.getItem('loginCrendential');
+            },setLoginCredentials: function(longinCred) {
+                longinCr.phoneNumb = longinCred.PhoneNumber;
+                longinCr.emailId=longinCred.EmailId;
+                longinCr.passwrd=longinCred.Password;
+                localStorage.setItem("loginCrendential",JSON.stringify(longinCr));
             },
-
-            setFacility: function(name) {
-                facility.name = name;
+            removeCredentials:function() {
+           localStorage.removeItem('loginCrendential');
             }
+
+            
         }
     })

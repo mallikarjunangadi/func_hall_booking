@@ -409,10 +409,11 @@ $stable: #f8f8f8 !default; .scroll {
     transition: 0.2s linear !important;
     -webkit-transition-property: -webkit-transform, all !important;
     transition-property: transform, all !important;
+    
 }
 
 #signUpBackDiv p {
-    background-color: #f6f6f6;
+    background-color: white;
 }
 
 #forgotPwdFormDiv {
@@ -574,3 +575,9 @@ $stable: #f8f8f8 !default; .scroll {
 #forgotPwdBackDiv p {
     background-color: #f6f6f6;
 }
+.ion-arrow-left-c{
+    line-height:45px!important;
+    text-align:center;
+    min-height:0!important;
+    
+    }

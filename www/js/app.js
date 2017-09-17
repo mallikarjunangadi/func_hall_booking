@@ -3,7 +3,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova'])
+angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova','hallBooking.directiv'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -50,26 +50,31 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         templateUrl: 'templates/openTicket.html'
     }).state('customerDetails', {
         url: '/customerDetails',
-
         controller: 'publicFacility',
         templateUrl: 'templates/customerDetails.html'
     }).state('forgotPwdOtp', {
-
         url: '/forgotPwdOtp',
         templateUrl: 'templates/forgotPwdOtp.html'
     }).state('changePassword', {
         url: '/changePassword',
         templateUrl: 'templates/changePassword.html'
     })
-    .state('publicView', {
-        url: '/publicView',
-        templateUrl: 'templates/publicView.html'
-    })
+    
     .state('publicfacility', {
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
-  
+  .state('userTabs', {
+        url: '/userTabs',
+        templateUrl: 'templates/userTabs.html'
+    })
+    .state('publicView', {
+        url: '/publicView',
+       
+               templateUrl: 'templates/publicView.html'
+           
+        
+    })
     .state('internalTabs', {
         url: '/internalTabs',
         templateUrl: 'templates/internalTabs.html'
@@ -123,9 +128,6 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     .state('publicLogin', {
         url: '/publicEnquiry',
         templateUrl:'templates/publicLogin.html'
-    }).state('userTabs', {
-        url: '/userTabs',
-        templateUrl: 'templates/userTabs.html'
     }).state('publicEnquiry', {
         url: '/publicEnquiry',
         templateUrl: 'templates/publicEnquiry.html'
