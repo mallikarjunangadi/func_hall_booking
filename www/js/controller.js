@@ -111,12 +111,7 @@ angular.module('hallBooking.controller', [])
             console.log(res);
 if(res.data.UserId==0)
 {
-    console.log('invalid user name or password')
-
-       }
-
-    
-     
+    console.log('invalid user name or password')    
 
 }else{
     $location.path('/internalTabs')
@@ -180,7 +175,6 @@ if(res.data.UserId==0)
         console.log('HAi')
         $state.go('userTabs');
     }
-})
     
 }).controller('publicFacility', function($filter,loginCrd,$rootScope, $scope, $state, $ionicModal, ApiCallService) {
 
