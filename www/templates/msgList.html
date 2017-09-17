@@ -10,7 +10,7 @@
         <div class="card firstbut ">
             <div class="button-bar ">
                 <a class="button button-small button-positive msgListbut ">Open Ticket</a>
-                <a class="button button-small msgListbut ">Close Ticket</a>
+                <a class="button button-small msgListbut">Close Ticket</a>
             </div>
         </div>
        <div class="card radiusCard " style="height:15vh;">
@@ -48,7 +48,7 @@
         <div class="col " ng-repeat="y in aggent " ng-click="moveAssigner(y)">
         <img src="img/user2.jpg " style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
          <i class="icon ion-record imgicon " ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
-         <p style="font-size:0.7em;margin:0;text-align:;bottom:1vh;;position:relative;">{{y.DisplayName}}</p>
+         <p style="font-size:0.7em;margin:0 2vw;text-align:;bottom:1vh;;position:relative;">{{y.DisplayName}}</p>
         </div>
      </div>
     </div>
