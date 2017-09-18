@@ -87,13 +87,7 @@ angular.module('hallBooking.controller', [])
               $scope.loginObj={}
               $location.path('/internalTabs')
        }
-
-    
-     
-
     }
-   
-
     $scope.signIn = function() {
         $state.go('login');
     }
@@ -172,7 +166,8 @@ angular.module('hallBooking.controller', [])
         console.log(enquiryObj);
         enquiryObj['Others']="Nan";
         enquiryObj['Remarks']="Nan";
-          var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+       
+ var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
     promise.then(function(res) {
         console.log(res);
     }, function(err) {
@@ -335,7 +330,7 @@ angular.module('hallBooking.controller', [])
 })
 
 
-    .controller('openticCtrl', function($scope, $location, myService) {
+.controller('openticCtrl', function($scope, $location, myService) {
         $scope.openmesg = [{
             cusName: 'Sowmya',
             agentName: 'Un Usigned',
