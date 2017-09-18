@@ -106,8 +106,7 @@ angular.module('hallBooking.controller', [])
               $location.path('/internalTabs')
 
        }
-
-        /*$http(req).then(function(res) {
+      /*$http(req).then(function(res) {
             console.log(res);
 if(res.data.UserId==0)
 {
@@ -120,7 +119,9 @@ if(res.data.UserId==0)
 
         },function(res){
             console.log(res);
+
         })*/
+
     }
     $scope.signIn = function() {
         $state.go('login');
@@ -212,7 +213,8 @@ if(res.data.UserId==0)
         console.log(enquiryObj);
         enquiryObj['Others']="Nan";
         enquiryObj['Remarks']="Nan";
-          var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+       
+ var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
     promise.then(function(res) {
         console.log(res);
     }, function(err) {
@@ -372,61 +374,72 @@ if(res.data.UserId==0)
         }
     }
 })
+
+
+
 .controller('openticCtrl', function($scope, $location, myService) {
-    $scope.openmesg = [{
-        cusName: 'Sowmya',
-        agentName: 'Un Usigned',
-        img: 'img/user2.jpg',
-        bookingDate: '22/10/2017',
-        hallName: 'grandHall',
-        lastCon: '14/3/2017',
-        status: 'online'
-    }, {
-        cusName: 'Bhagya',
-        agentName: 'Chaminda vaas',
-        bookingDate: '22/10/2017',
-        hallName: 'KRHall',
-        img: 'img/user2.jpg',
-        lastCon: '14/6/2017',
-        status: 'offline'
-    }, {
-        cusName: 'Mallikarjun',
-        agentName: 'Tendulkar',
-        bookingDate: '22/10/2017',
-        hallName: 'GPHall',
-        img: 'img/user2.jpg',
-        lastCon: '14/7/2017',
-        status: 'waiting'
-    }, {
-        cusName: 'Sindhu',
-        agentName: 'Swagat',
-        bookingDate: '22/10/2017',
-        hallName: 'ACHall',
-        img: 'img/user2.jpg',
-        lastCon: '14/10/2017',
-        status: 'offline'
-    }]
-    $scope.msgList = function(x) {
-        console.log(x);
-        myService.set(x);
-        $location.path('msgList');
-    }
-}).controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
-    $scope.data = {};
-    $scope.myId = '12345';
-    $scope.messages = [];
-    console.log($scope)
-    $scope.$on("$ionicView.beforeEnter", function() {
-        console.log('Hai')
-        $scope.cusdetail = myService.get();
-        console.log($scope.cusdetail);
-    })
+        $scope.openmesg = [{
+            cusName: 'Sowmya',
+            agentName: 'Un Usigned',
+            img: 'img/user2.jpg',
+            bookingDate: '22/10/2017',
+            hallName: 'grandHall',
+            lastCon: '14/3/2017',
+            status: 'online'
+        }, {
+            cusName: 'Bhagya',
+            agentName: 'Chaminda vaas',
+            bookingDate: '22/10/2017',
+            hallName: 'KRHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/6/2017',
+            status: 'offline'
+        }, {
+            cusName: 'Mallikarjun',
+            agentName: 'Tendulkar',
+            bookingDate: '22/10/2017',
+            hallName: 'GPHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/7/2017',
+            status: 'waiting'
+        }, {
+            cusName: 'Sindhu',
+            agentName: 'Swagat',
+            bookingDate: '22/10/2017',
+            hallName: 'ACHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/10/2017',
+            status: 'offline'
+        }]
+        $scope.msgList = function(x) {
+            console.log(x);
+            myService.set(x);
+            $location.path('msgList');
+        }
+    }).controller('Messages', function($timeout,$http, $ionicScrollDelegate, $location, myService, $scope, $rootScope) {
+        $scope.data = {};
+        $scope.myId = '12345';
+        $scope.messages = [];
+        console.log($scope)
+        $scope.$on("$ionicView.beforeEnter", function() {
+            console.log('Hai')
+            $scope.cusdetail = myService.get();
+            console.log($scope.cusdetail);
+        })
+
+
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response){
+    console.log(response);
+    $scope.aggent =response.data;
+})
+/*
 
     $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
         console.log(response);
         $scope.aggent = response.data;
     })
     /*
+
   var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",

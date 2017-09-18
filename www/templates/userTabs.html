@@ -1,11 +1,11 @@
 <ion-view ng-controller="publicFacility">
   <!-- <button type="submit" class="button button-medium button-block button-positive" style="background:grey;margin:1vh;width:5%;border-radius:50%" ng-click="publicSignOut()"></button>-->
    <div style="margin-top:3vh!important;margin-left:1vh!important">
-   <i class="icon ion-log-out" ng-click="publicSignOut()" style="font-size:5vh;background:#67aded;color:white;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%"></i>
+   <i class="icon ion-log-out" ng-click="publicSignOut()" style="font-size:5vh;color:black;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%"></i>
    </div>
    <ion-tabs class="tabs-icon-bottom userTabs">
       <ion-tab icon-on="ion-help tabsicon-on" icon-off="ion-help">
-         <form id="signUpForm" name="enquiryFor" ng-submit='enquiryForm(enquiryObj)' style="margin-top:20vh">
+         <form id="signUpForm" name="enquiryFor" ng-submit='enquiryForm(enquiryObj)' style="margin-top:9vh">
             <div class="list list-inset" style="background-color:transparent;">
                <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
               <label class="item item-input" style="padding:2vw;">
@@ -24,12 +24,12 @@
                   <div class = "input-label"  style="color:grey">
                      Select Event Type:
                   </div>
-                  <select ng-model="enquiryObj.EventId" convert-to-number>
+                  <select ng-model="enquiryObj.EventId" convert-to-number >
                      <option ng-repeat="event in events" value={{event.EventId}} >{{event.EventName}}</option>
                      
                   </select>
                </label>
-               <label class="item item-input" style="padding:2vw;">
+             <label class="item item-input" style="padding:2vw;">
                <input type="date" ng-model="enquiryObj.EventDate " placeholder="Re-type password" required date-format>
                </label>
                <button type="submit" class="button button-small button-block button-positive"style="background:#8A2BE2 !important">Send Enquiry</button>

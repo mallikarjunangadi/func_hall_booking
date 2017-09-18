@@ -8,15 +8,13 @@ angular.module('hallBooking.service', [])
                     method: "POST",
                     url: 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry',
                     data: JSON.stringify(doc2send),
+                    //data: jQuery.param(doc2send),
                      headers: {
-                       'Content-type': 'application/json; charset=utf-8'
-                        },
-                    
-                   
-                }
-               
+                         //"Content-Type": 'application/x-www-form-urlencoded'
+                    //'Content-type': 'multipart/form-data'
+                        }
+            }
 
-               
                 $http(req).then(function(res) {
                     console.log(res)
                     deferred.resolve(res);
@@ -29,11 +27,10 @@ angular.module('hallBooking.service', [])
             GetRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
                 Url =  Url;
-
                 var options = {
                     method: "GET",
                     url: Url,
-                     headers: {
+                  headers: {
                         "Content-Type": 'application/x-www-form-urlencoded'
                     }
                 }
