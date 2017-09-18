@@ -38,6 +38,11 @@ angular.module('hallBooking.controller', [])
     $scope.enquiry = function() {
         $state.go('publicEnquiry');
     }
+
+    $scope.publicLogin = function() {
+        $state.go('publicLogin');
+    }
+
     
     $scope.login = function() {
          loginCred  =JSON.parse(loginCrd.getLoinCredentials());
@@ -78,7 +83,20 @@ angular.module('hallBooking.controller', [])
          loginCrd.setLoginCredentials($scope.loginObj);
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
-         if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+
+        var req = {
+            method: 'get',
+            url: "http://210.48.150.218/TSRAPI/APIService.svc/Login",
+            data: jQuery.param({
+                username: $scope.loginObj.EmailId,
+                password: $scope.loginObj.Password
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+
+         /*if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
                  console.log('internal')
               $scope.loginObj={}
             $location.path('/internalTabs')
@@ -86,13 +104,38 @@ angular.module('hallBooking.controller', [])
             console.log('executive')
               $scope.loginObj={}
               $location.path('/internalTabs')
+
        }
+
+
+       }*/
+
+        $http(req).then(function(res) {
+            console.log(res);
+if(res.data.UserId==0)
+{
+    console.log('invalid user name or password')    
+
+}else{
+    $location.path('/internalTabs')
+}
+           
+
+        },function(res){
+            console.log(res);
+        })
+
     }
     $scope.signIn = function() {
         $state.go('login');
     }
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+        console.log(response);
+        //$scope.aggent = response.data;
+    })
+})
 
-}).controller('signUpCtrl', function($scope, $state) {
+.controller('signUpCtrl', function($scope, $state) {
 
     $scope.signUpObj = {};
     $scope.contExe = false;
@@ -131,12 +174,19 @@ angular.module('hallBooking.controller', [])
         })
 
     }
+
+    $scope.publicView = function() {
+        console.log('HAi')
+        $state.go('userTabs');
+    }
     
 }).controller('publicFacility', function($filter,loginCrd,$rootScope, $scope, $state, $ionicModal, ApiCallService) {
+
     $scope.publicMsg = {};
     $scope.imgDes = false;
     $scope.publicMsgList = [];
     $scope.facility = '';
+
     $scope.events=[];
     $scope.publicSignOut=function(){
         loginCrd.removeCredentials()
@@ -288,8 +338,7 @@ angular.module('hallBooking.controller', [])
         window.history.back();
     }
 
-})
-.directive('input', function($timeout) {
+}).directive('input', function($timeout) {
     return {
         restrict: 'E',
         scope: {
@@ -328,6 +377,7 @@ angular.module('hallBooking.controller', [])
         }
     }
 })
+
 
 
 .controller('openticCtrl', function($scope, $location, myService) {
@@ -386,6 +436,13 @@ angular.module('hallBooking.controller', [])
     $scope.aggent =response.data;
 })
 /*
+
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+        console.log(response);
+        $scope.aggent = response.data;
+    })
+    /*
+
   var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
@@ -430,10 +487,9 @@ angular.module('hallBooking.controller', [])
         $location.path('internalTabs');
     }
 
-        $scope.hideTime = true;
+  $scope.hideTime = true;
         $scope.incmessages = [];
         var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-
 
     $scope.sendMessage = function() {
         console.log('enter');
@@ -479,8 +535,7 @@ angular.module('hallBooking.controller', [])
     }
     ;
 
-    $scope.closeKeyboard = function() {
-    }
+    $scope.closeKeyboard = function() {}
     ;
 
     $scope.data = {};
@@ -522,6 +577,7 @@ angular.module('hallBooking.controller', [])
     $scope.logout = function(){
         loginCrd.removeCredentials();
          $location.path('login');
+
     }
 })
 
