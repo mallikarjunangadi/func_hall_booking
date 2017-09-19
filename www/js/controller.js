@@ -30,7 +30,9 @@ angular.module('hallBooking.controller', [])
     }
 
 })
+
 .controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope,$http) {
+
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
@@ -84,7 +86,7 @@ angular.module('hallBooking.controller', [])
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
 
-        var req = {
+        /*var req = {
             method: 'get',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/Login",
             data: jQuery.param({
@@ -94,9 +96,9 @@ angular.module('hallBooking.controller', [])
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        }
+        }*/
 
-         /*if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+         if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
                  console.log('internal')
               $scope.loginObj={}
             $location.path('/internalTabs')
@@ -106,11 +108,7 @@ angular.module('hallBooking.controller', [])
               $location.path('/internalTabs')
 
        }
-
-
-       }*/
-
-        $http(req).then(function(res) {
+      /*$http(req).then(function(res) {
             console.log(res);
 if(res.data.UserId==0)
 {
@@ -123,16 +121,17 @@ if(res.data.UserId==0)
 
         },function(res){
             console.log(res);
-        })
+
+        })*/
 
     }
     $scope.signIn = function() {
         $state.go('login');
     }
- $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
-        console.log(response);
+ //$http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+       // console.log(response);
         //$scope.aggent = response.data;
-    })
+    //})
 })
 
 .controller('signUpCtrl', function($scope, $state) {
