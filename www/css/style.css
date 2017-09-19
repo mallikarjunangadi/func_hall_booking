@@ -132,7 +132,7 @@
     text-align: center;
     postion: absolute;
     top: 35vh;
-    background-color: #f6f6f6;
+    background-color: white;
 }
 
 .footer {
@@ -271,22 +271,22 @@
 
 /* ------------------ login page style end---------------------- */
 .signUpDiv {
-    /*height: 100%;*/
-    height:100px;
+    height: auto;
+     /*height:100px;*/
     width: 100%;
     margin: 0;
     background-color: #f6f6f6;
 }
 
 .signUpImgDiv {
-    
+    height:100%;
     width: 100%;
     padding: 3vh 0 1vh 0;
 }
 
 .signUpImgDiv img {
-    height: 43px;
-    width: 12vw;
+    height:auto;
+    width:50px;
     margin: auto;
     display: block;
 }
@@ -298,7 +298,7 @@
 #signUpForm {
     width: 90vw;
     margin: auto;
-    
+
 }
 
 #signUpForm .item-input {
@@ -402,7 +402,7 @@ $stable: #f8f8f8 !default; .scroll {
 }
 
 #signUpBackDiv a {
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 1vh;
     border-radius: 50% !important;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
@@ -584,3 +584,4 @@ $stable: #f8f8f8 !default; .scroll {
     min-height:0!important;
     
     }
+    
