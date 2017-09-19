@@ -186,12 +186,12 @@
 /* ------------------ main home page style end ---------------------- */
 /* ------------------ login page style ---------------------- */
 #loginDiv {
-    height: 100%;
+    height: 100px
     width: 100%;
 }
 
 #loginImgDiv {
-    height: 47vh;
+    height: 250px;
 }
 .tabsicon-on{
     color:#67aded;
@@ -271,19 +271,21 @@
 
 /* ------------------ login page style end---------------------- */
 .signUpDiv {
-    height: 100%;
+    /*height: 100%;*/
+    height:100px;
     width: 100%;
     margin: 0;
     background-color: #f6f6f6;
 }
 
 .signUpImgDiv {
+    
     width: 100%;
     padding: 3vh 0 1vh 0;
 }
 
 .signUpImgDiv img {
-    height: 7vh;
+    height: 43px;
     width: 12vw;
     margin: auto;
     display: block;
@@ -296,12 +298,13 @@
 #signUpForm {
     width: 90vw;
     margin: auto;
+    
 }
 
 #signUpForm .item-input {
     margin: 3vh auto;
     border-radius: 1vh;
-    height: 50px!important;
+    height: 40px!important;
     padding: 4px 24px 8px 28px;
 }
 

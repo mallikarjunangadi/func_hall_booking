@@ -30,7 +30,7 @@ angular.module('hallBooking.controller', [])
     }
 
 })
-.controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope) {
+.controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope,$http) {
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
