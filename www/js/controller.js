@@ -3,13 +3,13 @@ angular.module('hallBooking.controller', [])
     var loginCred={};
     $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
-        "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
+        "content": "Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall.."
     }, {
         "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
+        "content": "Organising your event was never this simple before, just say what you are looking for, rest assured we will bring your needs to event venue."
     }, {
         "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
+        "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
     }];
  
     $scope.getStarted = function() {
