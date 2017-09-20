@@ -212,16 +212,16 @@ if(res.data.UserId==0)
     })
     $scope.enquiryForm=function(enquiryObj){
      enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
-        console.log(enquiryObj);
+        console.log($scope.enquiryObj);
         enquiryObj['Others']="Nan";
         enquiryObj['Remarks']="Nan";
        
- var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+/* var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
     promise.then(function(res) {
         console.log(res);
     }, function(err) {
         console.log(err)
-    })
+    })*/
 
     }
     $scope.slides = [{
