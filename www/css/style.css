@@ -300,6 +300,20 @@
     margin: auto;
 
 }
+#enquiryForm{
+  width: 90vw;
+  margin: auto;
+  
+}
+#element::-webkit-scrollbar { 
+    display: none; 
+}
+#enquiryForm .item-input{
+  margin: 3vh auto;
+    border-radius: 1vh;
+    height: 37px!important;
+    padding: 4px 24px 8px 28px;
+}
 
 #signUpForm .item-input {
     margin: 3vh auto;

@@ -185,7 +185,7 @@ if(res.data.UserId==0)
     $scope.imgDes = false;
     $scope.publicMsgList = [];
     $scope.facility = '';
-
+    $scope.enquiryObj={};
     $scope.events=[];
     $scope.publicSignOut=function(){
         loginCrd.removeCredentials()
@@ -210,18 +210,54 @@ if(res.data.UserId==0)
     }, function() {
         console.log('error')
     })
-    $scope.enquiryForm=function(enquiryObj){
-     enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
-        console.log($scope.enquiryObj);
-        enquiryObj['Others']="Nan";
-        enquiryObj['Remarks']="Nan";
-       
-/* var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+    $scope.enquiryForm=function(){
+        if($scope.enquiryObj.FirstName==undefined||$scope.enquiryObj.FirstName==""){
+           $rootScope.ShowToast('Enter First Name')
+           console.log('Enter First Name')
+            return false;
+        }
+        if($scope.enquiryObj.LastName==undefined||$scope.enquiryObj.LastName==""){
+             $rootScope.ShowToast('Enter Last Name')
+             console.log('Enter Last Name')
+            return false;
+        }
+         if($scope.enquiryObj.ContactNo==undefined||$scope.enquiryObj.ContactNo==""){
+            $rootScope.ShowToast('Enter Contact No')
+            console.log('Enter Contact No')
+            return false;
+        } if($scope.enquiryObj.Email==undefined||$scope.enquiryObj.Email==""){
+            $rootScope.ShowToast('Enter Email')
+            return false;
+        }if($scope.enquiryObj.EventId==undefined||$scope.enquiryObj.EventId==""){
+            $rootScope.ShowToast('Enter Event Id')
+            return false;
+        }if($scope.enquiryObj.EventDate==undefined||$scope.enquiryObj.EventDate==""){
+            $rootScope.ShowToast('Enter EventDate')
+            return false;
+        }if($scope.enquiryObj.Others==undefined||$scope.enquiryObj.Others==""){
+            $rootScope.ShowToast('Enter Others')
+            return false;
+        }if($scope.enquiryObj.Remarks==undefined||$scope.enquiryObj.Remarks==""){
+            $rootScope.ShowToast('Enter Remarks')
+            return false;
+        }
+
+
+  
+   $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy'); 
+  
+   console.log($scope.enquiryObj); 
+   var promise = ApiCallService.PostRequest($scope.enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
     promise.then(function(res) {
-        console.log(res);
+       if(res.data==true){
+           $rootScope.ShowToast('Enquiry Form Added Successfully') 
+           $scope.enquiryObj={};
+       }else{
+           $rootScope.ShowToast('Failed to Add Enquiry ') 
+       }
     }, function(err) {
         console.log(err)
-    })*/
+    })
 
     }
     $scope.slides = [{
