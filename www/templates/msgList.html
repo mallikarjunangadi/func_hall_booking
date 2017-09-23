@@ -1,7 +1,7 @@
 <ion-pane class="messaging-view " ng-controller="Messages " style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
       <a class="button icon-left ion-chevron-left button-clear button "style="color:#67aded " ng-click="back()"></a>
-      <h1 class="title ">{{cusdetail.cusName}}</h1>
+      <h1 class="title ">{{cusdetail.FirstName+ " " +cusdetail.LastName }}</h1>
 
     </ion-header-bar>
 
@@ -15,7 +15,8 @@
         </div>
        <div class="card radiusCard " style="height:15vh;">
             <a class="item item-avatar length " href="#">
-                <img src="img/user2.jpg ">
+                <img ng-src="img/user2.jpg "/
+                >
                  <p>Customer want to book a hall<br>for 1day on 22/10/2017</p>
                 <p style="text-align:right;color:blue;">12.37 p.m.</p>
             </a>

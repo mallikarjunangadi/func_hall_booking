@@ -68,6 +68,15 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/userTabs',
         templateUrl: 'templates/userTabs.html'
     })
+    .state('userTabs.enquiry', {
+        url: '/enquiry',
+        views:{
+             'userTabs-enquiry': {
+         templateUrl:  'templates/enquiry.html',
+         controller: 'publicFacility'
+             }
+        }
+    })
     .state('publicView', {
         url: '/publicView',
        

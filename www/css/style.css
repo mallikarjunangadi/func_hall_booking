@@ -132,7 +132,7 @@
     text-align: center;
     postion: absolute;
     top: 35vh;
-    background-color: #f6f6f6;
+    background-color: white;
 }
 
 .footer {
@@ -186,12 +186,12 @@
 /* ------------------ main home page style end ---------------------- */
 /* ------------------ login page style ---------------------- */
 #loginDiv {
-    height: 100%;
+    height: 100px
     width: 100%;
 }
 
 #loginImgDiv {
-    height: 47vh;
+    height: 250px;
 }
 .tabsicon-on{
     color:#67aded;
@@ -271,20 +271,22 @@
 
 /* ------------------ login page style end---------------------- */
 .signUpDiv {
-    height: 100%;
+    height: auto;
+     /*height:100px;*/
     width: 100%;
     margin: 0;
     background-color: #f6f6f6;
 }
 
 .signUpImgDiv {
+   
     width: 100%;
     padding: 3vh 0 1vh 0;
 }
 
 .signUpImgDiv img {
-    height: 7vh;
-    width: 12vw;
+    height:auto;
+    width:50px;
     margin: auto;
     display: block;
 }
@@ -296,12 +298,27 @@
 #signUpForm {
     width: 90vw;
     margin: auto;
+
+}
+#enquiryForm{
+  width: 90vw;
+  margin: auto;
+  
+}
+#element::-webkit-scrollbar { 
+    display: none; 
+}
+#enquiryForm .item-input{
+  margin: 3vh auto;
+    border-radius: 1vh;
+    height: 37px!important;
+    padding: 4px 24px 8px 28px;
 }
 
 #signUpForm .item-input {
     margin: 3vh auto;
     border-radius: 1vh;
-    height: 50px!important;
+    height: 40px!important;
     padding: 4px 24px 8px 28px;
 }
 
@@ -399,7 +416,7 @@ $stable: #f8f8f8 !default; .scroll {
 }
 
 #signUpBackDiv a {
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 1vh;
     border-radius: 50% !important;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
@@ -581,3 +598,4 @@ $stable: #f8f8f8 !default; .scroll {
     min-height:0!important;
     
     }
+    
