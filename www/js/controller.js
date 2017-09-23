@@ -30,7 +30,7 @@ angular.module('hallBooking.controller', [])
     }
 
 })
-.controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope) {
+.controller('loginCtrl', function(loginCrd,$scope, $state, ApiCallService, $location, $rootScope,$http) {
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
@@ -84,7 +84,7 @@ angular.module('hallBooking.controller', [])
         console.log($scope.loginObj);
         $rootScope.loginUser = $scope.loginObj.EmailId;
 
-        var req = {
+       var req = {
             method: 'get',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/Login",
             data: jQuery.param({
@@ -96,7 +96,7 @@ angular.module('hallBooking.controller', [])
             }
         }
 
-         /*if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+        if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
                  console.log('internal')
               $scope.loginObj={}
             $location.path('/internalTabs')
@@ -108,12 +108,13 @@ angular.module('hallBooking.controller', [])
        }
 
 
-       }*/
+       
 
-        $http(req).then(function(res) {
-            console.log(res);
+    /*    $http(req).then(function(res) {
+            
 if(res.data.UserId==0)
 {
+     $location.path('/internalTabs')
     console.log('invalid user name or password')    
 
 }else{
@@ -125,14 +126,15 @@ if(res.data.UserId==0)
             console.log(res);
         })
 
+    }*/
     }
     $scope.signIn = function() {
         $state.go('login');
     }
- $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+/* $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
         console.log(response);
         //$scope.aggent = response.data;
-    })
+    })*/
 })
 
 .controller('signUpCtrl', function($scope, $state) {
@@ -211,18 +213,25 @@ if(res.data.UserId==0)
     }, function() {
         console.log('error')
     })
-    $scope.enquiryForm=function(enquiryObj){
-     enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
+    $scope.enquiryObj={};
+    $scope.enquiryForm=function(){
+        console.log('Hai')
+       console.log($scope.enquiryObj)
+    /* enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
         console.log(enquiryObj);
         enquiryObj['Others']="Nan";
-        enquiryObj['Remarks']="Nan";
+        enquiryObj['Remarks']="Nan";*/
        
- var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+ /*var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
     promise.then(function(res) {
-        console.log(res);
+      if(res.data==true) {
+        $rootScope.ShowToast('Enquiry form Added Succesfully') 
+         
+      } 
+        
     }, function(err) {
         console.log(err)
-    })
+    })*/
 
     }
     $scope.slides = [{
