@@ -169,7 +169,12 @@ if(res.data.UserId==0)
             console.log('email is required');
             return;
         }
+
     }
+    $scope.goBack=function(){
+        window.history.back();
+    }
+   
     })
   .controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
 
