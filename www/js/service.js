@@ -3,7 +3,7 @@ angular.module('hallBooking.service', [])
         return {
             PostRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-                console.log(jQuery.param(doc2send));
+                
                 var req = {
                     method: "POST",
                     url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
@@ -15,7 +15,7 @@ angular.module('hallBooking.service', [])
                         //'Content-type': 'multipart/form-data'
                     }
                 }
-
+      console.log(req);
                 $http(req).then(function(res) {
                     console.log(res)
                     deferred.resolve(res);
