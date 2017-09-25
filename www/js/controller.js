@@ -1,4 +1,5 @@
 angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd) {
+
         var loginCred = {};
         $scope.slides = [{
             "head": "Welcome to TSR Hall booking app",
@@ -26,76 +27,76 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 $state.go('entry');
             }*/
             $state.go('userTabs');
+
         }
+    
 
+}).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http) {
 
-    }).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http) {
+    $scope.loginObj = {};
+    $rootScope.loginUser = "";
 
-        $scope.loginObj = {};
-        $rootScope.loginUser = "";
+    $scope.enquiry = function() {
+        $state.go('publicEnquiry');
+    }
 
-        $scope.enquiry = function() {
-            $state.go('publicEnquiry');
+    $scope.publicLogin = function() {
+        $state.go('publicLogin');
+    }
+
+    $scope.login = function() {
+        loginCred = JSON.parse(loginCrd.getLoinCredentials());
+        console.log(loginCred);
+        if (loginCred == undefined || loginCred == null) {
+            $state.go('login');
+        } else if (loginCred.emailId != undefined && loginCred.passwrd != undefined) {
+            $state.go('internalTabs');
         }
-
-        $scope.publicLogin = function() {
+    }
+    $scope.publicView = function() {
+        if ($scope.loginObj.PhoneNumber == undefined) {
+            return false;
+        }
+        loginCrd.setLoginCredentials($scope.loginObj)
+        $state.go('userTabs');
+    }
+    $scope.publicLogin = function() {
+        loginCred = JSON.parse(loginCrd.getLoinCredentials());
+        console.log(loginCred);
+        if (loginCred == undefined || loginCred == null) {
             $state.go('publicLogin');
-        }
-
-        $scope.login = function() {
-            loginCred = JSON.parse(loginCrd.getLoinCredentials());
-            console.log(loginCred);
-            if (loginCred == undefined || loginCred == null) {
-                $state.go('login');
-            } else if (loginCred.emailId != undefined && loginCred.passwrd != undefined) {
-                $state.go('internalTabs');
-            }
-        }
-        $scope.publicView = function() {
-            if ($scope.loginObj.PhoneNumber == undefined) {
-                return false;
-            }
-            loginCrd.setLoginCredentials($scope.loginObj)
+        } else if (loginCred.phoneNumb != undefined && loginCred.phoneNumb != null) {
             $state.go('userTabs');
         }
-        $scope.publicLogin = function() {
-            loginCred = JSON.parse(loginCrd.getLoinCredentials());
-            console.log(loginCred);
-            if (loginCred == undefined || loginCred == null) {
-                $state.go('publicLogin');
-            } else if (loginCred.phoneNumb != undefined && loginCred.phoneNumb != null) {
-                $state.go('userTabs');
+    }
+    $scope.intrernalogin = function() {
+        console.log('login func');
+        if (!$scope.loginObj.EmailId) {
+            console.log('email id is required');
+            return;
+        }
+        if (!$scope.loginObj.Password) {
+            console.log('password is required');
+            return;
+        }
+
+        loginCrd.setLoginCredentials($scope.loginObj);
+        console.log($scope.loginObj);
+        $rootScope.loginUser = $scope.loginObj.EmailId;
+
+        var req = {
+            method: 'get',
+            url: "http://210.48.150.218/TSRAPI/APIService.svc/Login?username=admin&password=admin",
+            data: jQuery.param({
+                username: $scope.loginObj.EmailId,
+                password: $scope.loginObj.Password
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         }
-        $scope.intrernalogin = function() {
-            console.log('login func');
-            if (!$scope.loginObj.EmailId) {
-                console.log('email id is required');
-                return;
-            }
-            if (!$scope.loginObj.Password) {
-                console.log('password is required');
-                return;
-            }
 
-            loginCrd.setLoginCredentials($scope.loginObj);
-            console.log($scope.loginObj);
-            $rootScope.loginUser = $scope.loginObj.EmailId;
-
-            var req = {
-                method: 'get',
-                url: "http://210.48.150.218/TSRAPI/APIService.svc/Login?username=admin&password=admin",
-                data: jQuery.param({
-                    username: $scope.loginObj.EmailId,
-                    password: $scope.loginObj.Password
-                }),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }
-
-
-            /* if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
+        /* if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
 
                  console.log('internal')
               $scope.loginObj={}
@@ -119,81 +120,58 @@ if(res.data.UserId==0)
     console.log('invalid user name or password')    
 
        }*/
-            $http(req).then(function(res) {
-                console.log(res);
-                if (res.data.UserId == 0) {
+        $http(req).then(function(res) {
+            console.log(res);
+            if (res.data.UserId == 0) {
 
-                    alert('invalid username and password');
+                alert('invalid username and password');
 
-                    console.log('invalid user name or password')
+                console.log('invalid user name or password')
 
-                } else {
-                    $location.path('/internalTabs')
-                }
+            } else {
+                $location.path('/internalTabs')
+            }
 
-            }, function(res) {
-                console.log(res);
+        }, function(res) {
+            console.log(res);
 
-            })
+        })
 
-        }
-        $scope.signIn = function() {
-            $state.go('login');
-        }
+    }
+    $scope.signIn = function() {
+        $state.go('login');
+    }
 
-        /* $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+    /* $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
             console.log(response);
             //$scope.aggent = response.data;
         })*/
+})
+.controller('signUpCtrl', function($scope, $state) {
+
+    $scope.signUpObj = {};
+    $scope.contExe = false;
+    $scope.signUp = function(signUpObj) {
+        console.log('signup');
+
+        if (!signUpObj.PhoneNumber) {
+            console.log('mobile number is required');
+            return;
+        }
+
+        if (signUpObj.PhoneNumber != 10) {
+            console.log('invalid mobile number');
+            return;
+        }
+
+
+        if (!signUpObj.EmailId) {
+            console.log('email is required');
+            return;
+        }
+    }
     })
-
-    .controller('signUpCtrl', function($scope, $state) {
-
-
-        $scope.signUpObj = {};
-        $scope.contExe = false;
-        $scope.signUp = function(signUpObj) {
-            console.log('signup');
-
-            if (!signUpObj.PhoneNumber) {
-                console.log('mobile number is required');
-                return;
-            }
-
-            if (signUpObj.PhoneNumber != 10) {
-                console.log('invalid mobile number');
-                return;
-            }
-
-            if (!signUpObj.EmailId) {
-                console.log('email is required');
-                return;
-            }
-
-            if (!signUpObj.Password) {
-                console.log('password is required');
-                return;
-            }
-            if (signUpObj.Password != signUpObj.cPassword) {
-                console.log('Password doesnt match');
-                return;
-            }
-
-            var promise = ApiCallService.PostRequest($scope.signUpObj, '/signUp');
-            promise.then(function(res) {
-                console.log(res);
-            }, function() {
-                console.log('error')
-            })
-
-        }
-
-        $scope.publicView = function() {
-            console.log('HAi')
-            $state.go('userTabs');
-        }
-
-    }).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
+  .controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
 
         $scope.publicMsg = {};
         $scope.imgDes = false;
@@ -414,53 +392,52 @@ if(res.data.UserId==0)
         }
 
     }).directive('input', function($timeout) {
-        return {
-            restrict: 'E',
-            scope: {
-                'returnClose': '=',
-                'onReturn': '&',
-                'onFocus': '&',
-                'onBlur': '&'
-            },
-            link: function(scope, element, attr) {
-                element.bind('focus', function(e) {
-                    if (scope.onFocus) {
-                        $timeout(function() {
-                            scope.onFocus();
-                        });
-                    }
-                });
+    return {
+        restrict: 'E',
+        scope: {
+            'returnClose': '=',
+            'onReturn': '&',
+            'onFocus': '&',
+            'onBlur': '&'
+        },
+        link: function(scope, element, attr) {
+            element.bind('focus', function(e) {
+                if (scope.onFocus) {
+                    $timeout(function() {
+                        scope.onFocus();
+                    });
+                }
+            });
 
-                element.bind('blur', function(e) {
-                    if (scope.onBlur) {
+            element.bind('blur', function(e) {
+                if (scope.onBlur) {
+                    $timeout(function() {
+                        scope.onBlur();
+                    });
+                }
+            });
+            element.bind('keydown', function(e) {
+                if (e.which == 13) {
+                    if (scope.returnClose)
+                        element[0].blur();
+                    if (scope.onReturn) {
                         $timeout(function() {
-                            scope.onBlur();
+                            scope.onReturn();
                         });
                     }
-                });
-                element.bind('keydown', function(e) {
-                    if (e.which == 13) {
-                        if (scope.returnClose)
-                            element[0].blur();
-                        if (scope.onReturn) {
-                            $timeout(function() {
-                                scope.onReturn();
-                            });
-                        }
-                    }
-                });
-            }
+                }
+            });
         }
+    }
+}).controller('openticCtrl', function($scope, $location, myService, $http, ApiCallService) {
+
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry").then(function(response) {
+        console.log(response);
+        $scope.openmesg = response.data;
+        console.log(response.data);
     })
-    .controller('openticCtrl', function($scope, $location, myService, $http, ApiCallService) {
 
-        $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry").then(function(response) {
-            console.log(response);
-            $scope.openmesg = response.data;
-            console.log(response.data);
-        })
-
-        /*var req = {
+    /*var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
             data: jQuery.param(),
@@ -473,7 +450,7 @@ if(res.data.UserId==0)
             console.log(res);
         })*/
 
-        /*$scope.openmesg = [{
+    /*$scope.openmesg = [{
             cusName: 'Sowmya',
             agentName: 'Un Usigned',
             img: 'img/user2.jpg',
@@ -506,31 +483,34 @@ if(res.data.UserId==0)
             lastCon: '14/10/2017',
             status: 'offline'
         }]*/
-        $scope.msgList = function(x) {
-            console.log(x);
-            myService.set(x);
-            $location.path('msgList');
-        }
+    $scope.msgList = function(x) {
+        console.log(x);
+        myService.set(x);
+        $location.path('msgList');
+    }
+}).controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService) {
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
+    console.log($scope)
+    $scope.$on("$ionicView.beforeEnter", function() {
+        console.log('Hai')
+        $scope.cusdetail = myService.get();
+        console.log($scope.cusdetail);
     })
-    .controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope,ApiCallService) {
-        $scope.data = {};
-        $scope.myId = '12345';
-        $scope.messages = [];
-        console.log($scope)
-        $scope.$on("$ionicView.beforeEnter", function() {
-            console.log('Hai')
-            $scope.cusdetail = myService.get();
-            console.log($scope.cusdetail);
-        })
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetEnquiryReplybyTicket?TicketNo=EQ10001").then(function(response) {
+        console.log(response);
+        $scope.EnqReply = response.data[0];
+        console.log(response.data);
+    })
 
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+        console.log(response);
+        $scope.aggent = response.data;
+        console.log(response.data);
+    })
 
-        $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
-            console.log(response);
-            $scope.aggent = response.data;
-            console.log(response.data);
-        })
-
-        /* $scope.aggent = [
+    /* $scope.aggent = [
         {
           img: '../img/user2.jpg', 
           agentName: 'Daniel vettori', 
@@ -553,97 +533,101 @@ if(res.data.UserId==0)
         }
         ]}*/
 
-        $scope.back = function() {
+    $scope.back = function() {
 
-            $location.path('internalTabs');
-        }
+        $location.path('internalTabs');
+    }
 
-        $scope.hideTime = true;
-        $scope.incmessages = [];
-        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+    $scope.hideTime = true;
+    $scope.incmessages = [];
+    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-        $scope.sendMessage = function() {
-            console.log('enter');
+    $scope.sendMessage = function() {
+        console.log('enter');
 
-            var d = new Date();
-            d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+        var d = new Date();
+        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
+        $scope.messages.push({
+            userId: 'me',
+            text: $scope.data.message,
+            time: d
+
+        });
+
+        $timeout(function() {
             $scope.messages.push({
-                userId: 'me',
-                text: $scope.data.message,
+                userId: 'you',
+                text: 'hi,hello...',
                 time: d
 
             });
+        }, 2000)
 
-            $timeout(function() {
-                $scope.messages.push({
-                    userId: 'you',
-                    text: 'hi,hello...',
-                    time: d
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
 
-                });
-            }, 2000)
+    }
+    ;
 
-            delete $scope.data.message;
+    $scope.inputUp = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 216;
+        $timeout(function() {
             $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
+    }
+    ;
 
-        };
+    $scope.inputDown = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    }
+    ;
 
-        $scope.inputUp = function() {
-            if (isIOS)
-                $scope.data.keyboardHeight = 216;
-            $timeout(function() {
-                $ionicScrollDelegate.scrollBottom(true);
-            }, 300);
-        };
+    $scope.closeKeyboard = function() {}
+    ;
 
-        $scope.inputDown = function() {
-            if (isIOS)
-                $scope.data.keyboardHeight = 0;
-            $ionicScrollDelegate.resize();
-        };
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
 
-        $scope.closeKeyboard = function() {};
+    $scope.moveAssigner = function(y) {
+        console.log(y);
+        var assignObj = {
+            EnquiryId: $scope.cusdetail.EnquiryId,
+            AssignId: y.UserId
+        }
+        var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
+        promise.then(function(res) {
+            console.log(res);
+            if (res.data == true) {
 
-        $scope.data = {};
-        $scope.myId = '12345';
-        $scope.messages = [];
+                alert('Assign sucessfuly');
 
-        $scope.moveAssigner = function(y) {
-            console.log(y);
-              var assignObj = {
-                EnquiryId: $scope.cusdetail.EnquiryId,
-                AssignId: y.UserId
+                console.log('Assign sucessfuly')
+
+            } else {
+                alert('Not Assigned');
+
+                console.log('Not Assigned')
+
             }
-            var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
-            promise.then(function(res) {
-                console.log(res);
-                if (res.data == true) {
 
-                    alert('Assign sucessfuly');
+        }, function(err) {
+            console.log(err);
+        })
+        //$location.path('assign');
+    }
 
-                    console.log('Assign sucessfuly')
+}).controller('interCtrl', function($scope, $location, loginCrd) {
+    $scope.logout = function() {
+        loginCrd.removeCredentials();
+        $location.path('login');
 
-                } else {
-                   alert('Not Assigned');
-
-                    console.log('Not Assigned')
-
-                }
-                 
-            }, function(err) {
-                console.log(err);
-            })
-            //$location.path('assign');
-        }
-
-    }).controller('interCtrl', function($scope, $location, loginCrd) {
-        $scope.logout = function() {
-            loginCrd.removeCredentials();
-            $location.path('login');
-
-        }
-    })
+    }
+})
 
 /*.controller('assignerCtrl', function($scope, $timeout, $ionicScrollDelegate, $location, myService) {
      
