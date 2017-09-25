@@ -593,12 +593,25 @@ if(res.data.UserId==0)
                 AssignId: y.UserId
             }
             var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
-            promise.then(function(response) {
-                console.log(response);
+            promise.then(function(res) {
+                console.log(res);
+                if (res.data == true) {
+
+                    alert('Assign sucessfuly');
+
+                    console.log('Assign sucessfuly')
+
+                } else {
+                   alert('Not Assigned');
+
+                    console.log('Not Assigned')
+
+                }
+                 
             }, function(err) {
                 console.log(err);
             })
-            $location.path('assign');
+            //$location.path('assign');
         }
 
     }).controller('interCtrl', function($scope, $location, loginCrd) {
