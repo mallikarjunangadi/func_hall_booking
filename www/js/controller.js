@@ -12,7 +12,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         }];
 
         $scope.getStarted = function() {
-            loginCred = JSON.parse(loginCrd.getLoinCredentials());
+           /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
             console.log(loginCred);
 
             if (loginCred == undefined || loginCred == null) {
@@ -24,7 +24,8 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 $state.go('internalTabs');
             } else {
                 $state.go('entry');
-            }
+            }*/
+            $state.go('userTabs');
         }
 
 
@@ -198,28 +199,30 @@ if(res.data.UserId==0)
         $scope.imgDes = false;
         $scope.publicMsgList = [];
         $scope.facility = '';
-
+     
         $scope.enquiryObj = {};
         $scope.events = [];
+        
+        var loginObj={};
         $scope.publicSignOut = function() {
 
             loginCrd.removeCredentials()
             $state.go('mainHome')
         }
-        var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
+        var promise = ApiCallService.GetRequest({}, '/GetAllEvents');
         promise.then(function(res) {
             console.log(res.data)
             $scope.events = res.data;
         }, function() {
             console.log('error')
         })
-        var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers');
+        var promise = ApiCallService.GetRequest({}, '/GetAllUsers');
         promise.then(function(res) {
             console.log(res);
         }, function() {
             console.log('error')
         })
-        var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry');
+        var promise = ApiCallService.GetRequest({}, '/GetAllEnquiry');
         promise.then(function(res) {
             console.log(res);
         }, function() {
@@ -255,8 +258,7 @@ if(res.data.UserId==0)
                 return false;
             }
 
-
-
+           
             $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
 
             console.log($scope.enquiryObj);
@@ -267,6 +269,8 @@ if(res.data.UserId==0)
             promise.then(function(res) {
                 if (res.data == true) {
                     $rootScope.ShowToast('Enquiry Form Added Successfully')
+                    loginObj.PhoneNumber=$scope.enquiryObj.ContactNo;
+                    loginCrd.setLoginCredentials(loginObj);
                     $scope.enquiryObj = {};
                 } else {
                     $rootScope.ShowToast('Failed to Add Enquiry ')
@@ -346,19 +350,38 @@ if(res.data.UserId==0)
             $scope.imgDes = false;
             $scope.model2.show();
         }
-
+       
         $scope.sendPublicMsg = function() {
             if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
-                $rootScope.ShowToast('Hai');
+                $rootScope.ShowToast('Enter Message');
                 return false
             }
+            loginObj = JSON.parse(loginCrd.getLoinCredentials());
+            console.log(loginObj)
 
-            $scope.publicMsg = {
-                publicUserId: 1,
-                publicImage: 'img/user1.png',
-                publicMssge: $scope.senderMsg,
-                date: new Date().getTime()
+            if(loginObj==null||loginObj==undefined){
+                console.log('Enter Enquiry Form');
+               $rootScope.ShowToast('Enter Enquiry Form'); 
+               return false;
+            }else if(loginObj.phoneNumb==undefined||loginObj.phoneNumb==null){
+                console.log('Enter Enquiry Form');
+               $rootScope.ShowToast('Enter Enquiry Form'); 
+               return false;
             }
+         
+        var promise = ApiCallService.GetRequest({PhoneNo:"1234567890"}, '/GetEnquirybyPhoneNo');
+        promise.then(function(res) {
+            console.log(res);
+        }, function(err) {
+            console.log(err)
+        })
+           
+            $scope.publicMsg = {
+                EnquiryId: 1,
+                Message:'Hello Pubic Message',
+                ReplyFrom:1,
+                UserId:null
+               }
             $scope.managerMsg = {
                 managerUserId: 2,
                 managerImage: 'img/user2.jpg',

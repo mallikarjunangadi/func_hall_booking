@@ -21,9 +21,11 @@
             </div>
         </ion-tab>
         <ion-tab icon-on="ion-android-textsms tabsicon-on" icon-off="ion-android-textsms" href="#/publicView">
-            <ion-nav-view name="userTabs-publicView"></ion-nav-view>
+            <ion-nav-view name="userTabs-publicView" ></ion-nav-view>
         </ion-tab>
         <ion-tab icon-on="ion-ios-briefcase tabsicon-on" icon-off="ion-ios-briefcase-outline"></ion-tab>
-        <ion-tab icon-on="ion-ios-person tabsicon-on" icon-off="ion-ios-person-outline"></ion-tab>
+        <ion-tab icon-on="ion-ios-person tabsicon-on" icon-off="ion-ios-person-outline" href="#/userTabs/loginInternalUser">
+          <ion-nav-view name="userTabs-loginInternalUser"></ion-nav-view>
+        </ion-tab>
     </ion-tabs>
 </ion-view>
