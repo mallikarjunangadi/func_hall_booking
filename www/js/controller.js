@@ -1,31 +1,35 @@
 angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd) {
-    var loginCred = {};
-    $scope.slides = [{
-        "head": "Welcome to TSR Hall booking app",
-        "content": "Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall.."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "Organising your event was never this simple before, just say what you are looking for, rest assured we will bring your needs to event venue."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
-    }];
 
-    $scope.getStarted = function() {
-        loginCred = JSON.parse(loginCrd.getLoinCredentials());
-        console.log(loginCred);
+        var loginCred = {};
+        $scope.slides = [{
+            "head": "Welcome to TSR Hall booking app",
+            "content": "Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall.."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "Organising your event was never this simple before, just say what you are looking for, rest assured we will bring your needs to event venue."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
+        }];
 
-        if (loginCred == undefined || loginCred == null) {
+        $scope.getStarted = function() {
+           /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
+            console.log(loginCred);
 
-            $state.go('entry');
-        } else if (loginCred.phoneNumb != undefined && loginCred.phoneNumb != "") {
+            if (loginCred == undefined || loginCred == null) {
+
+                $state.go('entry');
+            } else if (loginCred.phoneNumb != undefined && loginCred.phoneNumb != "") {
+                $state.go('userTabs');
+            } else if (loginCred.emailId != undefined && loginCred.passwrd != undefined) {
+                $state.go('internalTabs');
+            } else {
+                $state.go('entry');
+            }*/
             $state.go('userTabs');
-        } else if (loginCred.emailId != undefined && loginCred.passwrd != undefined) {
-            $state.go('internalTabs');
-        } else {
-            $state.go('entry');
+
         }
-    }
+    
 
 }).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http) {
 
@@ -160,231 +164,234 @@ if(res.data.UserId==0)
             return;
         }
 
+
         if (!signUpObj.EmailId) {
             console.log('email is required');
             return;
         }
+    }
+    })
+  .controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
 
-        if (!signUpObj.Password) {
-            console.log('password is required');
-            return;
-        }
-        if (signUpObj.Password != signUpObj.cPassword) {
-            console.log('Password doesnt match');
-            return;
-        }
+        $scope.publicMsg = {};
+        $scope.imgDes = false;
+        $scope.publicMsgList = [];
+        $scope.facility = '';
+     
+        $scope.enquiryObj = {};
+        $scope.events = [];
+        
+        var loginObj={};
+        $scope.publicSignOut = function() {
 
-        var promise = ApiCallService.PostRequest($scope.signUpObj, '/signUp');
+            loginCrd.removeCredentials()
+            $state.go('mainHome')
+        }
+        var promise = ApiCallService.GetRequest({}, '/GetAllEvents');
+        promise.then(function(res) {
+            console.log(res.data)
+            $scope.events = res.data;
+        }, function() {
+            console.log('error')
+        })
+        var promise = ApiCallService.GetRequest({}, '/GetAllUsers');
+        promise.then(function(res) {
+            console.log(res);
+        }, function() {
+            console.log('error')
+        })
+        var promise = ApiCallService.GetRequest({}, '/GetAllEnquiry');
         promise.then(function(res) {
             console.log(res);
         }, function() {
             console.log('error')
         })
 
-    }
-
-    $scope.publicView = function() {
-        console.log('HAi')
-        $state.go('userTabs');
-    }
-
-}).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
-
-    $scope.publicMsg = {};
-    $scope.imgDes = false;
-    $scope.publicMsgList = [];
-    $scope.facility = '';
-
-    $scope.enquiryObj = {};
-    $scope.events = [];
-    $scope.publicSignOut = function() {
-
-        loginCrd.removeCredentials()
-        $state.go('mainHome')
-    }
-    var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEvents');
-    promise.then(function(res) {
-        console.log(res.data)
-        $scope.events = res.data;
-    }, function() {
-        console.log('error')
-    })
-    var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers');
-    promise.then(function(res) {
-        console.log(res);
-    }, function() {
-        console.log('error')
-    })
-    var promise = ApiCallService.GetRequest({}, 'http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry');
-    promise.then(function(res) {
-        console.log(res);
-    }, function() {
-        console.log('error')
-    })
-
-    $scope.enquiryForm = function() {
-        if ($scope.enquiryObj.FirstName == undefined || $scope.enquiryObj.FirstName == "") {
-            $rootScope.ShowToast('Enter First Name')
-            console.log('Enter First Name')
-            return false;
-        }
-        if ($scope.enquiryObj.LastName == undefined || $scope.enquiryObj.LastName == "") {
-            $rootScope.ShowToast('Enter Last Name')
-            console.log('Enter Last Name')
-            return false;
-        }
-        if ($scope.enquiryObj.ContactNo == undefined || $scope.enquiryObj.ContactNo == "") {
-            $rootScope.ShowToast('Enter Contact No')
-            console.log('Enter Contact No')
-            return false;
-        }
-        if ($scope.enquiryObj.Email == undefined || $scope.enquiryObj.Email == "") {
-            $rootScope.ShowToast('Enter Email')
-            return false;
-        }
-        if ($scope.enquiryObj.EventId == undefined || $scope.enquiryObj.EventId == "") {
-            $rootScope.ShowToast('Enter Event Id')
-            return false;
-        }
-        if ($scope.enquiryObj.EventDate == undefined || $scope.enquiryObj.EventDate == "") {
-            $rootScope.ShowToast('Enter EventDate')
-            return false;
-        }
-
-        $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
-
-        console.log($scope.enquiryObj);
-        var promise = ApiCallService.PostRequest($scope.enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
-
-        //var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
-
-        promise.then(function(res) {
-            if (res.data == true) {
-                $rootScope.ShowToast('Enquiry Form Added Successfully')
-                $scope.enquiryObj = {};
-            } else {
-                $rootScope.ShowToast('Failed to Add Enquiry ')
+        $scope.enquiryForm = function() {
+            if ($scope.enquiryObj.FirstName == undefined || $scope.enquiryObj.FirstName == "") {
+                $rootScope.ShowToast('Enter First Name')
+                console.log('Enter First Name')
+                return false;
+            }
+            if ($scope.enquiryObj.LastName == undefined || $scope.enquiryObj.LastName == "") {
+                $rootScope.ShowToast('Enter Last Name')
+                console.log('Enter Last Name')
+                return false;
+            }
+            if ($scope.enquiryObj.ContactNo == undefined || $scope.enquiryObj.ContactNo == "") {
+                $rootScope.ShowToast('Enter Contact No')
+                console.log('Enter Contact No')
+                return false;
+            }
+            if ($scope.enquiryObj.Email == undefined || $scope.enquiryObj.Email == "") {
+                $rootScope.ShowToast('Enter Email')
+                return false;
+            }
+            if ($scope.enquiryObj.EventId == undefined || $scope.enquiryObj.EventId == "") {
+                $rootScope.ShowToast('Enter Event Id')
+                return false;
+            }
+            if ($scope.enquiryObj.EventDate == undefined || $scope.enquiryObj.EventDate == "") {
+                $rootScope.ShowToast('Enter EventDate')
+                return false;
             }
 
+           
+            $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
+
+            console.log($scope.enquiryObj);
+            var promise = ApiCallService.PostRequest($scope.enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+
+            //var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
+
+            promise.then(function(res) {
+                if (res.data == true) {
+                    $rootScope.ShowToast('Enquiry Form Added Successfully')
+                    loginObj.PhoneNumber=$scope.enquiryObj.ContactNo;
+                    loginCrd.setLoginCredentials(loginObj);
+                    $scope.enquiryObj = {};
+                } else {
+                    $rootScope.ShowToast('Failed to Add Enquiry ')
+                }
+
+            }, function(err) {
+                console.log(err)
+            })
+
+        }
+        $scope.slides = [{
+            "head": "Welcome to TSR Hall booking app",
+            "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "This is a basic Card which contains an item that has wrapping text."
+        }, {
+            "head": "Welcome to TSR Hall booking app",
+            "content": "This is a basic Card which contains an item that has wrapping text."
+        }];
+
+        $scope.publicfacility = [{
+            name: "D'ROYALE HALL",
+            img: "img/106.jpg"
+        }, {
+            name: "LE GRAND HALL",
+            img: "img/201.jpg"
+        }, {
+            name: "PRE FUNCTION HALL",
+            img: "img/205.jpg"
+        }];
+        $scope.model3 = $ionicModal.fromTemplateUrl('templates/publicfacility.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.model3 = modal;
+        })
+        $scope.model2 = $ionicModal.fromTemplateUrl('templates/customerDetails.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.model2 = modal;
+        })
+
+        $scope.model1 = $ionicModal.fromTemplateUrl('templates/imgDescription.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.model1 = modal;
+        })
+
+        $scope.getFacilityList = function() {
+            console.log('Hai')
+            $scope.model2.hide();
+            $scope.model3.show();
+        }
+        $scope.getFacilities = function() {
+            $scope.imgDes = true;
+            $scope.model3.show();
+
+        }
+        $scope.selectedFacility = function(facility) {
+            if ($scope.imgDes) {
+                $scope.image = facility.img;
+                $scope.model1.show();
+            } else {
+                $scope.facility = facility.name;
+                $scope.model3.hide();
+                $scope.model2.show();
+            }
+        }
+        $scope.selectedFacilitydescription = function(image) {
+            $scope.model1.show();
+        }
+
+        $scope.contactExecut = function() {
+            $scope.imgDes = false;
+            $scope.model2.show();
+        }
+       
+        $scope.sendPublicMsg = function() {
+            if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
+                $rootScope.ShowToast('Enter Message');
+                return false
+            }
+            loginObj = JSON.parse(loginCrd.getLoinCredentials());
+            console.log(loginObj)
+
+            if(loginObj==null||loginObj==undefined){
+                console.log('Enter Enquiry Form');
+               $rootScope.ShowToast('Enter Enquiry Form'); 
+               return false;
+            }else if(loginObj.phoneNumb==undefined||loginObj.phoneNumb==null){
+                console.log('Enter Enquiry Form');
+               $rootScope.ShowToast('Enter Enquiry Form'); 
+               return false;
+            }
+         
+        var promise = ApiCallService.GetRequest({PhoneNo:"1234567890"}, '/GetEnquirybyPhoneNo');
+        promise.then(function(res) {
+            console.log(res);
         }, function(err) {
             console.log(err)
         })
+           
+            $scope.publicMsg = {
+                EnquiryId: 1,
+                Message:'Hello Pubic Message',
+                ReplyFrom:1,
+                UserId:null
+               }
+            $scope.managerMsg = {
+                managerUserId: 2,
+                managerImage: 'img/user2.jpg',
+                managerMsg: 'Customer want to book a hall',
+                date: new Date()
+            }
 
-    }
-    $scope.slides = [{
-        "head": "Welcome to TSR Hall booking app",
-        "content": "It is the beginning of a new relationship. With your future spouse and as you will discover, with TSR. Because, once you have chosen TSR, you will look no further when you want every single event in your life to be remembered forever.."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
-    }, {
-        "head": "Welcome to TSR Hall booking app",
-        "content": "This is a basic Card which contains an item that has wrapping text."
-    }];
-
-    $scope.publicfacility = [{
-        name: "D'ROYALE HALL",
-        img: "img/106.jpg"
-    }, {
-        name: "LE GRAND HALL",
-        img: "img/201.jpg"
-    }, {
-        name: "PRE FUNCTION HALL",
-        img: "img/205.jpg"
-    }];
-    $scope.model3 = $ionicModal.fromTemplateUrl('templates/publicfacility.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.model3 = modal;
-    })
-    $scope.model2 = $ionicModal.fromTemplateUrl('templates/customerDetails.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.model2 = modal;
-    })
-
-    $scope.model1 = $ionicModal.fromTemplateUrl('templates/imgDescription.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.model1 = modal;
-    })
-
-    $scope.getFacilityList = function() {
-        console.log('Hai')
-        $scope.model2.hide();
-        $scope.model3.show();
-    }
-    $scope.getFacilities = function() {
-        $scope.imgDes = true;
-        $scope.model3.show();
-
-    }
-    $scope.selectedFacility = function(facility) {
-        if ($scope.imgDes) {
-            $scope.image = facility.img;
-            $scope.model1.show();
-        } else {
-            $scope.facility = facility.name;
-            $scope.model3.hide();
-            $scope.model2.show();
-        }
-    }
-    $scope.selectedFacilitydescription = function(image) {
-        $scope.model1.show();
-    }
-
-    $scope.contactExecut = function() {
-        $scope.imgDes = false;
-        $scope.model2.show();
-    }
-
-    $scope.sendPublicMsg = function() {
-        if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
-            $rootScope.ShowToast('Hai');
-            return false
+            $scope.publicMsgList.push({
+                publicMsgs: $scope.publicMsg,
+                managerMsgs: $scope.managerMsg
+            });
+            $scope.senderMsg = "";
+            console.log($scope.senderMsg);
         }
 
-        $scope.publicMsg = {
-            publicUserId: 1,
-            publicImage: 'img/user1.png',
-            publicMssge: $scope.senderMsg,
-            date: new Date().getTime()
-        }
-        $scope.managerMsg = {
-            managerUserId: 2,
-            managerImage: 'img/user2.jpg',
-            managerMsg: 'Customer want to book a hall',
-            date: new Date()
-        }
+        $scope.closeModel = function(model) {
+            console.log(model);
+            if (model == 'model1') {
+                $scope.model1.hide();
+            } else if (model == 'model2') {
+                $scope.model2.hide();
+            } else if (model == 'model3') {
+                $scope.model3.hide();
+            }
 
-        $scope.publicMsgList.push({
-            publicMsgs: $scope.publicMsg,
-            managerMsgs: $scope.managerMsg
-        });
-        $scope.senderMsg = "";
-        console.log($scope.senderMsg);
-    }
-
-    $scope.closeModel = function(model) {
-        console.log(model);
-        if (model == 'model1') {
-            $scope.model1.hide();
-        } else if (model == 'model2') {
-            $scope.model2.hide();
-        } else if (model == 'model3') {
-            $scope.model3.hide();
         }
 
-    }
+        $scope.goBack = function() {
+            window.history.back();
+        }
 
-    $scope.goBack = function() {
-        window.history.back();
-    }
-
-}).directive('input', function($timeout) {
+    }).directive('input', function($timeout) {
     return {
         restrict: 'E',
         scope: {

@@ -77,6 +77,15 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
              }
         }
     })
+    .state('userTabs.loginInternalUser', {
+        url: '/loginInternalUser',
+        views:{
+             'userTabs-loginInternalUser': {
+         templateUrl:  'templates/login.html',
+         controller: 'publicFacility'
+             }
+        }
+    })
     .state('publicView', {
         url: '/publicView',
        
