@@ -1,85 +1,23 @@
 <ion-view ng-controller="publicFacility">
-
-  <!-- <button type="submit" class="button button-medium button-block button-positive" style="background:grey;margin:1vh;width:5%;border-radius:50%" ng-click="publicSignOut()"></button>-->
-   <div style="margin-top:3vh!important;margin-left:1vh!important">
-   <i class="icon ion-log-out" ng-click="publicSignOut()" style="font-size:5vh;color:black;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%"></i>
-   </div>
-   <ion-tabs class="tabs-icon-bottom userTabs">
-      <ion-tab icon-on="ion-help tabsicon-on" icon-off="ion-help">
-         <form id="signUpForm"  ng-submit="enquiryForm()" name="enquiryFor"  style="margin-top:9vh">
-            <div class="list list-inset" style="background-color:transparent;">
-               <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
-              <label class="item item-input" style="padding:2vw;">
-               <input type="text"ng-model="enquiryObj.FirstName"  limit="13"   placeholder="First Name" />
-               </label>
-                <label class="item item-input" style="padding:2vw;">
-               <input type="text"ng-model="enquiryObj.LastName"  limit="13"   placeholder="Last Name" />
-               </label>
-               <label class="item item-input" style="padding:2vw;">
-               <input type="tel"ng-model="enquiryObj.ContactNo"  limit="13"   placeholder="Phone Number" />
-               </label>
-               <label class="item item-input" style="padding:2vw;">
-               <input type="email" ng-model="enquiryObj.Email" placeholder="Email" required/>
-               </label>
-               <label class="item item-input item-select" style="padding:1vh;">
-
-<ion-content>
     <!-- <button type="submit" class="button button-medium button-block button-positive" style="background:grey;margin:1vh;width:5%;border-radius:50%" ng-click="publicSignOut()"></button>-->
     <div style="margin-top:2vh!important;margin-left:2vh!important">
         <i class="icon ion-log-out" ng-click="publicSignOut()" style="margin-top:0vh!important;margin-right:2vh!important;font-size:5vh;color:black;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%;float:right"></i>
     </div>
-
     <ion-tabs class="tabs-icon-bottom userTabs" keyboard-handler>
         <ion-tab icon-on="ion-help tabsicon-on" icon-off="ion-help" href="#/userTabs/enquiry">
-        <ion-nav-view name="userTabs-enquiry" ></ion-nav-view>
-            <!--<form id="enquiryForm" name="enquiryFor" ng-submit='enquiryForm(enquiryObj)' style="margin-top:8vh">
-                <div class="list list-inset" style="background-color:transparent;margin:0!important">
-                    <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="text"ng-model="enquiryObj.FirstName"   maxlength="25"  placeholder="First Name" >
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="text"ng-model="enquiryObj.LastName" maxlength="25"  placeholder="Last Name" >
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="tel" ng-model="enquiryObj.ContactNo" maxlength="15"   placeholder="Phone Number" >
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="email" ng-model="enquiryObj.Email" maxlength="25"  placeholder="Email" required>
-               </label>
-                    <label class="item item-input item-select" style="padding:1vh;">
-
-                  <div class = "input-label"  style="color:grey">
-                     Select Event Type:
-                  </div>
-                  <select ng-model="enquiryObj.EventId" convert-to-number >
-                     <option ng-repeat="event in events" value={{event.EventId}} >{{event.EventName}}</option>
-                    </select>
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="date" ng-model="enquiryObj.EventDate " placeholder="dd-MM-YYYY" required >
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="text" maxlength="30"  ng-model="enquiryObj.Others" placeholder="Others" required/>
-               </label>
-                    <label class="item item-input" style="padding:2vw;">
-               <input type="text" maxlength="30" ng-model="enquiryObj.Remarks" placeholder="Remarks" required/>
-               </label>
-                    <button type="submit" class="button button-small button-block button-positive" style="background:#8A2BE2 !important">Send Enquiry</button>
-                </div>
-            </form>-->
+            <ion-nav-view name="userTabs-enquiry"></ion-nav-view>
         </ion-tab>
         <ion-tab icon-on="ion-ios-bell tabsicon-on" icon-off="ion-ios-bell-outline">
             <div class="userHome">
                 <button class="button icon-right ion-chevron-right button-outline button-stable homeButtons" ng-click="getFacilities()">
-               <p style="color:black;margin:3vh;margin-right:0!important">Browse through the facilities</p>
-            </button>
+                    <p style="color:black;margin:3vh;margin-right:0!important">Browse through the facilities</p>
+                </button>
                 <button class="button icon-right ion-chevron-right button-outline button-stable homeButtons">
-               <p style="color:black;margin:3vh;margin-right:0!important">Service bundles</p>
-            </button>
+                    <p style="color:black;margin:3vh;margin-right:0!important">Service bundles</p>
+                </button>
                 <button class="button icon-right ion-chevron-right button-outline button-stable homeButtons" ng-click="contactExecut()">
-               <p style="color:black;margin:3vh" >Contact executive</p>
-            </button>
+                    <p style="color:black;margin:3vh">Contact executive</p>
+                </button>
             </div>
         </ion-tab>
         <ion-tab icon-on="ion-android-textsms tabsicon-on" icon-off="ion-android-textsms" href="#/publicView">
@@ -88,5 +26,4 @@
         <ion-tab icon-on="ion-ios-briefcase tabsicon-on" icon-off="ion-ios-briefcase-outline"></ion-tab>
         <ion-tab icon-on="ion-ios-person tabsicon-on" icon-off="ion-ios-person-outline"></ion-tab>
     </ion-tabs>
-</ion-content>
 </ion-view>

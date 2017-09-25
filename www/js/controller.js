@@ -225,25 +225,7 @@ if(res.data.UserId==0)
     }, function() {
         console.log('error')
     })
-    
-    $scope.enquiryObj = {};
-    $scope.enquiryForm = function() {
-        console.log('Hai')
-        console.log($scope.enquiryObj)
-        /* enquiryObj.EventDate = $filter('date')(enquiryObj.EventDate, 'dd/MM/yyyy'); 
-        console.log(enquiryObj);
-        enquiryObj['Others']="Nan";
-        enquiryObj['Remarks']="Nan";*/
-        
-        /*var promise = ApiCallService.PostRequest(enquiryObj, 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry');
-    promise.then(function(res) {
-      if(res.data==true) {
-        $rootScope.ShowToast('Enquiry form Added Succesfully') 
-         
-      } 
-        
-
-
+   
     $scope.enquiryForm=function(){
         if($scope.enquiryObj.FirstName==undefined||$scope.enquiryObj.FirstName==""){
            $rootScope.ShowToast('Enter First Name')
@@ -268,12 +250,6 @@ if(res.data.UserId==0)
         }if($scope.enquiryObj.EventDate==undefined||$scope.enquiryObj.EventDate==""){
             $rootScope.ShowToast('Enter EventDate')
             return false;
-        }if($scope.enquiryObj.Others==undefined||$scope.enquiryObj.Others==""){
-            $rootScope.ShowToast('Enter Others')
-            return false;
-        }if($scope.enquiryObj.Remarks==undefined||$scope.enquiryObj.Remarks==""){
-            $rootScope.ShowToast('Enter Remarks')
-            return false;
         }
 
 
@@ -295,7 +271,7 @@ if(res.data.UserId==0)
 
     }, function(err) {
         console.log(err)
-    })*/
+    })
     
     }
     $scope.slides = [{
