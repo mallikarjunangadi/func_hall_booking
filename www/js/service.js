@@ -6,7 +6,7 @@ angular.module('hallBooking.service', [])
                  console.log(jQuery.param(doc2send));
                var req = {
                     method: "POST",
-                    url: 'http://210.48.150.218/TSRAPI/APIService.svc/CreateEnquiry',
+                    url: 'http://210.48.150.218/TSRAPI/APIService.svc'+Url,
                     data: JSON.stringify(doc2send),
                     //data: jQuery.param(doc2send),
                      headers: {
@@ -62,3 +62,27 @@ angular.module('hallBooking.service', [])
             
         }
     })
+    .factory('myService', function() {
+    var savedData;
+    //var saveaData;
+    function set(data) {
+        console.log(data);
+        savedData = data;
+    }
+    function get() {
+        return savedData;
+    }
+    /*function setAggent(data) {
+        console.log(data);
+        saveaData = data;
+    }
+    function getAggent() {
+        return saveaData;
+    }*/
+    return {
+        set: set,
+        get: get,
+        //setAggent: setAggent,
+        //getAggent: getAggent,
+    }
+})

@@ -20,6 +20,7 @@
 }
 
 .msgListbut {
+    
     padding: 0px;
     margin: 0px;
 }
@@ -49,7 +50,7 @@
 .firstbut {
     border-radius: 5px;
     margin: 1vh 8px 20px 8px;
-    height: 5vh;
+    height: 30px;
 }
 
 .opetextsize {
