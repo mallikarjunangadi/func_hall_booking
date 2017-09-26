@@ -557,7 +557,7 @@ var pushMessObj = {
             EnquiryId:$scope.cusdetail.EnquiryId,
             Message:$scope.data.message,
             ReplyFrom:2,
-            UserId: 12345
+            UserId: 3
         }
  var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
         promise.then(function(res) {
@@ -622,7 +622,7 @@ var pushMessObj = {
         console.log(y);
         var assignObj = {
             EnquiryId: $scope.cusdetail.EnquiryId,
-            AssignId: y.UserId
+            AssigneeId: y.UserId
         }
         var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
         promise.then(function(res) {
