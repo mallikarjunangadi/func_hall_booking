@@ -466,188 +466,209 @@ if(res.data.UserId==0)
             console.log(response.data);
         })
 
-        /*var req = {
-                method: 'POST',
-                url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
-                data: jQuery.param(),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
+
+    /*var req = {
+            method: 'POST',
+            url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
+            data: jQuery.param({
+                EnquiryId: 16,
+            AssignId: 3
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+
             }
     
+
             $http(req).then(function(res) {
                 console.log(res);
             })*/
 
-        /*$scope.openmesg = [{
-                cusName: 'Sowmya',
-                agentName: 'Un Usigned',
-                img: 'img/user2.jpg',
-                bookingDate: '22/10/2017',
-                hallName: 'grandHall',
-                lastCon: '14/3/2017',
-                status: 'online'
-            }, {
-                cusName: 'Bhagya',
-                agentName: 'Chaminda vaas',
-                bookingDate: '22/10/2017',
-                hallName: 'KRHall',
-                img: 'img/user2.jpg',
-                lastCon: '14/6/2017',
-                status: 'offline'
-            }, {
-                cusName: 'Mallikarjun',
-                agentName: 'Tendulkar',
-                bookingDate: '22/10/2017',
-                hallName: 'GPHall',
-                img: 'img/user2.jpg',
-                lastCon: '14/7/2017',
-                status: 'waiting'
-            }, {
-                cusName: 'Sindhu',
-                agentName: 'Swagat',
-                bookingDate: '22/10/2017',
-                hallName: 'ACHall',
-                img: 'img/user2.jpg',
-                lastCon: '14/10/2017',
-                status: 'offline'
-            }]*/
-        $scope.msgList = function(x) {
-            console.log(x);
-            myService.set(x);
-            $location.path('msgList');
+       
+
+    /*$scope.openmesg = [{
+            cusName: 'Sowmya',
+            agentName: 'Un Usigned',
+            img: 'img/user2.jpg',
+            bookingDate: '22/10/2017',
+            hallName: 'grandHall',
+            lastCon: '14/3/2017',
+            status: 'online'
+        }, {
+            cusName: 'Bhagya',
+            agentName: 'Chaminda vaas',
+            bookingDate: '22/10/2017',
+            hallName: 'KRHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/6/2017',
+            status: 'offline'
+        }, {
+            cusName: 'Mallikarjun',
+            agentName: 'Tendulkar',
+            bookingDate: '22/10/2017',
+            hallName: 'GPHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/7/2017',
+            status: 'waiting'
+        }, {
+            cusName: 'Sindhu',
+            agentName: 'Swagat',
+            bookingDate: '22/10/2017',
+            hallName: 'ACHall',
+            img: 'img/user2.jpg',
+            lastCon: '14/10/2017',
+            status: 'offline'
+        }]*/
+    $scope.msgList = function(x) {
+        console.log(x);
+        myService.set(x);
+        $location.path('msgList');
+    }
+}).controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService) {
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
+    console.log($scope)
+    $scope.$on("$ionicView.beforeEnter", function() {
+        console.log('Hai')
+        $scope.cusdetail = myService.get();
+        console.log($scope.cusdetail);
+    })
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetEnquiryReplybyTicket?TicketNo=EQ10001").then(function(response) {
+        console.log(response);
+        $scope.EnqReply = response.data[0];
+        console.log(response.data);
+    })
+
+    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+        console.log(response);
+        $scope.aggent = response.data;
+        console.log(response.data);
+    })
+
+    /* $scope.aggent = [
+        {
+          img: '../img/user2.jpg', 
+          agentName: 'Daniel vettori', 
+           status: 'offline'  
+        },
+        {
+          img: '../img/user2.jpg', 
+          agentName: 'Swagat', 
+           status: 'offline'  
+        },
+        {
+          img: '../img/user2.jpg',
+          agentName: 'rosee',  
+           status: 'online'  
+        },
+        {
+          img: '../img/user2.jpg', 
+          agentName: 'Daniel', 
+           status: 'waiting'  
         }
-    }).controller('Messages', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService) {
-        $scope.data = {};
-        $scope.myId = '12345';
-        $scope.messages = [];
-        console.log($scope)
-        $scope.$on("$ionicView.beforeEnter", function() {
-            console.log('Hai')
-            $scope.cusdetail = myService.get();
-            console.log($scope.cusdetail);
-        })
-        $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetEnquiryReplybyTicket?TicketNo=EQ10001").then(function(response) {
-            console.log(response);
-            $scope.EnqReply = response.data[0];
-            console.log(response.data);
-        })
+        ]}*/
 
-        $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
-            console.log(response);
-            $scope.aggent = response.data;
-            console.log(response.data);
-        })
+    $scope.back = function() {
 
-        /* $scope.aggent = [
-            {
-              img: '../img/user2.jpg', 
-              agentName: 'Daniel vettori', 
-               status: 'offline'  
-            },
-            {
-              img: '../img/user2.jpg', 
-              agentName: 'Swagat', 
-               status: 'offline'  
-            },
-            {
-              img: '../img/user2.jpg',
-              agentName: 'rosee',  
-               status: 'online'  
-            },
-            {
-              img: '../img/user2.jpg', 
-              agentName: 'Daniel', 
-               status: 'waiting'  
-            }
-            ]}*/
+        $location.path('internalTabs');
+    }
 
-        $scope.back = function() {
+    $scope.hideTime = true;
+    $scope.incmessages = [];
+    var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-            $location.path('internalTabs');
+    $scope.sendMessage = function() {
+        console.log('enter');
+
+var pushMessObj = {
+            EnquiryId:$scope.cusdetail.EnquiryId,
+            Message:$scope.data.message,
+            ReplyFrom:2,
+            UserId: 3
         }
+ var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
+        promise.then(function(res) {
+            console.log(res);
+        }, function(err) {
+            console.log(err);
+        })
 
-        $scope.hideTime = true;
-        $scope.incmessages = [];
-        var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+        
+        var d = new Date();
+        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
-        $scope.sendMessage = function() {
-            console.log('enter');
+        $scope.messages.push({
+            userId: 'me',
+            text: $scope.data.message,
+            time: d
 
-            var d = new Date();
-            d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+        });
 
+
+        $timeout(function() {
             $scope.messages.push({
-                userId: 'me',
-                text: $scope.data.message,
+                userId: 'you',
+                text: 'hi,hello...',
                 time: d
 
             });
+        }, 2000)
 
-            $timeout(function() {
-                $scope.messages.push({
-                    userId: 'you',
-                    text: 'hi,hello...',
-                    time: d
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
 
-                });
-            }, 2000)
+    }
+    ;
 
-            delete $scope.data.message;
+    $scope.inputUp = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 216;
+        $timeout(function() {
             $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
+    }
+    ;
 
-        };
+    $scope.inputDown = function() {
+        if (isIOS)
+            $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    }
+    ;
 
-        $scope.inputUp = function() {
-            if (isIOS)
-                $scope.data.keyboardHeight = 216;
-            $timeout(function() {
-                $ionicScrollDelegate.scrollBottom(true);
-            }, 300);
-        };
+    $scope.closeKeyboard = function() {}
+    ;
 
-        $scope.inputDown = function() {
-            if (isIOS)
-                $scope.data.keyboardHeight = 0;
-            $ionicScrollDelegate.resize();
-        };
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
 
-        $scope.closeKeyboard = function() {};
+    
 
-        $scope.data = {};
-        $scope.myId = '12345';
-        $scope.messages = [];
-
-        $scope.moveAssigner = function(y) {
-            console.log(y);
-            var assignObj = {
-                EnquiryId: $scope.cusdetail.EnquiryId,
-                AssigneeId: y.UserId
-            }
-            console.log(assignObj)
-            var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
-            promise.then(function(res) {
-                console.log(res);
-                if (res.data == true) {
-
-                    alert('Assign sucessfuly');
-
-                    console.log('Assign sucessfuly')
-
-                } else {
-                    alert('Not Assigned');
-
-                    console.log('Not Assigned')
-
-                }
-
-            }, function(err) {
-                console.log(err);
-            })
-            //$location.path('assign');
+    $scope.moveAssigner = function(y) {
+        console.log(y);
+        var assignObj = {
+            EnquiryId: $scope.cusdetail.EnquiryId,
+            AssigneeId: y.UserId
         }
+        var promise = ApiCallService.PostRequest(assignObj, '/AssignEnquiry');
+        promise.then(function(res) {
+            console.log(res);
+            if (res.data == true) {
 
-    }).controller('interCtrl', function($scope, $location, loginCrd) {
+                $rootScope.ShowToast('Assign sucessfuly'); 
+               return false;
+
+            }
+
+        }), function(err) {
+            console.log(err);
+        }
+        //$location.path('assign');
+    }
+
+}).controller('interCtrl', function($scope, $location, loginCrd) {
         $scope.logout = function() {
             console.log('Hai')
             loginCrd.removeCredentials();

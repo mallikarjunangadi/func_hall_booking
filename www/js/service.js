@@ -9,7 +9,9 @@ angular.module('hallBooking.service', [])
                     url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
                     data: JSON.stringify(doc2send),
                     headers: {
+
                         'Content-type': 'application/json '
+
                     }
                 }
                 console.log(req);
