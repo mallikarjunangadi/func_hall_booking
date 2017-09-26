@@ -555,6 +555,7 @@ if(res.data.UserId==0)
 
         });
 
+
         $timeout(function() {
             $scope.messages.push({
                 userId: 'you',
@@ -592,6 +593,19 @@ if(res.data.UserId==0)
     $scope.data = {};
     $scope.myId = '12345';
     $scope.messages = [];
+
+    var pushMessObj = {
+            EnquiryId:16,
+            Message:$scope.data.message,
+            ReplyFrom:2,
+            UserId: 'me'
+        }
+ var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
+        promise.then(function(res) {
+            console.log(res);
+        }, function(err) {
+            console.log(err);
+        })
 
     $scope.moveAssigner = function(y) {
         console.log(y);
