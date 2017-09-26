@@ -442,10 +442,13 @@ if(res.data.UserId==0)
         console.log(response.data);
     })
 
-    /*var req = {
+    var req = {
             method: 'POST',
             url: "http://210.48.150.218/TSRAPI/APIService.svc/AssignEnquiry",
-            data: jQuery.param(),
+            data: jQuery.param({
+                EnquiryId: 16,
+            AssignId: 3
+            }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -453,7 +456,7 @@ if(res.data.UserId==0)
     
         $http(req).then(function(res) {
             console.log(res);
-        })*/
+        })
 
     /*$scope.openmesg = [{
             cusName: 'Sowmya',
@@ -550,6 +553,20 @@ if(res.data.UserId==0)
     $scope.sendMessage = function() {
         console.log('enter');
 
+var pushMessObj = {
+            EnquiryId:$scope.cusdetail.EnquiryId,
+            Message:$scope.data.message,
+            ReplyFrom:2,
+            UserId: 12345
+        }
+ var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
+        promise.then(function(res) {
+            console.log(res);
+        }, function(err) {
+            console.log(err);
+        })
+
+        
         var d = new Date();
         d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
@@ -599,18 +616,7 @@ if(res.data.UserId==0)
     $scope.myId = '12345';
     $scope.messages = [];
 
-    var pushMessObj = {
-            EnquiryId:16,
-            Message:$scope.data.message,
-            ReplyFrom:2,
-            UserId: 'me'
-        }
- var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
-        promise.then(function(res) {
-            console.log(res);
-        }, function(err) {
-            console.log(err);
-        })
+    
 
     $scope.moveAssigner = function(y) {
         console.log(y);
@@ -623,20 +629,14 @@ if(res.data.UserId==0)
             console.log(res);
             if (res.data == true) {
 
-                alert('Assign sucessfuly');
-
-                console.log('Assign sucessfuly')
-
-            } else {
-                alert('Not Assigned');
-
-                console.log('Not Assigned')
+                $rootScope.ShowToast('Assign sucessfuly'); 
+               return false;
 
             }
 
-        }, function(err) {
+        }), function(err) {
             console.log(err);
-        })
+        }
         //$location.path('assign');
     }
 

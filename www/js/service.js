@@ -10,7 +10,7 @@ angular.module('hallBooking.service', [])
                     data: JSON.stringify(doc2send),
                     //data: jQuery.param(doc2send),
                     headers: {
-                        'Content-type': 'application/json charset=utf-8'
+                        'Content-type': 'application/json'
                         //"Content-Type": 'application/x-www-form-urlencoded'
                         //'Content-type': 'multipart/form-data'
                     }
