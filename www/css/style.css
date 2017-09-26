@@ -410,15 +410,16 @@ $stable: #f8f8f8 !default; .scroll {
 }
 
 #signUpBackDiv {
-    height: 10vh;
+    height: 60px;
     width: 100%;
     text-align: center;
     margin-top: 2vh;
 }
 
 #signUpBackDiv a {
-    font-size: 28px;
-    margin-bottom: 1vh;
+    font-size: 20px;
+    text-align:center;
+    margin-bottom: 10px;
     border-radius: 50% !important;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
@@ -571,15 +572,16 @@ $stable: #f8f8f8 !default; .scroll {
 }
 
 #forgotPwdBackDiv {
-    height: 10vh;
+    height: 40px;
     width: 100%;
     text-align: center;
     margin-top: 26vh; 
 }
 
 #forgotPwdBackDiv a {
-    font-size: 25px;
-    margin-bottom: 1vh;
+    font-size: 20px;
+    text-align:center;
+    margin-bottom: 10px;
     border-radius: 50% !important;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
     -webkit-transform: translate3d(0, 0, 0) !important; 
