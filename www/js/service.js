@@ -3,19 +3,16 @@ angular.module('hallBooking.service', [])
         return {
             PostRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-                
+
                 var req = {
                     method: "POST",
                     url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
                     data: JSON.stringify(doc2send),
-                    //data: jQuery.param(doc2send),
                     headers: {
-                        'Content-type': 'application/json charset=utf-8'
-                        //"Content-Type": 'application/x-www-form-urlencoded'
-                        //'Content-type': 'multipart/form-data'
+                        'Content-type': 'application/json '
                     }
                 }
-      console.log(req);
+                console.log(req);
                 $http(req).then(function(res) {
                     console.log(res)
                     deferred.resolve(res);
@@ -27,16 +24,15 @@ angular.module('hallBooking.service', [])
             },
             GetRequest: function(doc2send, Url) {
                 var deferred = $q.defer();
-
                 var options = {
                     method: "GET",
                     url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
-                    data: JSON.stringify(doc2send),
+                    params: doc2send,
                     header: {
-                        "Content-Type": 'application/json charset=utf-8'
+                        "Content-Type": 'application/json'
                     }
                 }
-             console.log(options)
+                console.log(options)
                 $http(options).then(function(res) {
                     deferred.resolve(res);
                 }, function(res) {
@@ -48,16 +44,17 @@ angular.module('hallBooking.service', [])
     })
     .factory('loginCrd', function() {
         var longinCr = {};
-        var phoneNumber={};
+        var phoneNumber = {};
         return {
             getLoinCredentials: function() {
                 return localStorage.getItem('loginCrendential');
             },
             setPhoneNumber: function(phNumber) {
-            phoneNumber.PhoneNumber=phNumber.PhoneNumber;
-            localStorage.setItem('phoneNumber',JSON.stringify(phoneNumber))
-            },getPhoneNumber: function() {
-              return localStorage.getItem('phoneNumber');
+                phoneNumber.PhoneNo = phNumber.PhoneNo;
+                localStorage.setItem('phoneNumber', JSON.stringify(phoneNumber))
+            },
+            getPhoneNumber: function() {
+                return localStorage.getItem('phoneNumber');
             },
             setLoginCredentials: function(longinCred) {
                 //longinCr.phoneNumb = longinCred.PhoneNumber;
