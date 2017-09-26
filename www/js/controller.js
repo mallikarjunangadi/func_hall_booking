@@ -333,14 +333,19 @@ if(res.data.UserId==0)
             $scope.imgDes = false;
             $scope.model2.show();
         }
+        $scope.Assignee={};
+        $scope.MessagesList=[];
         var getAllMessages=function(){
            loginObj = JSON.parse(loginCrd.getPhoneNumber());
            console.log(loginObj) 
             var promise = ApiCallService.GetRequest(loginObj, '/GetEnquirybyPhoneNo');
             promise.then(function(res) {
+                console.log(res.data[0])
+                $scope.Assignee=res.data[0].Assignee; 
                 var promise = ApiCallService.GetRequest({TicketNo:res.data[0].TicketNo},'/GetEnquiryReplybyTicket');
                  promise.then(function(res) {
-                     console.log(res)
+                    $scope.MessagesList =res.data;
+                    console.log($scope.MessagesList)
                   },function(err){
 
                   })

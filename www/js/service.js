@@ -52,7 +52,7 @@ angular.module('hallBooking.service', [])
                 return localStorage.getItem('loginCrendential');
             },
             setPhoneNumber: function(phNumber) {
-                phoneNumber.PhoneNo = phNumber.PhoneNo;
+                phoneNumber.PhoneNo = phNumber.PhoneNumber;
                 localStorage.setItem('phoneNumber', JSON.stringify(phoneNumber))
             },
             getPhoneNumber: function() {
