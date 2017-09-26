@@ -13,7 +13,7 @@
                 <a class="button button-small msgListbut">Close Ticket</a>
             </div>
         </div>
-       <div class="card radiusCard " style="height:15vh;">
+       <div class="card radiusCard " style="height:100px;">
             <a class="item item-avatar length " href=" ">
                 <img ng-src="img/user2.jpg "/>
                  <p>{{EnqReply.Message}}<br>for 1day on 22/10/2017</p>
@@ -44,9 +44,9 @@
 
     <div ng-if="loginUser == 'admin'"> <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
     <div class="card radiusCard ">
-    <div class="row " style="height:auto;overflow-x: visible;">
+    <div class="row " style="height:80px;overflow-x: visible;">
         <div class="col " ng-repeat="y in aggent " ng-click="moveAssigner(y)">
-        <img src="img/user2.jpg " style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
+        <img src="img/user2.jpg " style="width:auto;height:45px;margin:0 3vw;border-radius:50%;">
          <i class="icon ion-record imgicon " ng-class= "{'online':y.status=='online','offline':y.status=='offline','waiting':y.status=='waiting'}"></i>
          <p style="font-size:0.7em;margin:0 2vw;text-align:;bottom:1vh;;position:relative;">{{y.DisplayName}}</p>
         </div>

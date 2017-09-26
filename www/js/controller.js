@@ -169,7 +169,12 @@ if(res.data.UserId==0)
             console.log('email is required');
             return;
         }
+
     }
+    $scope.goBack=function(){
+        window.history.back();
+    }
+   
     })
   .controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
 
@@ -180,7 +185,7 @@ if(res.data.UserId==0)
      
         $scope.enquiryObj = {};
         $scope.events = [];
-        
+        var phnoNum={};
         var loginObj={};
         $scope.publicSignOut = function() {
 
@@ -247,8 +252,8 @@ if(res.data.UserId==0)
             promise.then(function(res) {
                 if (res.data == true) {
                     $rootScope.ShowToast('Enquiry Form Added Successfully')
-                    loginObj.PhoneNumber=$scope.enquiryObj.ContactNo;
-                    loginCrd.setLoginCredentials(loginObj);
+                   phnoNum.PhoneNumber =$scope.enquiryObj.ContactNo
+                    loginCrd.setPhoneNumber(phnoNum);
                     $scope.enquiryObj = {};
                 } else {
                     $rootScope.ShowToast('Failed to Add Enquiry ')
@@ -334,17 +339,17 @@ if(res.data.UserId==0)
                 $rootScope.ShowToast('Enter Message');
                 return false
             }
-            loginObj = JSON.parse(loginCrd.getLoinCredentials());
+            loginObj = JSON.parse(loginCrd.getPhoneNumber());
             console.log(loginObj)
 
             if(loginObj==null||loginObj==undefined){
                 console.log('Enter Enquiry Form');
                $rootScope.ShowToast('Enter Enquiry Form'); 
                return false;
-            }else if(loginObj.phoneNumb==undefined||loginObj.phoneNumb==null){
-                console.log('Enter Enquiry Form');
+            }else if(loginObj.PhoneNumber==null||loginObj.PhoneNumber==undefined){
+               console.log('Enter Enquiry Form');
                $rootScope.ShowToast('Enter Enquiry Form'); 
-               return false;
+               return false; 
             }
          
         var promise = ApiCallService.GetRequest({PhoneNo:"1234567890"}, '/GetEnquirybyPhoneNo');
@@ -637,8 +642,9 @@ if(res.data.UserId==0)
 
 }).controller('interCtrl', function($scope, $location, loginCrd) {
     $scope.logout = function() {
+        console.log('Hai')
         loginCrd.removeCredentials();
-        $location.path('login');
+        $location.path('/userTabs');
 
     }
 })

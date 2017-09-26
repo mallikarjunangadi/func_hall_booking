@@ -48,12 +48,19 @@ angular.module('hallBooking.service', [])
     })
     .factory('loginCrd', function() {
         var longinCr = {};
+        var phoneNumber={};
         return {
             getLoinCredentials: function() {
                 return localStorage.getItem('loginCrendential');
             },
+            setPhoneNumber: function(phNumber) {
+            phoneNumber.PhoneNumber=phNumber.PhoneNumber;
+            localStorage.setItem('phoneNumber',JSON.stringify(phoneNumber))
+            },getPhoneNumber: function() {
+              return localStorage.getItem('phoneNumber');
+            },
             setLoginCredentials: function(longinCred) {
-                longinCr.phoneNumb = longinCred.PhoneNumber;
+                //longinCr.phoneNumb = longinCred.PhoneNumber;
                 longinCr.emailId = longinCred.EmailId;
                 longinCr.passwrd = longinCred.Password;
                 localStorage.setItem("loginCrendential", JSON.stringify(longinCr));
