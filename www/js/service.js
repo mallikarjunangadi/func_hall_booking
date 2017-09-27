@@ -47,6 +47,7 @@ angular.module('hallBooking.service', [])
     .factory('loginCrd', function() {
         var longinCr = {};
         var phoneNumber = {};
+        var userId;
         return {
             getLoinCredentials: function() {
                 return localStorage.getItem('loginCrendential');
@@ -60,12 +61,19 @@ angular.module('hallBooking.service', [])
             },
             setLoginCredentials: function(longinCred) {
                 //longinCr.phoneNumb = longinCred.PhoneNumber;
-                longinCr.emailId = longinCred.EmailId;
-                longinCr.passwrd = longinCred.Password;
+                longinCr.username = longinCred.username;
+                longinCr.password = longinCred.password;
                 localStorage.setItem("loginCrendential", JSON.stringify(longinCr));
             },
             removeCredentials: function() {
                 localStorage.removeItem('loginCrendential');
+            },setCurrentUserId:function(loginUserId){
+                 userId=loginUserId;
+                 localStorage.setItem('currentUserId', JSON.stringify(userId))
+            },getCurrentUserId:function(){
+             return  localStorage.getItem('currentUserId');
+            },removeCurrentUserId:function(){
+             localStorage.removeItem('currentUserId');
             }
 
 
@@ -73,6 +81,8 @@ angular.module('hallBooking.service', [])
     })
     .factory('myService', function() {
         var savedData;
+        var saveAssign;
+        var saveEnquiry;
         //var saveaData;
         function set(data) {
             console.log(data);
@@ -81,6 +91,19 @@ angular.module('hallBooking.service', [])
 
         function get() {
             return savedData;
+        }
+
+        function setAssigne(data){
+          saveAssign=data;
+        }
+        function getAssigne(){
+          return saveAssign;
+        }
+        function setEnquiry(enquiry){
+        saveEnquiry=enquiry;
+        }
+        function getEnquiry(){
+         return saveEnquiry;
         }
         /*function setAggent(data) {
             console.log(data);
@@ -92,6 +115,10 @@ angular.module('hallBooking.service', [])
         return {
             set: set,
             get: get,
+            setAssigne:setAssigne,
+            getAssigne:getAssigne,
+            setEnquiry:setEnquiry,
+            getEnquiry:getEnquiry
             //setAggent: setAggent,
             //getAggent: getAggent,
         }

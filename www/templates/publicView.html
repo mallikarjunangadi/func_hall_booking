@@ -15,10 +15,11 @@
         <button class="button button-small button-positive listToggle">Open Ticket</button>-->
         <div class="text">Daniel Benitez</div>
         <div ng-repeat="messages in MessagesList">
-        <div class="card radiusCard">
-            <a ng-if="Assignee!=messages.ReplyFrom"class="item item-avatar-right item-text-wrap length" href="#">
-                <img ng-src="{{messages.publicMsgs.publicImage}}">
+        <div class="card radiusCard" ng-if="messages.ReplyFrom!='Rajesh'">
+            <a class="item item-avatar-right item-text-wrap length" href="#">
+                <img src="img/user1.png ">
                 <p>{{messages.Message}}</p>
+                <p>Name:{{messages.ReplyFrom}}</p>
                 <p style="text-align: left;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
                     <tt>{{messages.publicMsgs.date| date: "HH:mm:ss"}}</tt><br/>
@@ -26,10 +27,11 @@
                  </p>
             </a>
         </div>
-       <div class="card radiusCard">
-            <a ng-if="Assignee==messages.ReplyFrom" class="item item-avatar item-text-wrap length" href="#">
-                <img ng-src="{{messages.managerMsgs.managerImage}}">
+       <div class="card radiusCard" ng-if="messages.ReplyFrom=='Rajesh'" >
+            <a class="item item-avatar item-text-wrap length" href="#">
+               <img src="img/user2.jpg">
                 <p>{{messages.Message}}
+                <p>Name:{{messages.ReplyFrom}}</p>
                     <br>
                    </p>
                 <p style="text-align: right;color:blue;">12.37 p.m.</p>

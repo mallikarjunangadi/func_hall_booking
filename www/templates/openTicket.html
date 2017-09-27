@@ -1,4 +1,4 @@
-<ion-view title="Messages" style="background-color:#f6f6f6;" ng-controller="openticCtrl">
+<ion-view title="Messages" style="background-color:#f6f6f6;" ng-controller="interCtrl">
     <ion-content>
         <i class="icon ion-android-textsms arrow1"></i>
         <p style="text-align:center">Open Tickets</p>
@@ -6,7 +6,27 @@
 
 
         
-        <div class="card radiusCard" ng-repeat="x in openmesg" ng-click="msgList(x)">
+        <div class="card radiusCard" ng-if="admin==true" ng-repeat="x in openmesg" ng-click="internalUserMesg(x)">
+
+            <div class="row" style="padding:0px;">
+                <div class="col col-22 imgCol" >
+                    <img src="img/user2.jpg "style="width:7vh;height:7vh;margin:0 3vw;border-radius:50%;">
+                    <i class="icon ion-record" ng-class= "{'online' : x.status == 'online','offline' : x.status == 'offline', 'waiting' : x.status == 'waiting' }"></i>
+                    <p style="font-size:0.7em;margin:0;text-align:center;">{{x.FirstName}}</p>
+                </div>
+                <div class="col col-75 opetextsize">
+
+                    <h6 style="margin:0 0 5px 0;">{{x.Assignee}}</h6>
+                    <p>
+                        for date {{x.EventDate}} ,for le {{x.EventName}}<i style="margin-right:2vw;" class="icon ion-chevron-right arrow" ng-click="msgList()"></i>
+
+                    </p> 
+                    <p>last contact {{x.lastCon}}</p>
+
+                </div>
+            </div> 
+        </div>
+        <div class="card radiusCard"  ng-repeat="x in openmesg|filter: {AssignId:currentUserId}" ng-click="internalUserMesg(x)">
 
             <div class="row" style="padding:0px;">
                 <div class="col col-22 imgCol" >

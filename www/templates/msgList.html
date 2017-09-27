@@ -1,4 +1,4 @@
-<ion-pane class="messaging-view " ng-controller="Messages " style="background-color:#f6f6f6;">
+<ion-pane class="messaging-view " ng-controller="interCtrl" style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
       <a class="button icon-left ion-chevron-left button-clear button "style="color:#67aded " ng-click="back()"></a>
       <h1 class="title ">{{cusdetail.FirstName+ " " +cusdetail.LastName }}</h1>
@@ -13,36 +13,38 @@
                 <a class="button button-small msgListbut">Close Ticket</a>
             </div>
         </div>
-       <div class="card radiusCard " style="height:100px;">
+      <!-- <div class="card radiusCard " style="height:100px;">
             <a class="item item-avatar length " href=" ">
                 <img ng-src="img/user2.jpg "/>
                  <p>{{EnqReply.Message}}<br>for 1day on 22/10/2017</p>
                 <p style="text-align:right;color:blue;">{{EnqReply.MessageDateTime}}</p>
             </a>
-        </div>
-      <div ng-repeat="message in messages " class="messages1 ">
+        </div>-->
+      <div ng-repeat="message in MessagesLst" class="messages1 " >
 
-        <div class="message card radiusCard " ng-if="message.userId=='me'">
+      <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee">
             <a class="item item-avatar-right length " href="">
                 <img src="img/user1.png ">
-                <p>{{ message.text }}</p>
+                <p>{{ message.Message }}</p>
+                <p>Name:{{message.ReplyFrom}}</p>
                 <span class="colorright ">&#x2714;</span><span class="colorright1 ">&#x2714;</span>
-                <p style="text-align:left;padding:3px;color:blue;">{{message.time}}</p>
+                <p style="text-align:left;padding:3px;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>
               
             </a>
         </div>
 
-        <div class="message card radiusCard "  ng-if="message.userId=='you'" class="messages ">
+        <div class="message card radiusCard "  ng-if="message.ReplyFrom==Assignee" class="messages ">
           <a class="item item-avatar length " href="">
             <img src="img/user2.jpg ">
-            <p>{{ message.text }}</p>
-            <p style="text-align:left;color:blue;">{{message.time}}</p>
+            <p>{{ message.Message}}</p>
+            <p>Name:{{message.ReplyFrom}}</p>
+            <p style="text-align:left;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>
           
           </a>
         </div>
     </div>
 
-    <div ng-if="loginUser == 'admin'"> <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
+    <div ng-if="admin==true"> <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
     <div class="card radiusCard ">
     <div class="row " style="height:80px;overflow-x: visible;">
         <div class="col " ng-repeat="y in aggent " ng-click="moveAssigner(y)">
