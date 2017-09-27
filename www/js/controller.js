@@ -536,6 +536,7 @@ if(res.data.UserId==0)
             var promise=ApiCallService.GetRequest({},'/GetAllEnquiry').then(function(res){
                 $scope.openmesg = res.data;
             console.log(res.data);
+            console.log($scope.openmesg);
             },function(err){
                 console.log(err);
             });
@@ -584,6 +585,7 @@ if(res.data.UserId==0)
         $scope.sendMessage = function() {
             console.log('enter');
 
+
             var pushMessObj = {
                 EnquiryId: $scope.cusdetail.EnquiryId,
                 Message: $scope.data.message,
@@ -601,7 +603,7 @@ if(res.data.UserId==0)
             var d = new Date();
             d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
-            $scope.messages.push({
+            $scope.MessagesLst.push({
                 userId: 'me',
                 text: $scope.data.message,
                 time: d
@@ -610,7 +612,7 @@ if(res.data.UserId==0)
 
 
             $timeout(function() {
-                $scope.messages.push({
+                $scope.MessagesLst.push({
                     userId: 'you',
                     text: 'hi,hello...',
                     time: d
