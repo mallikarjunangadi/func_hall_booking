@@ -60,9 +60,11 @@ angular.module('hallBooking.controller', [])
                             console.log('internale user')
                             $location.path('/internalTabs')
                         } else {
+                            $rootScope.ShowToast('failed to Login')
                             console.log('failed Login')
                         }
                     }, function(err) {
+                        $rootScope.ShowToast('failed to Login')
                         console.log(err)
                     })
 
@@ -100,9 +102,11 @@ angular.module('hallBooking.controller', [])
                         $location.path('/internalTabs')
                         console.log('internale user')
                     } else {
+                        $rootScope.ShowToast('failed to Login')
                         console.log('failed')
                     }
                 }, function(err) {
+                    $rootScope.ShowToast('failed to Login')
                     console.log(err)
                 })
            
@@ -521,20 +525,28 @@ if(res.data.UserId==0)
           $scope.currentUserId;
           console.log($rootScope.loginUser);
         var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-            $scope.currentUserId=JSON.parse(loginCrd.getCurrentUserId());
+            
         $scope.$on("$ionicView.beforeEnter", function() {
             console.log('Hai')
             $scope.MessagesLst= myService.get();
            $scope.Assignee= myService.getAssigne();
             $scope.cusdetail.EnquiryId=myService.getEnquiry();
+            $scope.currentUserId=JSON.parse(loginCrd.getCurrentUserId());
+            console.log($scope.currentUserId);
+            var promise=ApiCallService.GetRequest({},'/GetAllEnquiry').then(function(res){
+                $scope.openmesg = res.data;
+            console.log(res.data);
+            },function(err){
+                console.log(err);
+            });
         })
           
 
-        $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry").then(function(response) {
+        /*$http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry").then(function(response) {
             console.log(response);
             $scope.openmesg = response.data;
             console.log(response.data);
-        })
+        })*/
       /*  $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetEnquiryReplybyTicket?TicketNo=EQ10001").then(function(response) {
             console.log(response);
             $scope.EnqReply = response.data[0];
