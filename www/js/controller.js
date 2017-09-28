@@ -604,21 +604,21 @@ if(res.data.UserId==0)
             d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
             $scope.MessagesLst.push({
-                userId: 'me',
-                text: $scope.data.message,
-                time: d
+                ReplyFrom:2,
+                Message: $scope.data.message,
+                MessageDateTime: d
 
             });
 
 
-            $timeout(function() {
+            /*$timeout(function() {
                 $scope.MessagesLst.push({
-                    userId: 'you',
+                    ReplyFrom:1,
                     text: 'hi,hello...',
                     time: d
 
                 });
-            }, 2000)
+            },)*/
 
             delete $scope.data.message;
             $ionicScrollDelegate.scrollBottom(true);
