@@ -17,11 +17,11 @@
                 <p style="text-align:right;color:blue;">{{EnqReply.MessageDateTime}}</p>
             </a>
         </div>-->
-        <div ng-repeat="message in MessagesLst" class="messages1 ">
+        <div ng-repeat="message in MessagesLst| reverse" class="messages1 ">
             <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee">
                 <a class="item item-avatar-right length " href="">
                     <img src="img/user1.png ">
-                    <p>{{ message.text }}</p>
+                    <p>{{ message.Message }}</p>
                     <!--<p>Name:{{message.ReplyFrom}}</p>-->
                     <span class="colorright ">&#x2714;</span>
                     <span class="colorright1 ">&#x2714;</span>
