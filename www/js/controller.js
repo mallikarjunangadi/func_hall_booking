@@ -96,10 +96,10 @@ angular.module('hallBooking.controller', [])
                         loginCrd.setCurrentUserId(res.data.UserId);
                         $rootScope.admin=true
                         console.log('admin')
-                        $location.path('/internalTabs')
+                         $location.path('/internalTabs')
                     } else if (res.data.UserId > 1) {
                         loginCrd.setCurrentUserId(res.data.UserId);
-                        $location.path('/internalTabs')
+                         $location.path('/internalTabs/openTicket')
                         console.log('internale user')
                     } else {
                         $rootScope.ShowToast('failed to Login')
@@ -388,7 +388,13 @@ if(res.data.UserId==0)
             var promise = ApiCallService.GetRequest(loginObj, '/GetEnquirybyPhoneNo');
             promise.then(function(res) {
                 console.log(res.data[0])
-                $scope.Assignee = res.data[0].Assignee;
+                if(res.data[0]==undefined||res.data[0]==null){
+                     
+                }else{
+                   $scope.Assignee = res.data[0].Assignee;   
+                }
+
+                
                 var promise = ApiCallService.GetRequest({
                     TicketNo: res.data[0].TicketNo
                 }, '/GetEnquiryReplybyTicket');
@@ -512,8 +518,7 @@ if(res.data.UserId==0)
             }
         }
     })
-    .controller('interCtrl', function($timeout, $http, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService, loginCrd) {
-
+    .controller('interCtrl', function($timeout, $http, $ionicHistory,$ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService, loginCrd) {
         $scope.data = {};
         $scope.myId = '12345';
         $scope.messages = [];
@@ -541,6 +546,7 @@ if(res.data.UserId==0)
                 console.log(err);
             });
         })
+ 
           
 
         /*$http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllEnquiry").then(function(response) {
@@ -647,18 +653,20 @@ if(res.data.UserId==0)
                 }
             //$location.path('assign');
         }
-
+       
         $scope.logout = function() {
             console.log('Hai')
             $rootScope.admin=false;
             loginCrd.removeCredentials();
+             
+	      $ionicHistory.clearCache();
+	      $ionicHistory.clearHistory();
             $location.path('/userTabs');
 
         }
 
         $scope.back = function() {
-
-            $location.path('internalTabs');
+        window.history.back();
         }
 
 
