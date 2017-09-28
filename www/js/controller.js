@@ -229,7 +229,7 @@ if(res.data.UserId==0)
         $scope.imgDes = false;
         $scope.publicMsgList = [];
         $scope.facility = '';
-
+        $scope.senderMsg="";
         $scope.enquiryObj = {};
         $scope.events = [];
         var phnoNum = {};
@@ -439,7 +439,12 @@ if(res.data.UserId==0)
                     UserId: null
                 }
                 var promise = ApiCallService.PostRequest($scope.publicMsg, '/CreateEnquiryReply')
-                promise.then(function(res) {}, function(err) {
+                promise.then(function(res) {
+                        console.log(res)
+                        if(res.data==true){
+                          $scope.senderMsg="";    
+                        }
+                }, function(err) {
                     console.log(err)
                 })
 
@@ -592,15 +597,17 @@ if(res.data.UserId==0)
             console.log('enter');
 
 
-            var pushMessObj = {
+            $scope.pushMessObj = {
                 EnquiryId: $scope.cusdetail.EnquiryId,
                 Message: $scope.data.message,
                 ReplyFrom: 2,
                 UserId: 3
             }
-            var promise = ApiCallService.PostRequest(pushMessObj, '/CreateEnquiryReply');
+            var promise = ApiCallService.PostRequest($scope.pushMessObj, '/CreateEnquiryReply');
             promise.then(function(res) {
-                console.log(res);
+                if(res.data==true){
+                   $scope.data.message="" ;   
+                }
             }, function(err) {
                 console.log(err);
             })
@@ -609,15 +616,16 @@ if(res.data.UserId==0)
             var d = new Date();
             d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
-            $scope.MessagesLst.push({
+          /*  $scope.MessagesLst.push({
                 userId: 'me',
                 text: $scope.data.message,
                 time: d
 
             });
+*/
 
 
-            $timeout(function() {
+           /* $timeout(function() {
                 $scope.MessagesLst.push({
                     userId: 'you',
                     text: 'hi,hello...',
@@ -626,11 +634,10 @@ if(res.data.UserId==0)
                 });
             }, 2000)
 
-            delete $scope.data.message;
+            delete $scope.data.message;*/
             $ionicScrollDelegate.scrollBottom(true);
 
         };
-
         $scope.moveAssigner = function(y) {
             console.log(y);
             var assignObj = {
