@@ -601,4 +601,11 @@ $stable: #f8f8f8 !default; .scroll {
     min-height:0!important;
     
     }
-    
+    .staticImgDiv{
+        width:100%;
+        height:auto;
+    }
+    .staticImgbackground{
+       background: #f9f6f1;
+       width:100%
+    }

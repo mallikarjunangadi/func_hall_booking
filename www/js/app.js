@@ -150,8 +150,12 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/publicEnquiry',
         templateUrl: 'templates/publicEnquiry.html'
     })
+    .state('hall',{
+       url:'/hall',
+       templateUrl:'templates/hall.html'
+    })
     
-  $urlRouterProvider.otherwise('/mainHome');
+  $urlRouterProvider.otherwise('/hall');
 
 })
 

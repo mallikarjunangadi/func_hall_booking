@@ -482,6 +482,7 @@ if(res.data.UserId==0)
 
         $scope.goBack = function() {
             window.history.back();
+            $scope.publicMsg={};
         }
 
     }).directive('input', function($timeout) {
@@ -535,9 +536,10 @@ if(res.data.UserId==0)
           $scope.currentUserId;
           console.log($rootScope.loginUser);
         var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-            
+            var date=new Date();
         $scope.$on("$ionicView.beforeEnter", function() {
             console.log('Hai')
+            console.log(date)
             $scope.MessagesLst= myService.get();
            $scope.Assignee= myService.getAssigne();
             $scope.cusdetail.EnquiryId=myService.getEnquiry();
@@ -674,6 +676,7 @@ if(res.data.UserId==0)
 
         $scope.back = function() {
         window.history.back();
+        $scope.pushMessObj={};
         }
 
 
