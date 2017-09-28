@@ -2,7 +2,7 @@
 <div style="margin-top:2vh!important;margin-left:2vh!important">
         <i class="icon ion-log-out" ng-click="logout()" style="margin-top:0vh!important;margin-right:2vh!important;font-size:5vh;color:black;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%;float:right"></i>
     </div>
-  <ion-tabs class="tabs-icon-bottom userTabs "[selectedIndex]="0" >
+  <ion-tabs class="tabs-icon-bottom userTabs " >
         <ion-tab icon-on="ion-ios-bell tabsicon-on" icon-off="ion-ios-bell-outline" href="#/internalTabs/openTicket">
             <ion-nav-view name="tab-tab2"></ion-nav-view>
         </ion-tab>
@@ -15,8 +15,8 @@
         <ion-tab icon-on="ion-stats-bars tabsicon-on" icon-off="ion-stats-bars" href="#/internalTabs/tab4">
             <ion-nav-view name="tab-tab4"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon-on="ion-log-out tabsicon-on" icon-off="ion-log-out" href="#/internalTabs/tab5" ng-click="logout()">
-            <ion-nav-view name="tab-tab4"></ion-nav-view>
+        <ion-tab icon-on="ion-log-out tabsicon-on" icon-off="ion-log-out" ng-click="logout()">
+            
         </ion-tab>
     </ion-tabs>
 </ion-view>
