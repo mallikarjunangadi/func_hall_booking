@@ -1,0 +1,121 @@
+<ion-view ng-controller="slideImgage">
+
+<ion-content>
+ <h1 style="text-align:center;font-size:25px;margin-top:5vh;font-family: 'Lora'">GALLERY</h1>
+<div class="spriteImgDiv" >
+ <img src="img/sprite.png"/>
+</div>
+  <div class="card">
+ <h1 style="text-align:center;font-size:25px;font-family: 'Lora'">D'ROYALE HALL</h1>
+ <div class="spriteImgDiv">
+ <img src="img/sprite.png"/>
+
+ </div>
+ <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play=true show-pager="false" does-continue="true">
+  <ion-slide>
+  <div class="row">
+  <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+  <div class="col"> <img src="img/106.jpg" ng-click="openModal('droyale',0)"class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/002.jpg"ng-click="openModal('droyale',1)" class="staticImgDiv"/></div>
+    <i class="icon ion-chevron-right slideNextPrevious" ng-click="next()"></i>
+
+  </div>
+  
+   </ion-slide>
+  <ion-slide>
+  <div class="row">
+    <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+
+    <div class="col"> <img src="img/003.jpg" ng-click="openModal('droyale',2)"class="staticImgDiv"/></div>
+
+  <div class="col"> <img src="img/006.jpg" ng-click="openModal('droyale',3)"class="staticImgDiv"/></div>
+      <i class="icon ion-chevron-right slideNextPrevious" ng-click="next()"></i>
+
+  </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="row">
+      <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+
+  <div class="col"> <img src="img/009.jpg" ng-click="openModal('droyale',4)"class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/105new.jpg" ng-click="openModal('droyale',5)"class="staticImgDiv"/></div>
+    <i class="icon ion-chevron-right slideNextPrevious" ng-click="next()"></i>
+ </div>
+  </ion-slide>
+  
+</ion-slide-box>
+</div>
+ 
+ 
+  <div class="card">
+  <h1 style="text-align:center;font-size:25px;font-family: 'Lora'">LE GRAND HALL</h1>
+ <div class="spriteImgDiv">
+  <img src="img/sprite.png" />
+  </div> 
+  <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play=true show-pager="false" does-continue="true">
+  <ion-slide>
+  <div class="row">
+  <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+  <div class="col"> <img src="img/600new.jpg" ng-click="openModal('legrand',0)" class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/301.jpg" ng-click="openModal('legrand',1)" class="staticImgDiv"/></div>
+  <i class="icon ion-chevron-right slideNextPrevious" ng-click="next()"></i>
+  </div>
+   </ion-slide>
+  <ion-slide>
+  <div class="row">
+  <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+    <div class="col"> <img src="img/303new.jpg"ng-click="openModal('legrand',2)"  class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/205.jpg"ng-click="openModal('legrand',3)"  class="staticImgDiv"/></div>
+  
+  <i class="icon ion-chevron-right slideNextPrevious"ng-click="next()"></i>
+  </div>
+  </ion-slide>
+  
+  <ion-slide>
+   <div class="row">
+     <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+ <div class="col"> <img src="img/302new.jpg"ng-click="openModal('legrand',4)"  class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/301.jpg" ng-click="openModal('legrand',5)" class="staticImgDiv"/></div>
+  <i class="icon ion-chevron-right slideNextPrevious"ng-click="next()"></i>
+
+   </div>
+  </ion-slide>
+</ion-slide-box>
+  </div>
+  <div class="card">
+  <h1 style="text-align:center;font-size:25px;font-family: 'Lora'">PRE FUNCTION HALL</h1>
+  <div class="spriteImgDiv">
+  <img src="img/sprite.png" /> 
+  </div>
+  <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play=true show-pager="false" does-continue="true">
+  <ion-slide>
+  <div class="row">
+  <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+  <div class="col"> <img src="img/2.jpg" ng-click="openModal('prefunction',0)" class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/4.jpg" ng-click="openModal('prefunction',1)" class="staticImgDiv"/></div>
+  <i class="icon ion-chevron-right slideNextPrevious"ng-click="next()"></i>
+  </div>
+   </ion-slide>
+  <ion-slide>
+  <div class="row">
+  <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+    <div class="col"> <img src="img/5.jpg" ng-click="openModal('prefunction',2)" class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/6.jpg"ng-click="openModal('prefunction',3)"  class="staticImgDiv"/></div>
+  
+   <i class="icon ion-chevron-right slideNextPrevious"ng-click="next()"></i>
+  </div>
+  </ion-slide>
+  <ion-slide>
+  <div class="row">
+    <i class="icon ion-chevron-left slideNextPrevious" ng-click="previous()"></i>
+    <div class="col"> <img src="img/7.jpg" ng-click="openModal('prefunction',4)" class="staticImgDiv"/></div>
+  <div class="col"> <img src="img/4.jpg" ng-click="openModal('prefunction',5)" class="staticImgDiv"/></div>
+   <i class="icon ion-chevron-right slideNextPrevious"ng-click="next()"></i>
+
+  </div>
+  </ion-slide>
+</ion-slide-box>
+  </div>
+
+</ion-content>
+</ion-view>
