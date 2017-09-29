@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-controller="goBackCtrl">
     <ion-content>
       <div class="card">
             <div class="item" style="padding:0;">
@@ -64,5 +64,11 @@ The launch of a new product is a landmark event for your organization. Make it e
                 <p class="staticImgparagraph">
 An award function is one that every employee looks forward to. It is the time when efforts are rewarded, endeavours are applauded and performance is recognized. It is a time for you to extend your appreciation, show your employees how much they mean to your organization and reiterate that they deserve nothing than the best. By choosing TSR Conference Hall, you are once again investing your faith in the best, and best alone!            </div>
             </div>
+            <div id="signUpBackDiv">
+
+              <a ng-click="goBack()" class="button ion-arrow-left-c button-positive"></a>
+              <p style="background-color:#f6f6f6;">go back</p>
+
+        </div>
 </ion-content>
 </ion-view>

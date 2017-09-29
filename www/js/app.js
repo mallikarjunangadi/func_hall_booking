@@ -23,12 +23,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     });
 }).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
-    $stateProvider.state('mainHome', {
+    $stateProvider
+    /*.state('mainHome', {
         url: '/mainHome',
         templateUrl: 'templates/mainHome.html'
 
 
-    }).state('login', {
+    })*/.state('login', {
         url: '/login',
         templateUrl: 'templates/login.html'
 
@@ -68,7 +69,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/userTabs',
         templateUrl: 'templates/userTabs.html'
     })
-    .state('userTabs.enquiry', {
+    /*.state('userTabs.enquiry', {
         url: '/enquiry',
         views:{
              'userTabs-enquiry': {
@@ -85,7 +86,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
          controller: 'publicFacility'
              }
         }
-    })
+    })*/
     .state('publicView', {
         url: '/publicView',
        
@@ -93,7 +94,8 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
            
         
     })
-    .state('internalTabs', {
+
+    /*.state('internalTabs', {
         url: '/internalTabs',
         templateUrl: 'templates/internalTabs.html'
     }).state('internalTabs.openTicket', {
@@ -135,7 +137,8 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
                 templateUrl: 'templates/tab5.html'
             }
         }
-    }).state('catalogueFacility', {
+    })*/
+    .state('catalogueFacility', {
         url: '/catalogueFacility',
         templateUrl:'templates/catalogueFacility.html'
     })
@@ -178,7 +181,16 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
        url:'/gallery',
        templateUrl:'templates/gallery.html'
     })
-  $urlRouterProvider.otherwise('/mainHome');
+
+    .state('sidemenu',{
+       url:'/sidemenu',
+       templateUrl:'templates/sidemenu.html'
+    })
+.state('enquiry',{
+       url:'/enquiry',
+       templateUrl:'templates/enquiry.html'
+    })
+  $urlRouterProvider.otherwise('/sidemenu');
 
 })
 

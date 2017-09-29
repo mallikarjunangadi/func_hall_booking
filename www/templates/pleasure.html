@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-controller="goBackCtrl">
 <ion-content>
   <div class="card">
             <div class="item" style="padding:0;">
@@ -50,5 +50,11 @@ All of Malaysia has one common motto – Work hard, Party harder! Which is why, 
                 <p class="staticImgparagraph">
 There are certain special events that might find it difficult to be accommodated in the regular halls. Either the gathering may be too small, or too big. For those special and exclusive events, TSR is just ideal. By arranging the space in a manner that is perfect for your requirements, TSR is just what you want for those custom-specific events            </div>
  </div>
+ <div id="signUpBackDiv">
+
+              <a ng-click="goBack()" class="button ion-arrow-left-c button-positive"></a>
+              <p style="background-color:#f6f6f6;">go back</p>
+
+        </div>
 </ion-content>
 </ion-view>
