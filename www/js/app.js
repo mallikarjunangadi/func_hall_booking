@@ -178,7 +178,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
        url:'/gallery',
        templateUrl:'templates/gallery.html'
     })
-  $urlRouterProvider.otherwise('/amenities');
+  $urlRouterProvider.otherwise('/mainHome');
 
 })
 
