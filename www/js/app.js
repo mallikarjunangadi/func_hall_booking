@@ -29,11 +29,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         templateUrl: 'templates/mainHome.html'
 
 
-    })*/.state('login', {
-        url: '/login',
-        templateUrl: 'templates/login.html'
-
-    }).state('view', {
+    })*/.state('view', {
         url: '/view',
         templateUrl: 'templates/view.html'
 
@@ -46,9 +42,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })*/.state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html'
-    }).state('openTicket', {
+    }).state('sidemenu.openTicket', {
         url: '/openTicket',
+        views: {
+           'menuContent': {
         templateUrl: 'templates/openTicket.html'
+           }
+        }
     }).state('customerDetails', {
         url: '/customerDetails',
         controller: 'publicFacility',
@@ -65,9 +65,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
     })
-  .state('userTabs', {
+  .state('sidemenu.userTabs', {
         url: '/userTabs',
+        views: {
+           'menuContent': {
         templateUrl: 'templates/userTabs.html'
+           }
+        }
     })
     /*.state('userTabs.enquiry', {
         url: '/enquiry',
@@ -87,10 +91,13 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
              }
         }
     })*/
-    .state('publicView', {
+    .state('sidemenu.publicView', {
         url: '/publicView',
-       
+        views: {
+           'menuContent': {
                templateUrl: 'templates/publicView.html'
+           }
+        }
            
         
     })
@@ -153,44 +160,95 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         url: '/publicEnquiry',
         templateUrl: 'templates/publicEnquiry.html'
     })
-    .state('hall',{
+    .state('sidemenu.hall',{
        url:'/hall',
+       views: {
+           'menuContent': {
        templateUrl:'templates/hall.html'
+           }
+       }
     })
-    .state('buisness',{
+    .state('sidemenu.buisness',{
        url:'/business',
+       views: {
+           'menuContent': {
        templateUrl:'templates/business.html'
+           }
+       }
     })
-    .state('pleasure',{
+    .state('sidemenu.pleasure',{
        url:'/pleasure',
+       views: {
+           'menuContent': {
        templateUrl:'templates/pleasure.html'
+           }
+       }
     })
-    .state('amenities',{
+    .state('sidemenu.amenities',{
        url:'/amenities',
+       views: {
+           'menuContent': {
        templateUrl:'templates/amenities.html'
+           }
+       }
     })
-     .state('contact',{
+     .state('sidemenu.contact',{
        url:'/contact',
+        views: {
+           'menuContent': {
        templateUrl:'templates/contact.html'
+           }
+        }
     })
-    .state('promos',{
+    .state('sidemenu.promos',{
        url:'/promos',
+       views: {
+           'menuContent': {
        templateUrl:'templates/promos.html'
+           }
+       }
     })
-    .state('gallery',{
+    .state('sidemenu.gallery',{
        url:'/gallery',
+       views: {
+           'menuContent': {
        templateUrl:'templates/gallery.html'
+           }
+       }
     })
 
     .state('sidemenu',{
-       url:'/sidemenu',
-       templateUrl:'templates/sidemenu.html'
+        url: '/sidemenu',
+    abstract: true,
+    templateUrl: 'templates/sidemenu.html',
+   
     })
-.state('enquiry',{
+.state('sidemenu.enquiry',{
        url:'/enquiry',
+       views: {
+           'menuContent': {
        templateUrl:'templates/enquiry.html'
+           }
+       }
     })
-  $urlRouterProvider.otherwise('/sidemenu');
+    .state('sidemenu.mainHome',{
+       url:'/home',
+       views: {
+           'menuContent': {
+       templateUrl:'templates/mainHome.html'
+           }
+       }
+    })
+    .state('sidemenu.login', {
+        url: '/login',
+        views: {
+           'menuContent': {
+        templateUrl: 'templates/login.html'
+           }
+        }
+
+    })
+  $urlRouterProvider.otherwise('/sidemenu/home');
 
 })
 

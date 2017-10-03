@@ -604,7 +604,6 @@ $stable: #f8f8f8 !default; .scroll {
     .staticImgDiv{
         width:100%;
         height:auto;
-
     }
     .staticImgbackground{
        background: #f9f6f1;
@@ -618,7 +617,7 @@ $stable: #f8f8f8 !default; .scroll {
         color:#353535;
     }
     .sprite{
-        margin-left:18vh;
+        margin-left:15vh;
     }
     .staticImgContent{
         background-color:#f9f6f1
@@ -684,4 +683,16 @@ margin:10px;
 }
 .slider-pager{
    
+}
+.item-complex .item-content, .item-radio .item-content{
+     background-color: #2d3243;
+     color:white;
+}
+.sideMenu {
+    border-color:#2d3255 !important;
+    text-align:center;
+    color: #c7c7c7 !important;
+}
+.headerBar{
+background-color:#800080 !important
 }

@@ -50,11 +50,11 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                     $rootScope.admin = true;
                     console.log('admin')
                     loginCrd.setCurrentUserId(res.data.UserId);
-                    $location.path('/internalTabs')
+                    $location.path('/sidemenu/openTicket')
                 } else if (res.data.UserId > 1) {
                     loginCrd.setCurrentUserId(res.data.UserId);
                     console.log('internale user')
-                    $location.path('/internalTabs')
+                    $location.path('/sidemenu/openTicket')
                 } else {
                     $rootScope.ShowToast('failed to Login')
                     console.log('failed Login')
@@ -92,10 +92,10 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 loginCrd.setCurrentUserId(res.data.UserId);
                 $rootScope.admin = true
                 console.log('admin')
-                $location.path('/openTicket')
+                $location.path('/sidemenu/openTicket')
             } else if (res.data.UserId > 1) {
                 loginCrd.setCurrentUserId(res.data.UserId);
-                $location.path('/openTicket')
+                $location.path('/sidemenu/openTicket')
                 console.log('internale user')
             } else {
                 $rootScope.ShowToast('failed to Login')
@@ -651,9 +651,8 @@ if(res.data.UserId==0)
         $rootScope.admin = false;
         loginCrd.removeCredentials();
 
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        $location.path('/login');
+      
+        window.history.back();
 
     }
 
