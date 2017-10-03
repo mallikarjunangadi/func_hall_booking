@@ -50,11 +50,11 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                     $rootScope.admin = true;
                     console.log('admin')
                     loginCrd.setCurrentUserId(res.data.UserId);
-                    $location.path('/sidemenu/openTicket')
+                    $location.path('/openTicket')
                 } else if (res.data.UserId > 1) {
                     loginCrd.setCurrentUserId(res.data.UserId);
                     console.log('internale user')
-                    $location.path('/sidemenu/openTicket')
+                    $location.path('/openTicket')
                 } else {
                     $rootScope.ShowToast('failed to Login')
                     console.log('failed Login')
@@ -92,10 +92,10 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 loginCrd.setCurrentUserId(res.data.UserId);
                 $rootScope.admin = true
                 console.log('admin')
-                $location.path('/sidemenu/openTicket')
+                $location.path('/openTicket')
             } else if (res.data.UserId > 1) {
                 loginCrd.setCurrentUserId(res.data.UserId);
-                $location.path('/sidemenu/openTicket')
+                $location.path('/openTicket')
                 console.log('internale user')
             } else {
                 $rootScope.ShowToast('failed to Login')
