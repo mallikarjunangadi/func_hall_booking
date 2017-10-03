@@ -1,7 +1,7 @@
 <ion-pane class="messaging-view " ng-controller="interCtrl" style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
         <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="back()"></a>
-        <h1 class="title"ng-bind="openmesg" >{{openmesg.FirstName+ " " +openmesg.LastName }}</h1>
+        <h1 class="title">{{openmesg.FirstName+ " " +openmesg.LastName }}</h1>
     </ion-header-bar>
     <ion-content>
         <div class="card firstbut ">
@@ -23,7 +23,7 @@
                     <img src="img/user1.png ">
 
                     <p>{{ message.Message }}</p>
-                    <!--<p>Name:{{message.ReplyFrom}}</p>-->
+                    <p>Name:{{message.ReplyFrom}}</p>
 
                     <span class="colorright ">&#x2714;</span>
                     <span class="colorright1 ">&#x2714;</span>
