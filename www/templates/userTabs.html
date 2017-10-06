@@ -1,14 +1,15 @@
 <ion-view ng-controller="publicFacility">
+<ion-content>
     <!-- <button type="submit" class="button button-medium button-block button-positive" style="background:grey;margin:1vh;width:5%;border-radius:50%" ng-click="publicSignOut()"></button>-->
   <!--<div style="margin-top:2vh!important;margin-left:2vh!important">
         <i class="icon ion-log-out" ng-click="publicSignOut()" style="margin-top:0vh!important;margin-right:2vh!important;font-size:5vh;color:black;padding-left:0.5vh;padding-right:0.5vh;border-radius:25%;float:right"></i>
-    </div>-->
+    </div>
     <ion-tabs class="tabs-icon-bottom userTabs" keyboard-handler>
         <ion-tab icon-on="ion-help tabsicon-on" icon-off="ion-help" href="#/userTabs/enquiry">
             <ion-nav-view name="userTabs-enquiry"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon-on="ion-ios-bell tabsicon-on" icon-off="ion-ios-bell-outline">
-            <div class="userHome">
+        <ion-tab icon-on="ion-ios-bell tabsicon-on" icon-off="ion-ios-bell-outline">-->
+            <div class="userHome" style="margin-top:10vh;">
                 <button class="button icon-right ion-chevron-right button-outline button-stable homeButtons" ng-click="getFacilities()">
                     <p style="color:black;margin:3vh;margin-right:0!important">Browse through the facilities</p>
                 </button>
@@ -19,7 +20,7 @@
                     <p style="color:black;margin:3vh">Contact executive</p>
                 </button>
             </div>
-        </ion-tab>
+        <!--</ion-tab>
         <ion-tab icon-on="ion-android-textsms tabsicon-on" icon-off="ion-android-textsms" href="#/publicView">
             <ion-nav-view name="userTabs-publicView" ></ion-nav-view>
         </ion-tab>
@@ -27,5 +28,12 @@
         <ion-tab icon-on="ion-ios-person tabsicon-on" icon-off="ion-ios-person-outline" href="#/userTabs/loginInternalUser">
           <ion-nav-view name="userTabs-loginInternalUser"></ion-nav-view>
         </ion-tab>
-    </ion-tabs>
+    </ion-tabs>-->
+    <div id="signUpBackDiv">
+
+              <a ng-click="goBack()" class="button ion-arrow-left-c button-positive"></a>
+              <p style="background-color:#f6f6f6;">go back</p>
+
+        </div>
+    </ion-content>
 </ion-view>

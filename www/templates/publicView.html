@@ -1,11 +1,8 @@
-<ion-view title="Mensajes" ng-controller="publicFacility" style="background-color:#f6f6f6;">
-    <ion-nav-bar class="bar">
-
-        <ion-nav-buttons side="left" >
-            <i class="icon ion-chevron-left " style="font-size:4vh;color:blue;padding:0.5vh" ng-click="goBack()"></i>
-
-        </ion-nav-buttons>
-    </ion-nav-bar>
+<ion-view  ng-controller="publicFacility" style="background-color:#f6f6f6;">
+    <ion-header-bar class="bar">
+        <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="goBack()"></a>
+        <h4>Mensajes</h4>
+    </ion-header-bar>
     <ion-content>
         <!--<div class="bar bar-header">
             <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
@@ -14,7 +11,7 @@
         
         <button class="button button-small button-positive listToggle">Open Ticket</button>-->
         <div class="text">Daniel Benitez</div>
-        <div ng-repeat="messages in MessagesList">
+        <div ng-repeat="messages in MessagesList|reverse">
         <div class="card radiusCard" ng-if="messages.ReplyFrom!='Rajesh'">
             <a class="item item-avatar-right item-text-wrap length" href="#">
                 <img src="img/user1.png ">
@@ -22,7 +19,7 @@
                 <p>Name:{{messages.ReplyFrom}}</p>
                 <p style="text-align: left;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
-                    <tt>{{messages.publicMsgs.date| date: "HH:mm:ss"}}</tt><br/>
+                    <tt>{{messages.publicMsgs.date}}</tt><br/>
                   
                  </p>
             </a>
@@ -37,6 +34,18 @@
                 <p style="text-align: right;color:blue;">12.37 p.m.</p>
             </a>
             </div>
+        </div>
+        <div class="card radiusCard" ng-if="publicMsg.Message!=undefined">
+            <a class="item item-avatar-right item-text-wrap length" href="#">
+                <img src="img/user1.png ">
+                <p>{{publicMsg.Message}}</p>
+                <!--<p>Name:{{messages.ReplyFrom}}</p>-->
+                <p style="text-align: left;color:blue;">
+                    <span style="color:green;">&#x2714;&#x2714;</span>
+                   <!-- <tt>{{messages.publicMsgs.date| date: "HH:mm:ss"}}</tt><br/>-->
+                  
+                 </p>
+            </a>
         </div>
        <!--  <div class="card radiusCard">
             <a class="item item-avatar-right length" href="#">

@@ -17,7 +17,7 @@
                 <p style="text-align:right;color:blue;">{{EnqReply.MessageDateTime}}</p>
             </a>
         </div>-->
-        <div ng-repeat="message in MessagesLst| reverse" class="messages1 ">
+        <div ng-repeat="message in MessagesLst|reverse" class="messages1 ">
             <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee">
                 <a class="item item-avatar-right length " href="">
                     <img src="img/user1.png ">
@@ -35,10 +35,18 @@
                     <img src="img/user2.jpg ">
                     <p>{{ message.Message}}</p>
                     <p>Name:{{message.ReplyFrom}}</p>
-                    <p style="text-align:left;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>
+                    <p style="text-align:left;color:blue;">{{message.MessageDateTime}}</p>
                 </a>
             </div>
         </div>
+        <div class="message card radiusCard " ng-if="pushMessObj.Message!=undefined" class="messages ">
+                <a class="item item-avatar length " href="">
+                    <img src="img/user2.jpg ">
+                    <p>{{pushMessObj.Message}}</p>
+                   <!-- <p>Name:{{message.ReplyFrom}}</p>
+                    <p style="text-align:left;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>-->
+                </a>
+            </div>
         <div ng-if="admin==true">
             <P style="text-align:center;font-size:1.2em;color:#545454;font family:Sans-serif;">Assign an executive to communicate</p>
             <div class="card radiusCard ">
