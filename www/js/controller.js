@@ -399,6 +399,7 @@ if(res.data.UserId==0)
         })
     }
     getAllMessages();
+    $scope.publicMesges=[];
     $scope.sendPublicMsg = function() {
         console.log($scope.senderMsg)
         if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
@@ -427,6 +428,7 @@ if(res.data.UserId==0)
                 ReplyFrom: 1,
                 UserId: null
             }
+            $scope.publicMesges.push({message:$scope.publicMsg.Message});
             var promise = ApiCallService.PostRequest($scope.publicMsg, '/CreateEnquiryReply')
             promise.then(function(res) {
                 console.log(res)
@@ -521,6 +523,7 @@ if(res.data.UserId==0)
     $scope.Assignee;
     $scope.cusdetail = {};
     $scope.currentUserId;
+    $scope.pushMessage=[];
     console.log($rootScope.loginUser);
     var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
     var date = new Date();
@@ -589,6 +592,7 @@ if(res.data.UserId==0)
             ReplyFrom: 2,
             UserId: 3
         }
+      $scope.pushMessage.push({message:$scope.pushMessObj.Message});
         var promise = ApiCallService.PostRequest($scope.pushMessObj, '/CreateEnquiryReply');
         promise.then(function(res) {
             if (res.data == true) {

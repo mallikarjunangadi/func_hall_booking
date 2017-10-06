@@ -36,10 +36,10 @@
             </a>
             </div>
         </div>
-        <div class="card radiusCard" ng-if="publicMsg.Message!=undefined">
+        <div class="card radiusCard" ng-repeat="mesg in publicMesges" ng-if="publicMesges!=undefined">
             <a class="item item-avatar-right item-text-wrap length" href="#">
                 <img src="img/user1.png ">
-                <p>{{publicMsg.Message}}</p>
+                <p>{{mesg.message}}</p>
                 <!--<p>Name:{{messages.ReplyFrom}}</p>-->
                 <p style="text-align: left;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
