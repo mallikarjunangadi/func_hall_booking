@@ -1,8 +1,5 @@
 <ion-pane class="messaging-view " ng-controller="interCtrl" style="background-color:#f6f6f6;">
-    <ion-header-bar class="bar ">
-        <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="back()"></a>
-        <h1 class="title">{{openmesg.FirstName+ " " +openmesg.LastName }}</h1>
-    </ion-header-bar>
+    
     <ion-content>
         <div class="card firstbut ">
             <div class="button-bar ">
@@ -21,13 +18,11 @@
             <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee">
                 <a class="item item-avatar-right length " href="">
                     <img src="img/user1.png ">
-
                     <p>{{ message.Message }}</p>
-                    <p>Name:{{message.ReplyFrom}}</p>
-
+                    <!--<p>Name:{{message.ReplyFrom}}</p>-->
                     <span class="colorright ">&#x2714;</span>
                     <span class="colorright1 ">&#x2714;</span>
-                    <p style="text-align:left;padding:3px;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>
+                    <p style="text-align:left;padding:3px;color:blue;">{{message.time}}</p>
                 </a>
             </div>
             <div class="message card radiusCard " ng-if="message.ReplyFrom==Assignee" class="messages ">

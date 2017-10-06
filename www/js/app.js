@@ -29,11 +29,7 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         templateUrl: 'templates/mainHome.html'
 
 
-    })*/.state('login', {
-        url: '/login',
-        templateUrl: 'templates/login.html'
-
-    }).state('view', {
+    })*/.state('view', {
         url: '/view',
         templateUrl: 'templates/view.html'
 
@@ -48,7 +44,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
         templateUrl: 'templates/signUp.html'
     }).state('openTicket', {
         url: '/openTicket',
+        
         templateUrl: 'templates/openTicket.html'
+          
     }).state('customerDetails', {
         url: '/customerDetails',
         controller: 'publicFacility',
@@ -67,7 +65,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })
   .state('userTabs', {
         url: '/userTabs',
+        
         templateUrl: 'templates/userTabs.html'
+         
     })
     /*.state('userTabs.enquiry', {
         url: '/enquiry',
@@ -89,9 +89,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })*/
     .state('publicView', {
         url: '/publicView',
-       
+     
                templateUrl: 'templates/publicView.html'
-           
+          
         
     })
 
@@ -155,42 +155,74 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })
     .state('hall',{
        url:'/hall',
+    
        templateUrl:'templates/hall.html'
+          
     })
     .state('buisness',{
        url:'/business',
+       
        templateUrl:'templates/business.html'
+         
     })
     .state('pleasure',{
        url:'/pleasure',
+       
        templateUrl:'templates/pleasure.html'
+       
     })
     .state('amenities',{
        url:'/amenities',
+       
        templateUrl:'templates/amenities.html'
+      
+    })
+    .state('sideMenu',{
+       url:'/sideMenu',
+        templateUrl:'templates/sidemenu.html'  
     })
      .state('contact',{
        url:'/contact',
+    
        templateUrl:'templates/contact.html'
+        
     })
     .state('promos',{
        url:'/promos',
+    
        templateUrl:'templates/promos.html'
+       
     })
     .state('gallery',{
        url:'/gallery',
+       
        templateUrl:'templates/gallery.html'
+         
     })
 
-    .state('sidemenu',{
-       url:'/sidemenu',
-       templateUrl:'templates/sidemenu.html'
-    })
 .state('enquiry',{
        url:'/enquiry',
+     
        templateUrl:'templates/enquiry.html'
+          
+   
     })
-  $urlRouterProvider.otherwise('/sidemenu');
+    .state('mainHome',{
+       url:'/home',
+       
+       templateUrl:'templates/sidemenu.html'
+           
+     
+    })
+    .state('login', {
+        url: '/login',
+        
+        templateUrl: 'templates/login.html'
+         
+  
+
+    })
+  $urlRouterProvider.otherwise('/sideMenu');
 
 })
 

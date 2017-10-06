@@ -1,9 +1,10 @@
 <ion-view title="Mensajes" style="background-color:#e4e4e4;">
-<ion-nav-bar class="bar">
-            <ion-nav-buttons side="left">
-                <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
-            </ion-nav-buttons>
-        </ion-nav-bar>
+
+   <ion-header-bar class="bar ">
+        <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="goBack()"></a>
+        <h1 class="title ">{{openmesg.FirstName+ " " +cusdetail.LastName }}</h1>
+    </ion-header-bar>
+    
     <ion-content>
         <!--<div class="bar bar-header">
             <a class="button icon-left ion-chevron-left button-clear button-positive"></a>
@@ -44,8 +45,7 @@
                 <p style="text-align: left;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
                     12.40 p.m.           
-                
-                
+                            
                 </p>
             </a>
         </div>

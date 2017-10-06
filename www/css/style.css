@@ -604,7 +604,6 @@ $stable: #f8f8f8 !default; .scroll {
     .staticImgDiv{
         width:100%;
         height:auto;
-
     }
     .staticImgbackground{
        background: #f9f6f1;
@@ -618,7 +617,7 @@ $stable: #f8f8f8 !default; .scroll {
         color:#353535;
     }
     .sprite{
-        margin-left:18vh;
+        margin-left:15vh;
     }
     .staticImgContent{
         background-color:#f9f6f1
@@ -672,6 +671,9 @@ $stable: #f8f8f8 !default; .scroll {
 .contact-info a {
     color: #7e7e7e;
 }
+.backNotification{
+   
+}
 .contactInput{
 margin:10px;    
 }
@@ -680,8 +682,23 @@ margin:10px;
     margin:auto;
 }
 .slideNextPrevious{
-    font-size:7vh;line-height:5vh;margin:auto;border:1px solid brown;padding-left:1vw;padding-right:1vw
+    font-size:7vh;line-height:5vh;margin:auto;padding-left:1vw;padding-right:1vw;left:15px;position:absolute;top:45%;color:white;background-color:black
+}
+.slideNext{
+ font-size:7vh;line-height:5vh;margin:auto;position:absolute;top:45%;right:15px;padding-left:1vw;padding-right:1vw;color:white;background-color:black
 }
 .slider-pager{
    
+}
+.item-complex .item-content, .item-radio .item-content{
+     background-color: #2d3243;
+     color:white;
+}
+.sideMenu {
+    border-color:#2d3255 !important;
+    text-align:center;
+    color: #c7c7c7 !important;
+}
+.headerBar{
+background-color:#800080 !important
 }
