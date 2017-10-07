@@ -1,7 +1,10 @@
 <ion-pane class="messaging-view " ng-controller="interCtrl" style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
+
         <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="back()"></a>
-        <h1 class="title ">{{openmesg.FirstName+ " " +cusdetail.LastName }}</h1>
+        <h1 class="title ">{{Assignee}}</h1>
+
+   
     </ion-header-bar>
     <ion-content>
         <div class="card firstbut ">
@@ -18,21 +21,21 @@
             </a>
         </div>-->
         <div ng-repeat="message in MessagesLst|reverse" class="messages1 ">
-            <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee">
+            <div class="message card radiusCard " ng-if="message.ReplyFrom==Assignee">
                 <a class="item item-avatar-right length " href="">
                     <img src="img/user1.png ">
                     <p>{{ message.Message }}</p>
-                    <!--<p>Name:{{message.ReplyFrom}}</p>-->
+                  <!--  <p>Name:{{message.ReplyFrom}}</p>-->
                     <span class="colorright ">&#x2714;</span>
                     <span class="colorright1 ">&#x2714;</span>
-                    <p style="text-align:left;padding:3px;color:blue;">{{message.time}}</p>
+                    <p style="text-align:left;padding:3px;color:blue;">{{message.MessageDateTime}}</p>
                 </a>
             </div>
-            <div class="message card radiusCard " ng-if="message.ReplyFrom==Assignee" class="messages ">
+            <div class="message card radiusCard " ng-if="message.ReplyFrom!=Assignee" class="messages ">
                 <a class="item item-avatar length " href="">
                     <img src="img/user2.jpg ">
                     <p>{{ message.Message}}</p>
-                    <p>Name:{{message.ReplyFrom}}</p>
+                   <!-- <p>Name:{{message.ReplyFrom}}</p>-->
                     <p style="text-align:left;color:blue;">{{message.MessageDateTime}}</p>
                 </a>
             </div>
@@ -41,7 +44,10 @@
                 <a class="item item-avatar length " href="">
                     <img src="img/user2.jpg ">
                     <p>{{Messg.message}}</p>
+                  <p style="text-align:left;color:blue;">{{Messg.date | date: "HH:mm:ss"}}</p>
+
                    <!-- <p>Name:{{message.ReplyFrom}}</p>
+
                     <p style="text-align:left;color:blue;">{{message.MessageDateTime| date: "HH:mm:ss"}}</p>-->
                 </a>
             </div>

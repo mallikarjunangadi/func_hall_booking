@@ -14,9 +14,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
    /* $scope.getStarted = function() {
         /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
              console.log(loginCred);
-
              if (loginCred == undefined || loginCred == null) {
-
                  $state.go('entry');
              } else if (loginCred.phoneNumb != undefined && loginCred.phoneNumb != "") {
                  $state.go('userTabs');
@@ -26,7 +24,6 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                  $state.go('entry');
              }
         $state.go('userTabs');
-
     }*/
 
 }).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http) {
@@ -49,10 +46,10 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 if (res.data.UserId == 1) {
                     $rootScope.admin = true;
                     console.log('admin')
-                    loginCrd.setCurrentUserId(res.data.UserId);
+                    loginCrd.setCurrentUserIdUsername(res.data);
                     $location.path('/openTicket')
                 } else if (res.data.UserId > 1) {
-                    loginCrd.setCurrentUserId(res.data.UserId);
+                    loginCrd.setCurrentUserIdUsername(res.data);
                     console.log('internale user')
                     $location.path('/openTicket')
                 } else {
@@ -89,12 +86,12 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         promise.then(function(res) {
             console.log(res)
             if (res.data.UserId == 1) {
-                loginCrd.setCurrentUserId(res.data.UserId);
+                loginCrd.setCurrentUserIdUsername(res.data);
                 $rootScope.admin = true
                 console.log('admin')
                 $location.path('/openTicket')
             } else if (res.data.UserId > 1) {
-                loginCrd.setCurrentUserId(res.data.UserId);
+                loginCrd.setCurrentUserIdUsername(res.data);
                 $location.path('/openTicket')
                 console.log('internale user')
             } else {
@@ -137,9 +134,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }
-
             /* if ($scope.loginObj.EmailId == "internal" && $scope.loginObj.Password == "123") {
-
                  console.log('internal')
               $scope.loginObj={}
             $location.path('/internalTabs')
@@ -147,36 +142,25 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             console.log('executive')
               $scope.loginObj={}
               $location.path('/internalTabs')
-
-
        }
-
-
        
-
     /*    $http(req).then(function(res) {
             
 if(res.data.UserId==0)
 {
      $location.path('/internalTabs')
     console.log('invalid user name or password')    
-
        }*/
         /*  $http(req).then(function(res) {
                   console.log(res);
                   if (res.data.UserId == 0) {
-
                       alert('invalid username and password');
-
                       console.log('invalid user name or password')
-
                   } else {
                       $location.path('/internalTabs')
                   }
-
               }, function(res) {
                   console.log(res);
-
               })*/
 
     }
@@ -229,6 +213,11 @@ if(res.data.UserId==0)
     $scope.events = [];
     var phnoNum = {};
     var loginObj = {};
+    $scope.Assignee="";
+    $scope.$on("$ionicView.beforeEnter", function() {
+        $scope.publicMesges=[];
+        getAllMessages();
+    })
     $scope.publicSignOut = function() {
 
         loginCrd.removeCredentials()
@@ -374,7 +363,7 @@ if(res.data.UserId==0)
         $scope.imgDes = false;
         $scope.model2.show();
     }
-    $scope.Assignee = {};
+   
     $scope.MessagesList = [];
     var getAllMessages = function() {
         loginObj = JSON.parse(loginCrd.getPhoneNumber());
@@ -382,10 +371,11 @@ if(res.data.UserId==0)
         var promise = ApiCallService.GetRequest(loginObj, '/GetEnquirybyPhoneNo');
         promise.then(function(res) {
             console.log(res.data[0])
-            if (res.data[0] == undefined || res.data[0] == null) {} else {
-                $scope.Assignee = res.data[0].Assignee;
-            }
-
+            if (res.data[0] == undefined || res.data[0] == null) {
+                
+            } else {
+                console.log(res.data[0])
+            $scope.Assignee = res.data[0].FirstName+" "+res.data[0].LastName;
             var promise = ApiCallService.GetRequest({
                 TicketNo: res.data[0].TicketNo
             }, '/GetEnquiryReplybyTicket');
@@ -394,12 +384,13 @@ if(res.data.UserId==0)
                 console.log($scope.MessagesList)
             }, function(err) {})
 
-        }, function(err) {
+        }}, function(err) {
             console.log(err);
         })
     }
-    getAllMessages();
+    
     $scope.publicMesges=[];
+    var date=new Date();
     $scope.sendPublicMsg = function() {
         console.log($scope.senderMsg)
         if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
@@ -428,7 +419,7 @@ if(res.data.UserId==0)
                 ReplyFrom: 1,
                 UserId: null
             }
-            $scope.publicMesges.push({message:$scope.publicMsg.Message});
+            $scope.publicMesges.push({message:$scope.publicMsg.Message,date:new Date()});
             var promise = ApiCallService.PostRequest($scope.publicMsg, '/CreateEnquiryReply')
             promise.then(function(res) {
                 console.log(res)
@@ -520,7 +511,7 @@ if(res.data.UserId==0)
     $scope.hideTime = true;
     $scope.incmessages = [];
     $scope.MessagesLst = [];
-    $scope.Assignee;
+    $scope.Assignee="";
     $scope.cusdetail = {};
     $scope.currentUserId;
     $scope.pushMessage=[];
@@ -528,13 +519,21 @@ if(res.data.UserId==0)
     var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
     var date = new Date();
     $scope.$on("$ionicView.beforeEnter", function() {
+        $scope.pushMessage=[]
         console.log('Hai')
         console.log(date)
         $scope.MessagesLst = myService.get();
-        $scope.Assignee = myService.getAssigne();
-        $scope.cusdetail.EnquiryId = myService.getEnquiry();
-        $scope.currentUserId = JSON.parse(loginCrd.getCurrentUserId());
-        console.log($scope.currentUserId);
+        //$scope.Assignee = myService.getAssigne();
+        //console.log($scope.Assignee);
+         var enquiryDetalis= myService.getEnquiry();
+       $scope.cusdetail.EnquiryId=enquiryDetalis.EnquiryId;
+        console.log($scope.cusdetail.EnquiryId);
+     $scope.Assignee=enquiryDetalis.FirstName+" "+enquiryDetalis.LastName;
+     console.log($scope.Assignee);
+         var curUserDetails=JSON.parse(loginCrd.getCurrentUserIdUsername());
+          $scope.currentUserId =curUserDetails.UserId;
+          
+          console.log($scope.currentUserId);
         var promise = ApiCallService.GetRequest({}, '/GetAllEnquiry').then(function(res) {
             $scope.openmesg = res.data;
             console.log(res.data);
@@ -568,13 +567,12 @@ if(res.data.UserId==0)
     }
 
     $scope.internalUserMesg = function(userMsg) {
-        console.log(userMsg.EnquiryId);
-        myService.setEnquiry(userMsg.EnquiryId);
+        myService.setEnquiry(userMsg);
         var promise = ApiCallService.GetRequest({
             TicketNo: userMsg.TicketNo
         }, '/GetEnquiryReplybyTicket')
         promise.then(function(res) {
-            myService.setAssigne(userMsg.Assignee)
+           // myService.setAssigne(userMsg.Assignee)
             myService.set(res.data)
             console.log($scope.MessagesLst);
             $location.path('msgList');
@@ -592,7 +590,7 @@ if(res.data.UserId==0)
             ReplyFrom: 2,
             UserId: 3
         }
-      $scope.pushMessage.push({message:$scope.pushMessObj.Message});
+      $scope.pushMessage.push({message:$scope.pushMessObj.Message,date:new Date()});
         var promise = ApiCallService.PostRequest($scope.pushMessObj, '/CreateEnquiryReply');
         promise.then(function(res) {
             if (res.data == true) {
@@ -609,7 +607,6 @@ if(res.data.UserId==0)
                 userId: 'me',
                 text: $scope.data.message,
                 time: d
-
             });
 */
 
@@ -618,10 +615,8 @@ if(res.data.UserId==0)
                     userId: 'you',
                     text: 'hi,hello...',
                     time: d
-
                 });
             }, 2000)
-
             delete $scope.data.message;*/
         $ionicScrollDelegate.scrollBottom(true);
 

@@ -47,7 +47,7 @@ angular.module('hallBooking.service', [])
     .factory('loginCrd', function() {
         var longinCr = {};
         var phoneNumber = {};
-        var userId;
+        var loginUserDetails={};
         return {
             getLoinCredentials: function() {
                 return localStorage.getItem('loginCrendential');
@@ -67,13 +67,14 @@ angular.module('hallBooking.service', [])
             },
             removeCredentials: function() {
                 localStorage.removeItem('loginCrendential');
-            },setCurrentUserId:function(loginUserId){
-                 userId=loginUserId;
-                 localStorage.setItem('currentUserId', JSON.stringify(userId))
-            },getCurrentUserId:function(){
-             return  localStorage.getItem('currentUserId');
-            },removeCurrentUserId:function(){
-             localStorage.removeItem('currentUserId');
+            },setCurrentUserIdUsername:function(data){
+                 loginUserDetails.UserId=data.UserId;
+                 loginUserDetails.DisplayName=data.DisplayName;
+                 localStorage.setItem('currentUserIdUserName', JSON.stringify(loginUserDetails))
+            },getCurrentUserIdUsername:function(){
+             return  localStorage.getItem('currentUserIdUserName');
+            },removeCurrentUserIdUsername:function(){
+             localStorage.removeItem('currentUserIdUserName');
             }
 
 
@@ -82,7 +83,7 @@ angular.module('hallBooking.service', [])
     .factory('myService', function() {
         var savedData;
         var saveAssign;
-        var saveEnquiry;
+        var saveEnquiry={};
         //var saveaData;
         function set(data) {
             console.log(data);

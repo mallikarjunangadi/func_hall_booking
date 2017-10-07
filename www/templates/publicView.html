@@ -1,7 +1,7 @@
 <ion-view  ng-controller="publicFacility" style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
         <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="goBack()"></a>
-        <h1 class="title ">{{openmesg.FirstName+ " " +cusdetail.LastName }}</h1>
+        <h1 class="title ">{{Assignee}}</h1>
     </ion-header-bar>
     
     <ion-content>
@@ -13,26 +13,29 @@
         <button class="button button-small button-positive listToggle">Open Ticket</button>-->
         <div class="text">Daniel Benitez</div>
         <div ng-repeat="messages in MessagesList|reverse">
-        <div class="card radiusCard" ng-if="messages.ReplyFrom!='Rajesh'">
+        <div class="card radiusCard" ng-if="messages.ReplyFrom==Assignee">
             <a class="item item-avatar-right item-text-wrap length" href="#">
                 <img src="img/user1.png ">
-                <p>{{messages.Message}}</p>
-                <p>Name:{{messages.ReplyFrom}}</p>
-                <p style="text-align: left;color:blue;">
+                <p style="text-align: right;">{{messages.Message}}</p>
+               <!-- <p>Name:{{messages.ReplyFrom}}</p>-->
+                <p style="text-align: right;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
-                    <tt>{{messages.publicMsgs.date}}</tt><br/>
+                  <p style="text-align: left;color:blue;">{{messages.MessageDateTime}}</p>
                   
+
                  </p>
             </a>
         </div>
-       <div class="card radiusCard" ng-if="messages.ReplyFrom=='Rajesh'" >
+       <div class="card radiusCard" ng-if="messages.ReplyFrom!=Assignee" >
             <a class="item item-avatar item-text-wrap length" href="#">
                <img src="img/user2.jpg">
                 <p>{{messages.Message}}
-                <p>Name:{{messages.ReplyFrom}}</p>
+               <!-- <p>Name:{{messages.ReplyFrom}}</p>-->
                     <br>
                    </p>
-                <p style="text-align: right;color:blue;">12.37 p.m.</p>
+                  <p style="text-align: right;color:blue;">{{messages.MessageDateTime}}</p>
+
+                
             </a>
             </div>
         </div>
@@ -43,6 +46,8 @@
                 <!--<p>Name:{{messages.ReplyFrom}}</p>-->
                 <p style="text-align: left;color:blue;">
                     <span style="color:green;">&#x2714;&#x2714;</span>
+                    <p style="text-align: right;color:blue;">{{mesg.date| date: "HH:mm:ss"}}</p>
+
                    <!-- <tt>{{messages.publicMsgs.date| date: "HH:mm:ss"}}</tt><br/>-->
                   
                  </p>
