@@ -1,4 +1,4 @@
-angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd, $location) {
+angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd, $location, $ionicPlatform,  $ionicPopup) {
     var loginCred = {};
     $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
@@ -10,6 +10,31 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         "head": "Welcome to TSR Hall booking app",
         "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
     }];
+
+    var exitConfirm = function () {
+        if ($location.path() == '/sideMenu' || $location.path() == '/main/recharge') {
+            $ionicPopup.confirm({
+                title: 'Exit App',
+                content: 'Do you want to exit?',
+                okText: 'OK',
+                cancelText: 'Cancel'
+            }).then(function (res) {
+                    if (res) {
+                        navigator.app.exitApp();
+                    }
+            });
+        }
+    }
+
+    var removeConfirm = angular.noop();
+    if ($location.path() == '/sideMenu' || $location.path() == '/main/recharge') {
+         removeConfirm = $ionicPlatform.registerBackButtonAction(
+            exitConfirm,
+            100, 111111111111
+        );
+    } else {
+        removeConfirm();
+    }
 
    /* $scope.getStarted = function() {
         /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
