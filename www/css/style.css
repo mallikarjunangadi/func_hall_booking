@@ -691,13 +691,13 @@ margin:10px;
    
 }
 .item-complex .item-content, .item-radio .item-content{
-     background-color: #2d3243;
-     color:white;
+     background-color: white;
+     color:black;
 }
 .sideMenu {
-    border-color:#2d3255 !important;
+    border-color:white !important;
     text-align:center;
-    color: #c7c7c7 !important;
+    color: black !important;
 }
 .headerBar{
 background-color:#800080 !important
