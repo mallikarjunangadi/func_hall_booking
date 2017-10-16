@@ -700,5 +700,9 @@ margin:10px;
     color: #c7c7c7 !important;
 }
 .headerBar{
-background-color:#800080 !important
+background-color:white!important;
+}
+input[type="date"]:before{
+    color:#c7c7c7;
+    content:attr(placeholder);
 }
