@@ -694,13 +694,14 @@ margin:10px;
    
 }
 .item-complex .item-content, .item-radio .item-content{
-     background-color: white;
-     color:black;
+      background-color:#2d3243;
+     color:white;
 }
 .sideMenu {
-    border-color:white !important;
+    border-color: grey!important;
     text-align:center;
-    color: black !important;
+    color: White !important;
+    
 }
 .headerBar{
 background-color:white!important;
@@ -708,4 +709,15 @@ background-color:white!important;
 input[type="date"]:before{
     color:#c7c7c7;
     content:attr(placeholder);
+}
+input[type="date"] {
+	color: #ffffff;
+}
+input[type="date"]:focus,
+input[type="date"]:valid {
+	color: #444;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+	content: "" !important;
 }

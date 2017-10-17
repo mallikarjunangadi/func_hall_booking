@@ -236,13 +236,22 @@ if(res.data.UserId==0)
     $scope.senderMsg = "";
     $scope.enquiryObj = {};
     $scope.events = [];
+    $scope.neWMeassage=false;
     var phnoNum = {};
     var loginObj = {};
     $scope.Assignee="";
     $scope.$on("$ionicView.beforeEnter", function() {
         $scope.publicMesges=[];
         getAllMessages();
+  
     })
+$scope .$watch('MessagesList', function(newValue, oldValue) {
+  if(newValue!=oldValue){
+   $scope.neWMeassage=true;   
+  }else{
+    $scope.neWMeassage=false;  
+  }
+});
     $scope.publicSignOut = function() {
 
         loginCrd.removeCredentials()

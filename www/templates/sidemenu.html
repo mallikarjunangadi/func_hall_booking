@@ -70,46 +70,53 @@
       
     </ion-header-bar>-->
 
-    <ion-content>
+
+
+
+    <ion-content ng-controller="publicFacility">
+
 
       <ion-list>
 
       <img src="img/tsrLogo.png" height="auto" width="60%" style="margin-left:55px;margin-top:8vh;margin-bottom:8vh">
-      <ion-item class="sideMenu" menu-close href="#/home">
+      <ion-item menu-close class="sideMenu"  href="#/home">
           Home
         </ion-item>
-        <ion-item class="sideMenu" menu-close href="#/enquiry">
-          Public Enquiry
+        <ion-item menu-close class="sideMenu"  href="#/enquiry">
+          Enquiry
         </ion-item>
-        <ion-item class="sideMenu" menu-close href="#/publicView">
+        <ion-item menu-close class="sideMenu" ng-show="neWMeassage==true" href="#/publicView">
           Public Chat
         </ion-item>
-        <ion-item class="sideMenu"menu-close href="#/userTabs">
+        <ion-item menu-close class="sideMenu" ng-hide="true" href="#/userTabs">
           Public Facilites
         </ion-item>
-        <ion-item class="sideMenu" menu-close href="#/login">
-          Login
+         
+         <ion-item menu-close class="sideMenu"  href="#/hall">
+          Our Hall
         </ion-item>
-        <ion-item class="sideMenu" menu-close href="#/hall">
-          Hall
+       
+        <ion-item menu-close class="sideMenu"  href="#/business">
+          Our Business Facilities
         </ion-item>
-        <ion-item menu-close class="sideMenu" href="#/business">
-          Business
+        <ion-item menu-close class="sideMenu"style="border-width: 2px;" href="#/pleasure">
+          Our Facilities Of Pleasure
         </ion-item>
-        <ion-item menu-close class="sideMenu" href="#/pleasure">
-          Pleasure
-        </ion-item>
+        
         <ion-item menu-close  class="sideMenu" href="#/amenities">
           Amenities
         </ion-item>
         <ion-item menu-close class="sideMenu"  href="#/contact">
-          Contact
+          Contact Us
         </ion-item>
         <ion-item menu-close class="sideMenu"  href="#/promos">
-          Promos
+         Our Promos
         </ion-item>
         <ion-item menu-close  class="sideMenu"  href="#/gallery">
           Gallery
+        </ion-item>
+          <ion-item menu-close  class="sideMenu" href="#/login">
+          Login
         </ion-item>
       </ion-list>
     </ion-content>
