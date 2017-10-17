@@ -1,6 +1,6 @@
 angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd, $location, $ionicPlatform,  $ionicPopup) {
     var loginCred = {};
-    $scope.slides = [{
+   /* $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
         "content": "Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall.."
     }, {
@@ -9,7 +9,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     }, {
         "head": "Welcome to TSR Hall booking app",
         "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
-    }];
+    }];*/
 
     var exitConfirm = function () {
         if ($location.path() == '/sideMenu' || $location.path() == '/main/recharge') {
