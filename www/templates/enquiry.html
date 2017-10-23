@@ -34,6 +34,9 @@
         <label class="item item-input" style="padding:2vw;">
             <input type="text" jhipster-maxlength="30" ng-model="enquiryObj.Remarks" placeholder="Remarks" required/>
         </label>
+        <label class="item item-input" style="padding:2vw;">
+            <input type="text"  ng-model="enquiryObj.noOfPersons" placeholder="No of Persons" numbers-only required/>
+        </label>
           <button type="submit" ng-click='enquiryForm()' class="button button-small button-block button-positive" style="background:#8A2BE2 !important">Send Enquiry</button>
 
     </div>
