@@ -2,32 +2,66 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable headerBar"  >
+    
      <ion-nav-back-button>
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left" >
         <button style="color:green" class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
-
+<h5 style="color:green;margin-left:10vh;">TSR HALL BOOKING APP </h5>
     </ion-nav-buttons>
 
     </ion-nav-bar>
     
    <div id="mainHomeDiv">
-        <div id="mainImgDiv">
+        <!--<div id="mainImgDiv">
           <img src="img/tsrLogo.png"></img>
-        </div>
-        <ion-slides id="mainSlide" options="options" slider="data.slider">
-            <ion-slide-page ng-repeat="slide in slides">
+        </div>-->
+
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play=true show-pager="true" does-continue="true" >
+                <ion-slide id="mainSlide" options="options" slider="data.slider">
+            <ion-slide-page >
+             <img src="img/Theatre.jpg" style="height:48vh"></img>
                 <div class="item item-text-wrap slidingCard">
-                   <h2 style="margin:2vh 0;">{{slide.head}}</h2>
-                   <p>{{slide.content}}</p>
-                    <a id="mainGetStartLink" ng-click="getStarted()" >get started</a>
+                
+                   <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
+                   <p>Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall..</p>
+                    <!--<i class="swiper-pagination-bullet swiper-pagination-bullet-active"></i>-->
                 </div>
             </ion-slide-page>
-        </ion-slides>
+        </ion-slide>
+        <ion-slide options="options" slider="data.slider">
+            <ion-slide-page >
+            <img src="img/royal_china.jpg" style="height:50vh"></img>
+                <div class="item item-text-wrap slidingCard">
+                
+                   <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
+                   <p>Organising your event was never this simple before, just say what you are looking for, rest assured we will bring your needs to event venue.</p>
+                    
+                </div>
+            </ion-slide-page>
+        </ion-slide>
+        <ion-slide  options="options" slider="data.slider">
+            <ion-slide-page >
+            <img src="img/surya123.jpg" style="height:50vh"></img>
+                <div class="item item-text-wrap slidingCard">
+                
+                   <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
+                   <p>You get dedicated event executive for your every single event, they customize our halls according to your needs</p>
+                    
+                </div>
+                <div  class="swiper-pagination swiper-pagination-clickable">
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                <span class="swiper-pagination-bullet"></span>
+                </div>
+            </ion-slide-page>
+            
+        </ion-slide>
+        </ion-slide-box>
+        
      </div>
-    `
+    
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
@@ -36,9 +70,13 @@
       
     </ion-header-bar>-->
 
+
+
+
     <ion-content ng-controller="publicFacility">
 
-      <ion-list  >
+
+      <ion-list>
 
       <img src="img/tsrLogo.png" height="auto" width="60%" style="margin-left:55px;margin-top:8vh;margin-bottom:8vh">
       <ion-item menu-close class="sideMenu"  href="#/home">

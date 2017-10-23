@@ -143,6 +143,7 @@
 #mainHomeDiv {
     height: 100%;
     width: 100%;
+    background-color: #f6f6f6;
 }
 
 #mainImgDiv {
@@ -155,7 +156,7 @@
 
 #mainImgDiv Img {
     position: absolute;
-    top: 14vh;
+    top: 20vh;
     left: 0;
     right: 0;
     margin: auto;
@@ -165,7 +166,7 @@
     height: 51vh;
 }
 
-#mainGetStartLink {
+/*#mainGetStartLink {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -174,11 +175,13 @@
     text-align: center;
     text-decoration: none;
     color: black;
-} 
+} */
 
 .slidingCard {
-    height: 45vh;
+    margin-top:2vh;
+    height: 250vh;
     border: 0;
+    text-align:center;
     border-bottom: 1px solid #e9e9e9;
     width: 100%;
     background-color: #f6f6f6;
