@@ -243,15 +243,15 @@ if(res.data.UserId==0)
     $scope.$on("$ionicView.beforeEnter", function() {
         $scope.publicMesges=[];
         getAllMessages();
-  
-    })
-$scope .$watch('MessagesList', function(newValue, oldValue) {
+  $scope .$watch('MessagesList', function(newValue, oldValue) {
   if(newValue!=oldValue){
    $scope.neWMeassage=true;   
   }else{
     $scope.neWMeassage=false;  
   }
 });
+    })
+
     $scope.publicSignOut = function() {
 
         loginCrd.removeCredentials()
@@ -305,6 +305,7 @@ $scope .$watch('MessagesList', function(newValue, oldValue) {
             $rootScope.ShowToast('Enter EventDate')
             return false;
         }
+        $scope.enquiryObj.noOfPersons=parseInt($scope.enquiryObj.noOfPersons);
 
         $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
 
@@ -496,6 +497,7 @@ $scope .$watch('MessagesList', function(newValue, oldValue) {
     }
 
     $scope.goBack = function() {
+        console.log('goBack')
         window.history.back();
         $scope.publicMsg = {};
     }
