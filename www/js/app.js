@@ -3,14 +3,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.globalcontroller', 'hallBooking.service','ngCordova','hallBooking.directiv'])
-    .run(function($ionicPlatform) {
-        $ionicPlatform.ready(function() {
-            if (window.cordova && window.cordova.plugins.Keyboard) {
-                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-                // for form inputs)
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-
+angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.globalcontroller', 'hallBooking.service', 'ngCordova', 'hallBooking.directiv']).run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            // for form inputs)
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
             // Don't remove this line unless you know what you are doing. It stops the viewport
             // from snapping when text inputs are focused. Ionic handles this internally for
@@ -21,15 +19,36 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
             StatusBar.styleDefault();
         }
     });
+}).run(function($ionicPlatform, $ionicPopup) {
+    $ionicPlatform.ready(function() {
+        console.log('error')
+        // Check for network connection
+        if (window.Connection) {
+
+            if (navigator.connection.type == Connection.NONE) {
+
+                $ionicPopup.confirm({
+                    title: 'No Internet Connection',
+                    content: 'Please reconnect and try again.'
+                }).then(function(result) {
+                    if (!result) {
+
+                       ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
+
+    });
 }).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
-    $stateProvider
-    /*.state('mainHome', {
+    $stateProvider /*.state('mainHome', {
         url: '/mainHome',
         templateUrl: 'templates/mainHome.html'
 
 
-    })*/.state('view', {
+    })*/
+    .state('view', {
         url: '/view',
         templateUrl: 'templates/view.html'
 
@@ -39,14 +58,15 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })/*.state('assign', {
         url: '/assign',
         templateUrl: 'templates/assign.html'
-    })*/.state('signUp', {
+    })*/
+    .state('signUp', {
         url: '/signUp',
         templateUrl: 'templates/signUp.html'
     }).state('openTicket', {
         url: '/openTicket',
-        
+
         templateUrl: 'templates/openTicket.html'
-          
+
     }).state('customerDetails', {
         url: '/customerDetails',
         controller: 'publicFacility',
@@ -57,19 +77,15 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     }).state('changePassword', {
         url: '/changePassword',
         templateUrl: 'templates/changePassword.html'
-    })
-    
-    .state('publicfacility', {
+    }).state('publicfacility', {
         url: '/publicfacility',
         templateUrl: 'templates/publicfacility.html'
-    })
-  .state('userTabs', {
+    }).state('userTabs', {
         url: '/userTabs',
-        
+
         templateUrl: 'templates/userTabs.html'
-         
-    })
-    /*.state('userTabs.enquiry', {
+
+    })/*.state('userTabs.enquiry', {
         url: '/enquiry',
         views:{
              'userTabs-enquiry': {
@@ -89,13 +105,10 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })*/
     .state('publicView', {
         url: '/publicView',
-     
-               templateUrl: 'templates/publicView.html'
-          
-        
-    })
 
-    /*.state('internalTabs', {
+        templateUrl: 'templates/publicView.html'
+
+    })/*.state('internalTabs', {
         url: '/internalTabs',
         templateUrl: 'templates/internalTabs.html'
     }).state('internalTabs.openTicket', {
@@ -140,89 +153,70 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller','hallBooking.gl
     })*/
     .state('catalogueFacility', {
         url: '/catalogueFacility',
-        templateUrl:'templates/catalogueFacility.html'
-    })
-    .state('entry', {
+        templateUrl: 'templates/catalogueFacility.html'
+    }).state('entry', {
         url: '/entry',
-        templateUrl:'templates/Entry.html'
-    })
-    .state('publicLogin', {
+        templateUrl: 'templates/Entry.html'
+    }).state('publicLogin', {
         url: '/publicEnquiry',
-        templateUrl:'templates/publicLogin.html'
+        templateUrl: 'templates/publicLogin.html'
     }).state('publicEnquiry', {
         url: '/publicEnquiry',
         templateUrl: 'templates/publicEnquiry.html'
-    })
-    .state('hall',{
-       url:'/hall',
-    
-       templateUrl:'templates/hall.html'
-          
-    })
-    .state('buisness',{
-       url:'/business',
-       
-       templateUrl:'templates/business.html'
-         
-    })
-    .state('pleasure',{
-       url:'/pleasure',
-       
-       templateUrl:'templates/pleasure.html'
-       
-    })
-    .state('amenities',{
-       url:'/amenities',
-       
-       templateUrl:'templates/amenities.html'
-      
-    })
-    .state('sideMenu',{
-       url:'/sideMenu',
-        templateUrl:'templates/sidemenu.html'  
-    })
-     .state('contact',{
-       url:'/contact',
-    
-       templateUrl:'templates/contact.html'
-        
-    })
-    .state('promos',{
-       url:'/promos',
-    
-       templateUrl:'templates/promos.html'
-       
-    })
-    .state('gallery',{
-       url:'/gallery',
-       
-       templateUrl:'templates/gallery.html'
-         
-    })
+    }).state('hall', {
+        url: '/hall',
 
-.state('enquiry',{
-       url:'/enquiry',
-     
-       templateUrl:'templates/enquiry.html'
-          
-   
-    })
-    .state('mainHome',{
-       url:'/home',
-       
-       templateUrl:'templates/sidemenu.html'
-           
-     
-    })
-    .state('login', {
+        templateUrl: 'templates/hall.html'
+
+    }).state('buisness', {
+        url: '/business',
+
+        templateUrl: 'templates/business.html'
+
+    }).state('pleasure', {
+        url: '/pleasure',
+
+        templateUrl: 'templates/pleasure.html'
+
+    }).state('amenities', {
+        url: '/amenities',
+
+        templateUrl: 'templates/amenities.html'
+
+    }).state('sideMenu', {
+        url: '/sideMenu',
+        templateUrl: 'templates/sidemenu.html'
+    }).state('contact', {
+        url: '/contact',
+
+        templateUrl: 'templates/contact.html'
+
+    }).state('promos', {
+        url: '/promos',
+
+        templateUrl: 'templates/promos.html'
+
+    }).state('gallery', {
+        url: '/gallery',
+
+        templateUrl: 'templates/gallery.html'
+
+    }).state('enquiry', {
+        url: '/enquiry',
+
+        templateUrl: 'templates/enquiry.html'
+
+    }).state('mainHome', {
+        url: '/home',
+
+        templateUrl: 'templates/sidemenu.html'
+
+    }).state('login', {
         url: '/login',
-        
+
         templateUrl: 'templates/login.html'
-         
-  
 
     })
-  $urlRouterProvider.otherwise('/sideMenu');
+    $urlRouterProvider.otherwise('/sideMenu');
 
 })
-
