@@ -62,7 +62,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     if (loginCred != undefined || loginCred != null) {
 
         if (loginCred.username != undefined && loginCred.password != undefined) {
-            var promise = ApiCallService.GetRequest(loginCred, '/Login')
+            /*var promise = ApiCallService.GetRequest(loginCred, '/Login')
             promise.then(function(res) {
                 console.log(res)
                 if (res.data.UserId == 1) {
@@ -81,7 +81,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             }, function(err) {
                 $rootScope.ShowToast('failed to Login')
                 console.log(err)
-            })
+            })*/
 
         }
     }
@@ -121,8 +121,22 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                 console.log('failed')
             }
         }, function(err) {
-            $rootScope.ShowToast('failed to Login')
-            console.log(err)
+           if (window.Connection) {
+
+            if (navigator.connection.type == Connection.NONE) {
+
+                $ionicPopup.confirm({
+                    title: 'No Internet Connection',
+                    content: 'Please reconnect and try again.'
+                }).then(function(result) {
+                    if (!result) {
+
+                       ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
+
         })
 
     }
