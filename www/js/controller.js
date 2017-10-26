@@ -1,6 +1,6 @@
-angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd, $location, $ionicPlatform,  $ionicPopup) {
+angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function($scope, $state, loginCrd, $location, $ionicPlatform, $ionicPopup) {
     var loginCred = {};
-   /* $scope.slides = [{
+    /* $scope.slides = [{
         "head": "Welcome to TSR Hall booking app",
         "content": "Browse through our halls, see our catalog. To Book any hall simply select the days you are planning organise your event, and click communicate button. Instantly our executive come online to help you, to understand your needs. They help through out the process of booking hall.."
     }, {
@@ -11,32 +11,29 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         "content": "You get dedicated event executive for your every single event, they customize our halls according to your needs"
     }];*/
 
-    var exitConfirm = function () {
+    var exitConfirm = function() {
         if ($location.path() == '/sideMenu' || $location.path() == '/main/recharge') {
             $ionicPopup.confirm({
                 title: 'Exit App',
                 content: 'Do you want to exit?',
                 okText: 'OK',
                 cancelText: 'Cancel'
-            }).then(function (res) {
-                    if (res) {
-                        navigator.app.exitApp();
-                    }
+            }).then(function(res) {
+                if (res) {
+                    navigator.app.exitApp();
+                }
             });
         }
     }
 
     var removeConfirm = angular.noop();
     if ($location.path() == '/sideMenu' || $location.path() == '/main/recharge') {
-         removeConfirm = $ionicPlatform.registerBackButtonAction(
-            exitConfirm,
-            100, 111111111111
-        );
+        removeConfirm = $ionicPlatform.registerBackButtonAction(exitConfirm, 100, 111111111111);
     } else {
         removeConfirm();
     }
 
-   /* $scope.getStarted = function() {
+    /* $scope.getStarted = function() {
         /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
              console.log(loginCred);
              if (loginCred == undefined || loginCred == null) {
@@ -51,7 +48,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         $state.go('userTabs');
     }*/
 
-}).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http) {
+}).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http, $ionicPopup, $ionicPlatform) {
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
@@ -78,7 +75,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
                     console.log('internale user')
                     $location.path('/openTicket')
                 } else {
-                    $rootScope.ShowToast('failed to Login')
+                    $rootScope.ShowToast('Incorrect Login or passwrd')
                     console.log('failed Login')
                 }
             }, function(err) {
@@ -193,7 +190,7 @@ if(res.data.UserId==0)
         $state.go('login');
     }
     $scope.goBack = function() {
-        
+
         $location.path('/sidemenu');
     }
     /* $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
@@ -236,20 +233,20 @@ if(res.data.UserId==0)
     $scope.senderMsg = "";
     $scope.enquiryObj = {};
     $scope.events = [];
-    $scope.neWMeassage=false;
+    $scope.neWMeassage = false;
     var phnoNum = {};
     var loginObj = {};
-    $scope.Assignee="";
+    $scope.Assignee = "";
     $scope.$on("$ionicView.beforeEnter", function() {
-        $scope.publicMesges=[];
+        $scope.publicMesges = [];
         getAllMessages();
-  $scope .$watch('MessagesList', function(newValue, oldValue) {
-  if(newValue!=oldValue){
-   $scope.neWMeassage=true;   
-  }else{
-    $scope.neWMeassage=false;  
-  }
-});
+        $scope.$watch('MessagesList', function(newValue, oldValue) {
+            if (newValue != oldValue) {
+                $scope.neWMeassage = true;
+            } else {
+                $scope.neWMeassage = false;
+            }
+        });
     })
 
     $scope.publicSignOut = function() {
@@ -305,7 +302,7 @@ if(res.data.UserId==0)
             $rootScope.ShowToast('Enter EventDate')
             return false;
         }
-        $scope.enquiryObj.noOfPersons=parseInt($scope.enquiryObj.noOfPersons);
+        $scope.enquiryObj.noOfPersons = parseInt($scope.enquiryObj.noOfPersons);
 
         $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
 
@@ -398,7 +395,7 @@ if(res.data.UserId==0)
         $scope.imgDes = false;
         $scope.model2.show();
     }
-   
+
     $scope.MessagesList = [];
     var getAllMessages = function() {
         loginObj = JSON.parse(loginCrd.getPhoneNumber());
@@ -407,25 +404,25 @@ if(res.data.UserId==0)
         promise.then(function(res) {
             console.log(res.data[0])
             if (res.data[0] == undefined || res.data[0] == null) {
-                
             } else {
                 console.log(res.data[0])
-            $scope.Assignee = res.data[0].FirstName+" "+res.data[0].LastName;
-            var promise = ApiCallService.GetRequest({
-                TicketNo: res.data[0].TicketNo
-            }, '/GetEnquiryReplybyTicket');
-            promise.then(function(res) {
-                $scope.MessagesList = res.data;
-                console.log($scope.MessagesList)
-            }, function(err) {})
+                $scope.Assignee = res.data[0].FirstName + " " + res.data[0].LastName;
+                var promise = ApiCallService.GetRequest({
+                    TicketNo: res.data[0].TicketNo
+                }, '/GetEnquiryReplybyTicket');
+                promise.then(function(res) {
+                    $scope.MessagesList = res.data;
+                    console.log($scope.MessagesList)
+                }, function(err) {})
 
-        }}, function(err) {
+            }
+        }, function(err) {
             console.log(err);
         })
     }
-    
-    $scope.publicMesges=[];
-    var date=new Date();
+
+    $scope.publicMesges = [];
+    var date = new Date();
     $scope.sendPublicMsg = function() {
         console.log($scope.senderMsg)
         if ($scope.senderMsg == undefined || $scope.senderMsg == "") {
@@ -454,7 +451,10 @@ if(res.data.UserId==0)
                 ReplyFrom: 1,
                 UserId: null
             }
-            $scope.publicMesges.push({message:$scope.publicMsg.Message,date:new Date()});
+            $scope.publicMesges.push({
+                message: $scope.publicMsg.Message,
+                date: new Date()
+            });
             var promise = ApiCallService.PostRequest($scope.publicMsg, '/CreateEnquiryReply')
             promise.then(function(res) {
                 console.log(res)
@@ -547,29 +547,29 @@ if(res.data.UserId==0)
     $scope.hideTime = true;
     $scope.incmessages = [];
     $scope.MessagesLst = [];
-    $scope.Assignee="";
+    $scope.Assignee = "";
     $scope.cusdetail = {};
     $scope.currentUserId;
-    $scope.pushMessage=[];
+    $scope.pushMessage = [];
     console.log($rootScope.loginUser);
     var alternate, isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
     var date = new Date();
     $scope.$on("$ionicView.beforeEnter", function() {
-        $scope.pushMessage=[]
+        $scope.pushMessage = []
         console.log('Hai')
         console.log(date)
         $scope.MessagesLst = myService.get();
         //$scope.Assignee = myService.getAssigne();
         //console.log($scope.Assignee);
-         var enquiryDetalis= myService.getEnquiry();
-       $scope.cusdetail.EnquiryId=enquiryDetalis.EnquiryId;
+        var enquiryDetalis = myService.getEnquiry();
+        $scope.cusdetail.EnquiryId = enquiryDetalis.EnquiryId;
         console.log($scope.cusdetail.EnquiryId);
-     $scope.Assignee=enquiryDetalis.FirstName+" "+enquiryDetalis.LastName;
-     console.log($scope.Assignee);
-         var curUserDetails=JSON.parse(loginCrd.getCurrentUserIdUsername());
-          $scope.currentUserId =curUserDetails.UserId;
-          
-          console.log($scope.currentUserId);
+        $scope.Assignee = enquiryDetalis.FirstName + " " + enquiryDetalis.LastName;
+        console.log($scope.Assignee);
+        var curUserDetails = JSON.parse(loginCrd.getCurrentUserIdUsername());
+        $scope.currentUserId = curUserDetails.UserId;
+
+        console.log($scope.currentUserId);
         var promise = ApiCallService.GetRequest({}, '/GetAllEnquiry').then(function(res) {
             $scope.openmesg = res.data;
             console.log(res.data);
@@ -608,7 +608,7 @@ if(res.data.UserId==0)
             TicketNo: userMsg.TicketNo
         }, '/GetEnquiryReplybyTicket')
         promise.then(function(res) {
-           // myService.setAssigne(userMsg.Assignee)
+            // myService.setAssigne(userMsg.Assignee)
             myService.set(res.data)
             console.log($scope.MessagesLst);
             $location.path('msgList');
@@ -626,7 +626,10 @@ if(res.data.UserId==0)
             ReplyFrom: 2,
             UserId: 3
         }
-      $scope.pushMessage.push({message:$scope.pushMessObj.Message,date:new Date()});
+        $scope.pushMessage.push({
+            message: $scope.pushMessObj.Message,
+            date: new Date()
+        });
         var promise = ApiCallService.PostRequest($scope.pushMessObj, '/CreateEnquiryReply');
         promise.then(function(res) {
             if (res.data == true) {
@@ -686,7 +689,6 @@ if(res.data.UserId==0)
         $rootScope.admin = false;
         loginCrd.removeCredentials();
 
-      
         window.history.back();
 
     }
@@ -773,10 +775,9 @@ if(res.data.UserId==0)
         window.history.back();
     }
 
-})
-.controller('goBackCtrl', function($scope, $location) {
-   
-   $scope.goBack = function() {
+}).controller('goBackCtrl', function($scope, $location) {
+
+    $scope.goBack = function() {
         window.history.back();
     }
 
