@@ -238,7 +238,7 @@ if(res.data.UserId==0)
         window.history.back();
     }
 
-}).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService) {
+}).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService, $ionicPopup) {
 
     $scope.publicMsg = {};
     $scope.imgDes = false;
@@ -272,8 +272,23 @@ if(res.data.UserId==0)
     promise.then(function(res) {
         console.log(res.data)
         $scope.events = res.data;
-    }, function() {
+    }, function(err) {
         console.log('error')
+        if (window.Connection) {
+
+            if (navigator.connection.type == Connection.NONE) {
+
+                $ionicPopup.confirm({
+                    title: 'No Internet Connection',
+                    content: 'Please reconnect and try again.'
+                }).then(function(result) {
+                    if (!result) {
+
+                       ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
     })
     var promise = ApiCallService.GetRequest({}, '/GetAllUsers');
     promise.then(function(res) {
