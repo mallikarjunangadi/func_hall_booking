@@ -1,7 +1,7 @@
 <ion-view  ng-controller="publicFacility" style="background-color:#f6f6f6;">
     <ion-header-bar class="bar ">
         <a class="button icon-left ion-chevron-left button-clear button " style="color:#67aded " ng-click="goBack()"></a>
-        <h1 class="title ">{{Assignee}}</h1>
+        <h1 class="title " ng-if="Assignee!=null+' '+null">{{Assignee}}</h1>
     </ion-header-bar>
     
     <ion-content>
