@@ -40,7 +40,9 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.g
         }
 
     });
-}).config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+})
+ 
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $stateProvider /*.state('mainHome', {
         url: '/mainHome',
@@ -215,6 +217,12 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.g
         url: '/login',
 
         templateUrl: 'templates/login.html'
+
+    })
+    .state('calendar', {
+        url: '/calendar',
+
+        templateUrl: 'templates/calendar.html'
 
     })
     $urlRouterProvider.otherwise('/sideMenu');
