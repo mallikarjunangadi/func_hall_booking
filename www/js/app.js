@@ -219,10 +219,16 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.g
         templateUrl: 'templates/login.html'
 
     })
-    .state('calendar', {
-        url: '/calendar',
+    .state('calendarEvent', {
+        url: '/calendarEvent',
 
-        templateUrl: 'templates/calendar.html'
+        templateUrl: 'templates/calendarEvent.html'
+
+    })
+     .state('funcHallname', {
+        url: '/funcHallname',
+
+        templateUrl: 'templates/funcHallname.html'
 
     })
     $urlRouterProvider.otherwise('/sideMenu');
