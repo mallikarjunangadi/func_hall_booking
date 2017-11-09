@@ -219,6 +219,12 @@ angular.module('hallBooking', ['ionic', 'hallBooking.controller', 'hallBooking.g
         templateUrl: 'templates/login.html'
 
     })
+    .state('eventList', {
+        url: '/eventList',
+
+        templateUrl: 'templates/eventList.html'
+
+    })
     .state('calendar', {
         url: '/calendar',
 

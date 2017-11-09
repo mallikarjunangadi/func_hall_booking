@@ -84,16 +84,23 @@ angular.module('hallBooking.service', [])
         var savedData;
         var saveAssign;
         var saveEnquiry={};
+        var eventList={};
         //var saveaData;
         function set(data) {
             console.log(data);
             savedData = data;
         }
-
+         
         function get() {
             return savedData;
         }
-
+        function setEvent(data){
+          eventList.HallId=data.HallId;
+          eventList.Month=data.Month;
+        }
+        function getEvent(){
+            return eventList;
+        }
         function setAssigne(data){
           saveAssign=data;
         }
@@ -119,7 +126,9 @@ angular.module('hallBooking.service', [])
             setAssigne:setAssigne,
             getAssigne:getAssigne,
             setEnquiry:setEnquiry,
-            getEnquiry:getEnquiry
+            getEnquiry:getEnquiry,
+            setEvent:setEvent,
+            getEvent:getEvent
             //setAggent: setAggent,
             //getAggent: getAggent,
         }

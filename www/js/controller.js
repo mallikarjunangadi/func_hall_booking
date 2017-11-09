@@ -768,17 +768,17 @@ if(res.data.UserId==0)
         console.log('Hai')
         $scope.imageArray = [];
         if (name == 'droyale') {
-            $scope.imageArray = ['img/106.jpg', 'img/002.jpg', 'img/003.jpg', 'img/006.jpg', 'img/009.jpg', 'img/105new.jpg']
+            $scope.imageArray = ['img/IRDKL_Banquet (25).jpg', 'img/IRDKL_Chair W Cover (37).jpg', 'img/IRDKL_ExtrasConference (2).jpg', 'img/Pre Conference Hall Level 17 (2).jpg', 'img/IRDKL_Banquet (37)a.jpg', 'img/IRDKL_Chair W Cover (28).jpg']
 
             $scope.srcImg = $scope.imageArray[index];
             console.log($scope.srcImg)
         } else if (name == 'legrand') {
-            $scope.imageArray = ['img/600new.jpg', 'img/301.jpg', 'img/303new.jpg', 'img/205.jpg', 'img/302new.jpg', 'img/301.jpg']
+            $scope.imageArray = ['img/IRDKL_PreConference (11).jpg', 'img/IRDKL_PreConference (10).jpg', 'img/IRDKL_PreConference (9).jpg', 'img/IRDKL_Conference Room (1).jpg', 'img/IRDKL_Conference Room (1).jpg', 'img/DSC_2312.jpg','img/IRDKl_ToiletEntrance (2).jpg']
 
             $scope.srcImg = $scope.imageArray[index];
             console.log($scope.srcImg)
         } else if (name == 'prefunction') {
-            $scope.imageArray = ['img/2.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/4.jpg']
+            $scope.imageArray = ['img/Pre Conference Hall Level 17 (1).jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/2.jpg']
             $scope.srcImg = $scope.imageArray[index];
             console.log($scope.srcImg)
         } else if (name == 'catering') {
@@ -811,12 +811,21 @@ if(res.data.UserId==0)
     }
 
 })
-.controller('CalendarCtrl', function ($scope) {
-
+.controller('CalendarCtrl', function ($scope,ApiCallService,$state,myService) {
+$scope.hallEvents=[];
     $scope.back = function() {
         window.history.back();
-        
-    }
+ }
+ $scope.$on("$ionicView.beforeEnter", function() {
+   getEventList(myService.getEvent())  
+ })
+ var promise = ApiCallService.GetRequest({}, '/GetALLHalls');
+    promise.then(function(res) {
+    $scope.hallEvents= res.data;
+    }, function() {
+        console.log('error')
+    })
+
 
 var mesos = [
     'January',
@@ -830,7 +839,7 @@ var mesos = [
     'September',
     'October',
     'November',
-    'Desember'
+    'December'
 ];
 
 var dies = [
@@ -859,10 +868,23 @@ Number.prototype.pad = function(num) {
         str += '0';
     return str += this.toString();
 }
+function getEventList(eventList){
+    console.log(eventList);
+    $scope.dat=[];
+    eventList.Month=eventList.Month+1;
+    var promise = ApiCallService.GetRequest(eventList, '/SelectAllBookingbyHallMonth');
+        promise.then(function(res) {
+            console.log(res.data);
+          for(var i=0;i<res.data.length;i++) {
+            $scope.dat[i]= parseInt(res.data[i].EventDate.slice(0, 2));
+          console.log($scope.dat[i]);
+          } 
+        })
+}
 
 function calendari(widget, data)
 {
-
+   console.log(data.getMonth());
     var original = widget.getElementsByClassName('actiu')[0];
 
     if(typeof original === 'undefined')
@@ -890,7 +912,7 @@ function calendari(widget, data)
                    data.getFullYear() + '/' +
                    data.getMonth().pad(2) + '/' +
                    data.getDate().pad(2))
-
+     $scope.currentMonth=data.getMonth();
     var fila = document.createElement('tr');
     var titol = document.createElement('th');
     titol.setAttribute('colspan', 7);
@@ -935,11 +957,11 @@ function calendari(widget, data)
     /* Obtinc el dia que va acabar el mes anterior */
     var inici_mes =
         new Date(data.getFullYear(), data.getMonth(), -1).getDay();
-
+      console.log(inici_mes);
     var actual = new Date(data.getFullYear(),
 			  data.getMonth(),
 			  -inici_mes);
-
+       
     /* 6 setmanes per cobrir totes les posiblitats
      *  Quedaria mes consistent alhora de mostrar molts mesos 
      *  en una quadricula */
@@ -955,7 +977,7 @@ function calendari(widget, data)
 	    cela.appendChild(span);
 
             span.innerHTML = actual.getDate();
-
+            
             if(actual.getMonth() !== data.getMonth())
                 cela.className = 'fora';
 
@@ -963,7 +985,13 @@ function calendari(widget, data)
             if(data.getDate() == actual.getDate() &&
 	       data.getMonth() == actual.getMonth())
 		cela.className = 'avui';
-
+		if($scope.dat!=undefined){
+		console.log($scope.dat.length)
+		for(var i=0;i<$scope.dat.length;i++){
+		    console.log($scope.dat[i])
+     if(actual.getDate()==$scope.dat[i]){
+        cela.className = 'avui'; 
+     }}}
 	    actual.setDate(actual.getDate()+1);
             fila.appendChild(cela);
         }
@@ -986,6 +1014,16 @@ function calendari(widget, data)
     }, 1000);
 
 }
+if(document.getElementById('calendari')!=null){
+ calendari(document.getElementById('calendari'), new Date());
+ }
 
-calendari(document.getElementById('calendari'), new Date());
+$scope.event=function(eventId){
+var events={};
+events.HallId=eventId;
+events.Month=new Date().getMonth();
+console.log(events);
+myService.setEvent(events)
+ $state.go('calendar');
+}
 })
