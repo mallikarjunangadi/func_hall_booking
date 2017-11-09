@@ -1014,6 +1014,7 @@ function calendari(widget, data)
     }, 1000);
 
 }
+
 if(document.getElementById('calendari')!=null){
  calendari(document.getElementById('calendari'), new Date());
  }
@@ -1027,3 +1028,30 @@ myService.setEvent(events)
  $state.go('calendar');
 }
 })
+
+
+calendari(document.getElementById('calendari'), new Date());
+
+ })
+.controller('hallnameCtrl', function ($scope, $http, $location) {
+
+    $scope.back = function() {
+        window.history.back();
+        
+    }
+
+    $scope.calendarEvent = function(x) {
+        console.log(x);
+        
+        $location.path('calendarEvent');
+    }
+ $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetALLHalls").then(function(response) {
+        console.log(response);
+       $scope.hallName = response.data;
+        console.log(response.data);
+    })
+
+
+
+ })
+

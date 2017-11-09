@@ -1,0 +1,20 @@
+<ion-pane  ng-controller="hallnameCtrl" style="background-color:#f6f6f6;">
+    <ion-header-bar class="bar ">
+
+        <a class="button icon-left ion-android-arrow-back button-clear button " style="color:green; " ng-click="back()"></a>
+        <h5 class="title " style="color:green;">Function Hall Type</h5>
+
+   
+    </ion-header-bar>
+    <ion-content>
+<ul class="list" >
+  <li class="item" ng-repeat="x in hallName" ng-click="calendarEvent(x)">{{x.HallName}}
+ <i class="icon ion-chevron-right" style="color:#67aded;float:right;"></i>
+
+  </li>
+ 
+</ul>
+
+
+</ion-content>
+</ion-pane>
