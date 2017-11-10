@@ -811,14 +811,32 @@ if(res.data.UserId==0)
     }
 
 })
-.controller('CalendarCtrl', function ($scope,ApiCallService,$state,myService) {
+.controller('CalendarCtrl', function ($rootScope,$scope,ApiCallService,$state,myService) {
 $scope.hallEvents=[];
-    $scope.back = function() {
-        window.history.back();
- }
+
+$scope.onezoneDatepicker = {
+    date: new Date(), // MANDATORY                    
+    mondayFirst: false,             
+    disablePastDays: false,
+    disableSwipe: false,
+    disableWeekend: false,
+    showDatepicker: true,
+    showTodayButton: true,
+    calendarMode: false,
+    hideCancelButton: false,
+    hideSetButton: false,
+    highlights: [],
+   callback: function(value){
+       console.log(value);
+    }
+};
+
+
  $scope.$on("$ionicView.beforeEnter", function() {
-   getEventList(myService.getEvent())  
+     console.log('I am before')
+  $rootScope.getEventList(myService.getEvent(),new Date().getMonth()+1)  
  })
+
  var promise = ApiCallService.GetRequest({}, '/GetALLHalls');
     promise.then(function(res) {
        console.log($scope.hallEvents)
@@ -827,6 +845,40 @@ $scope.hallEvents=[];
         console.log('error')
     })
 
+$rootScope.getEventList=function (eventList,month) {
+   // $scope.onezoneDatepicker.highlights=[]
+    eventList.Month = month;
+    console.log(eventList);
+    var promise = ApiCallService.GetRequest(eventList, '/SelectAllBookingbyHallMonth');
+    promise.then(function(res) {
+        console.log(res.data);
+           
+        for (var i = 0; i < res.data.length; i++) {
+           var d=new Date(parseInt(res.data[i].EventDate.slice(6)),parseInt( res.data[i].EventDate.slice(3, 5))-1, parseInt(res.data[i].EventDate.slice(0, 2)))
+            console.log(d);
+            $scope.onezoneDatepicker.highlights.push({
+                date: d,
+                color: '#8FD4D9',
+                
+            });
+          
+        }
+    })
+}
+
+
+$scope.event=function(eventId){
+var events={};
+events.HallId=eventId;
+//events.Month=new Date().getMonth();
+console.log(events);
+myService.setEvent(events)
+ $state.go('calendarEvent');
+}
+
+$scope.back = function() {
+ window.history.back();
+ }
 
 /*var mesos = [
     'January',
@@ -869,48 +921,6 @@ Number.prototype.pad = function(num) {
         str += '0';
     return str += this.toString();
 }*/
-function getEventList(eventList){
-    console.log(eventList);
-    $scope.dat=[];
-    eventList.Month=eventList.Month+1;
-    var promise = ApiCallService.GetRequest(eventList, '/SelectAllBookingbyHallMonth');
-        promise.then(function(res) {
-            console.log(res.data);
-          for(var i=0;i<res.data.length;i++) {
-            $scope.dat[i]= parseInt(res.data[i].EventDate.slice(0, 2));
-      $scope.onezoneDatepicker.highlights.push({
-        date: new Date(res.data[i].EventDate.slice(6),res.data[i].EventDate.slice(3, 5)-1,res.data[i].EventDate.slice(0, 2)),
-        color: '#8FD4D9',
-        textColor: '#fff'
-    } );
-          console.log($scope.dat[i]);
-          } 
-        })
-}
-$scope.onezoneDatepicker = {
-    date: new Date(), // MANDATORY                    
-    mondayFirst: false,             
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],                 
-    daysOfTheWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],   
-    //startDate: startDate,           
-    //endDate: endDate,                   
-    disablePastDays: false,
-    disableSwipe: false,
-    disableWeekend: false,
-    //disableDates: disableDates,
-    //disableDaysOfWeek: disableDaysOfWeek,
-    showDatepicker: true,
-    showTodayButton: true,
-    calendarMode: false,
-    hideCancelButton: false,
-    hideSetButton: false,
-    highlights: [
-    ],
-    callback: function(value){
-        // your code
-    }
-};
-
 /*function calendari(widget, data)
 {
    console.log(data.getMonth());
@@ -1048,14 +1058,7 @@ if(document.getElementById('calendari')!=null){
  calendari(document.getElementById('calendari'), new Date());
  }*/
 
-$scope.event=function(eventId){
-var events={};
-events.HallId=eventId;
-events.Month=new Date().getMonth();
-console.log(events);
-myService.setEvent(events)
- $state.go('calendarEvent');
-}
+
 })
 
 

@@ -96,7 +96,7 @@ angular.module('hallBooking.service', [])
         }
         function setEvent(data){
           eventList.HallId=data.HallId;
-          eventList.Month=data.Month;
+          //eventList.Month=data.Month;
         }
         function getEvent(){
             return eventList;
