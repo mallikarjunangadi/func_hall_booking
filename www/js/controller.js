@@ -821,13 +821,14 @@ $scope.hallEvents=[];
  })
  var promise = ApiCallService.GetRequest({}, '/GetALLHalls');
     promise.then(function(res) {
+       console.log($scope.hallEvents)
     $scope.hallEvents= res.data;
     }, function() {
         console.log('error')
     })
 
 
-var mesos = [
+/*var mesos = [
     'January',
     'February',
     'Marçh',
@@ -867,7 +868,7 @@ Number.prototype.pad = function(num) {
     for(var i = 0; i < (num-this.toString().length); i++)
         str += '0';
     return str += this.toString();
-}
+}*/
 function getEventList(eventList){
     console.log(eventList);
     $scope.dat=[];
@@ -877,12 +878,40 @@ function getEventList(eventList){
             console.log(res.data);
           for(var i=0;i<res.data.length;i++) {
             $scope.dat[i]= parseInt(res.data[i].EventDate.slice(0, 2));
+      $scope.onezoneDatepicker.highlights.push({
+        date: new Date(res.data[i].EventDate.slice(6),res.data[i].EventDate.slice(3, 5)-1,res.data[i].EventDate.slice(0, 2)),
+        color: '#8FD4D9',
+        textColor: '#fff'
+    } );
           console.log($scope.dat[i]);
           } 
         })
 }
+$scope.onezoneDatepicker = {
+    date: new Date(), // MANDATORY                    
+    mondayFirst: false,             
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],                 
+    daysOfTheWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],   
+    //startDate: startDate,           
+    //endDate: endDate,                   
+    disablePastDays: false,
+    disableSwipe: false,
+    disableWeekend: false,
+    //disableDates: disableDates,
+    //disableDaysOfWeek: disableDaysOfWeek,
+    showDatepicker: true,
+    showTodayButton: true,
+    calendarMode: false,
+    hideCancelButton: false,
+    hideSetButton: false,
+    highlights: [
+    ],
+    callback: function(value){
+        // your code
+    }
+};
 
-function calendari(widget, data)
+/*function calendari(widget, data)
 {
    console.log(data.getMonth());
     var original = widget.getElementsByClassName('actiu')[0];
@@ -954,7 +983,7 @@ function calendari(widget, data)
     fila.innerHTML += '<th>' + dies_abr[0] + '</th>';
     e.appendChild(fila);
 
-    /* Obtinc el dia que va acabar el mes anterior */
+    /* Obtinc el dia que va acabar el mes anterior 
     var inici_mes =
         new Date(data.getFullYear(), data.getMonth(), -1).getDay();
       console.log(inici_mes);
@@ -964,7 +993,7 @@ function calendari(widget, data)
        
     /* 6 setmanes per cobrir totes les posiblitats
      *  Quedaria mes consistent alhora de mostrar molts mesos 
-     *  en una quadricula */
+     *  en una quadricula 
     for(var s = 0; s < 6; s++)
     {
         var fila = document.createElement('tr');
@@ -981,7 +1010,7 @@ function calendari(widget, data)
             if(actual.getMonth() !== data.getMonth())
                 cela.className = 'fora';
 
-            /* Si es avui el decorem */
+            /* Si es avui el decorem 
             if(data.getDate() == actual.getDate() &&
 	       data.getMonth() == actual.getMonth())
 		cela.className = 'avui';
@@ -1017,7 +1046,7 @@ function calendari(widget, data)
 
 if(document.getElementById('calendari')!=null){
  calendari(document.getElementById('calendari'), new Date());
- }
+ }*/
 
 $scope.event=function(eventId){
 var events={};
@@ -1025,14 +1054,11 @@ events.HallId=eventId;
 events.Month=new Date().getMonth();
 console.log(events);
 myService.setEvent(events)
- $state.go('calendar');
+ $state.go('calendarEvent');
 }
 })
 
 
-calendari(document.getElementById('calendari'), new Date());
-
- })
 .controller('hallnameCtrl', function ($scope, $http, $location) {
 
     $scope.back = function() {
