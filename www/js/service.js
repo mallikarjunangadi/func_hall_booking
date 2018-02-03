@@ -6,7 +6,11 @@ angular.module('hallBooking.service', [])
 
                 var req = {
                     method: "POST",
-                    url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
+                   // url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
+                    url: 'http://58.26.82.11/tsrapitest/APIService.svc' + Url,
+                  // http://58.26.82.11/tsrapitest/APIService.svc
+                  // http://58.26.82.11/tsrapitest/APIService.svc
+
                     data: JSON.stringify(doc2send),
                     headers: {
 
@@ -28,7 +32,7 @@ angular.module('hallBooking.service', [])
                 var deferred = $q.defer();
                 var options = {
                     method: "GET",
-                    url: 'http://210.48.150.218/TSRAPI/APIService.svc' + Url,
+                    url: ' http://58.26.82.11/tsrapitest/APIService.svc' + Url,
                     params: doc2send,
                     header: {
                         "Content-Type": 'application/json'

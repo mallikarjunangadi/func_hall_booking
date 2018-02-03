@@ -1,5 +1,6 @@
 angular.module('hallBooking.globalcontroller', [])
 .controller('global', function($rootScope, $scope,$cordovaToast){
+     $rootScope.calenderView=false;
  $rootScope.ShowToast = function(message, longx) {
         if (window.cordova) {
             if (longx == true) {

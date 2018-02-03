@@ -314,10 +314,10 @@
     display: none; 
 }
 #enquiryForm .item-input{
-  margin: 3vh auto;
-    border-radius: 1vh;
-    height: 37px!important;
-    padding: 4px 24px 8px 28px;
+  /* margin: 3vh auto; */
+  border-radius: 1vh;
+  height: 37px!important;
+  padding: 4px 24px 8px 28px;
 }
 
 #signUpForm .item-input {
@@ -414,17 +414,17 @@ $stable: #f8f8f8 !default; .scroll {
 }
 
 #signUpBackDiv {
-    height: 60px;
+    height: 50%;
     width: 100%;
     text-align: center;
     margin-top: 2vh;
 }
 
 #signUpBackDiv a {
-    font-size: 20px;
+    font-size: 25px;
     text-align:center;
     margin-bottom: 10px;
-    border-radius: 50% !important;
+    border-radius: 50%;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
@@ -432,7 +432,6 @@ $stable: #f8f8f8 !default; .scroll {
     transition: 0.2s linear !important;
     -webkit-transition-property: -webkit-transform, all !important;
     transition-property: transform, all !important;
-    
 }
 
 #signUpBackDiv p {
@@ -702,7 +701,7 @@ margin:10px;
     border-color: grey!important;
     text-align:center;
     color: White !important;
-    
+    background-color: #2d3243
 }
 .headerBar{
 background-color:white!important;
@@ -877,4 +876,30 @@ footer a,
 footer a:link {
   color: #fff;
   text-decoration: none;
+}
+
+
+.scroll-container{
+ width: 500px;
+height: 500px;
+    
+}
+#myImage img{
+   	transition: all 3s ease;
+  -moz-transition: all 3s ease;
+  -ms-transition: all 3s ease;
+  -webkit-transition: all 3s ease;
+  -o-transition: all 3s ease; 
+}
+#myImage img:hover {
+  transform: scale(3.5);
+  -moz-transform: scale(3.5);
+  -webkit-transform: scale(3.5);
+  -o-transform: scale(3.5);
+  -ms-transform: scale(3.5); /* IE 9 */
+}
+
+.onezone-content{
+  margin-top:50px;
+ 
 }

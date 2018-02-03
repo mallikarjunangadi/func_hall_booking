@@ -3,8 +3,8 @@
   "app_id": "",
   "type": "ionic1",
   "integrations": {
-    "gulp": {},
-    "cordova": {}
+    "cordova": {},
+    "gulp": {}
   },
   "watchPatterns": [
     "scss/**/*",
@@ -12,5 +12,8 @@
     "!www/lib/**/*",
     "!www/**/*.map"
   ],
-  "dev_push": true
+  "dev_push": true,
+  "gulp": {
+    "enabled": false
+  }
 }

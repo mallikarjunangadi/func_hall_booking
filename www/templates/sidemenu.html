@@ -22,7 +22,7 @@
         <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play=true show-pager="true" does-continue="true" >
                 <ion-slide>
             <ion-slide-page >
-             <img src="img/IRDKL_Stage (4) (1).jpg" style="height:auto;width:100%"></img>
+             <img src="img/b2.jpg" style="height:auto;width:100%"></img>
                 <div class="item item-text-wrap slidingCard">
                 
                    <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
@@ -33,7 +33,7 @@
         </ion-slide>
         <ion-slide >
             <ion-slide-page >
-            <img src="img/IRDKL_Banquet (37)a.jpg" style="height:auto;width:100%"></img>
+            <img src="img/b3.jpg" style="height:auto;width:100%"></img>
                 <div class="item item-text-wrap slidingCard">
                 
                    <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
@@ -44,7 +44,33 @@
         </ion-slide>
         <ion-slide >
             <ion-slide-page >
-            <img src="img/Pre Conference Hall Level 17 (1).jpg" style="height:auto;width:100%"></img>
+            <img src="img/slide6.jpg" style="height:auto;width:100%"></img>
+                <div class="item item-text-wrap slidingCard">
+                
+                   <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
+                   <p>You get dedicated event executive for your every single event, they customize our halls according to your needs</p>
+                    
+                </div>
+                
+            </ion-slide-page>
+            
+        </ion-slide>
+        <ion-slide >
+            <ion-slide-page >
+            <img src="img/slide3.jpg" style="height:auto;width:100%"></img>
+                <div class="item item-text-wrap slidingCard">
+                
+                   <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
+                   <p>You get dedicated event executive for your every single event, they customize our halls according to your needs</p>
+                    
+                </div>
+                
+            </ion-slide-page>
+            
+        </ion-slide>
+        <ion-slide >
+            <ion-slide-page >
+            <img src="img/slide1.jpg" style="height:auto;width:100%"></img>
                 <div class="item item-text-wrap slidingCard">
                 
                    <h2 style="margin:2vh 0;">Welcome to TSR Hall booking app</h2>
@@ -82,15 +108,18 @@
         <ion-item menu-close class="sideMenu"  href="#/enquiry">
           Enquiry
         </ion-item>
-        <ion-item menu-close class="sideMenu" href="#/publicView">
+    <!--    <ion-item menu-close class="sideMenu" href="#/publicView">
           Public Chat
-        </ion-item>
+        </ion-item> !-->
         <ion-item menu-close class="sideMenu" ng-hide="true" href="#/userTabs">
           Public Facilites
         </ion-item>
          
          <ion-item menu-close class="sideMenu"  href="#/hall">
           Our Halls
+        </ion-item>
+         <ion-item ng-show="calenderView" menu-close  class="sideMenu" href="#/eventList">
+          Calendar
         </ion-item>
        
         <ion-item menu-close class="sideMenu"  href="#/business">
@@ -112,14 +141,19 @@
         <ion-item menu-close  class="sideMenu"  href="#/gallery">
           Gallery
         </ion-item>
-          <ion-item menu-close  class="sideMenu" href="#/login">
+          <ion-item menu-close  ng-if="!loginFlag" style="padding:16px 49px 16px 16px"class="sideMenu" ng-click=loginView()>
           Login
         </ion-item>
-        <ion-item menu-close  class="sideMenu" href="#/eventList">
-          calendar
+            </ion-item>
+          <ion-item menu-close  ng-if="loginFlag" style="padding:16px 49px 16px 16px"class="sideMenu" ng-click=loginView()>
+          Logout
         </ion-item>
+
+       
       </ion-list>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
 </ion-view>
+
+ng-if="comment.parent === 0"

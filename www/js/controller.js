@@ -32,6 +32,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     } else {
         removeConfirm();
     }
+    
 
     /* $scope.getStarted = function() {
         /* loginCred = JSON.parse(loginCrd.getLoinCredentials());
@@ -48,7 +49,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
         $state.go('userTabs');
     }*/
 
-}).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http, $ionicPopup, $ionicPlatform) {
+}).controller('loginCtrl', function(loginCrd, $scope, $state, ApiCallService, $location, $rootScope, $http, $ionicPopup, $ionicPlatform, $ionicLoading, $timeout) {
 
     $scope.loginObj = {};
     $rootScope.loginUser = "";
@@ -57,21 +58,22 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     $scope.enquiry = function() {
         $state.go('publicEnquiry');
     }
-    loginCred = JSON.parse(loginCrd.getLoinCredentials());
-    console.log(loginCred);
+     $scope.$on("$ionicView.beforeEnter", function() {
+         console.log('Hi am in before Enter Login')
+       loginCred =JSON.parse(loginCrd.getLoinCredentials())
     if (loginCred != undefined || loginCred != null) {
-
+         
         if (loginCred.username != undefined && loginCred.password != undefined) {
-            /*var promise = ApiCallService.GetRequest(loginCred, '/Login')
+          $rootScope.calenderView=true;
+           var promise = ApiCallService.GetRequest(loginCred, '/Login')
             promise.then(function(res) {
                 console.log(res)
                 if (res.data.UserId == 1) {
                     $rootScope.admin = true;
-                    console.log('admin')
-                    loginCrd.setCurrentUserIdUsername(res.data);
+                     loginCrd.setCurrentUserIdUsername(res.data);
                     $location.path('/openTicket')
                 } else if (res.data.UserId > 1) {
-                    loginCrd.setCurrentUserIdUsername(res.data);
+                   loginCrd.setCurrentUserIdUsername(res.data);
                     console.log('internale user')
                     $location.path('/openTicket')
                 } else {
@@ -81,16 +83,32 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             }, function(err) {
                 $rootScope.ShowToast('failed to Login')
                 console.log(err)
-            })*/
+            })
 
         }
     }
+     })
+     
+   
 
     $scope.publicLogin = function() {
         $state.go('publicLogin');
     }
     //loginCrd.removeCredentials();
     $scope.login = function() {
+
+      $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
+
+   $timeout(function () {
+    $ionicLoading.hide();
+  }, 2000);
+  
 
         if (!$scope.loginObj.username) {
             console.log('email id is required');
@@ -101,19 +119,27 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
             return;
         }
 
-        loginCrd.setLoginCredentials($scope.loginObj);
-        console.log($scope.loginObj);
+        
+       
         $rootScope.loginUser = $scope.loginObj.username;
         var promise = ApiCallService.GetRequest($scope.loginObj, '/Login')
         promise.then(function(res) {
             console.log(res)
             if (res.data.UserId == 1) {
+                loginCrd.setLoginCredentials($scope.loginObj);
                 loginCrd.setCurrentUserIdUsername(res.data);
                 $rootScope.admin = true
                 console.log('admin')
+                $rootScope.calenderView=true;
+                $scope.loginObj={}
                 $location.path('/openTicket')
+                
             } else if (res.data.UserId > 1) {
+                 console.log($scope.loginObj);
+                $rootScope.calenderView=true;
+                loginCrd.setLoginCredentials($scope.loginObj);
                 loginCrd.setCurrentUserIdUsername(res.data);
+                $scope.loginObj={}
                 $location.path('/openTicket')
                 console.log('internale user')
             } else {
@@ -139,6 +165,8 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
 
         })
 
+    
+
     }
     $scope.publicView = function() {
         if ($scope.loginObj.PhoneNumber == undefined) {
@@ -158,6 +186,7 @@ angular.module('hallBooking.controller', []).controller('mainHomeCtrl', function
     }
     $scope.intrernalogin = function() {
         console.log('login func');
+
 
         /* var req = {
                 method: 'get',
@@ -238,7 +267,7 @@ if(res.data.UserId==0)
         window.history.back();
     }
 
-}).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService, $ionicPopup) {
+}).controller('publicFacility', function($filter, loginCrd, $rootScope, $scope, $state, $ionicModal, ApiCallService, ionicTimePicker, $ionicPopup) {
 
     $scope.publicMsg = {};
     $scope.imgDes = false;
@@ -251,18 +280,95 @@ if(res.data.UserId==0)
     var phnoNum = {};
     var loginObj = {};
     $scope.Assignee = "";
+
+      var ipObj1 = {
+    callback: function (val) {      //Mandatory
+      if (typeof (val) === 'undefined') {
+        console.log('Time not selected');
+      } else {
+        var selectedTime = new Date(val * 1000);
+        console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+    // $scope.enquiryObj.FromTime=''+ selectedTime.getUTCHours()+':'+ selectedTime.getUTCMinutes();
+     var suffix = (selectedTime.getUTCHours() >= 12) ? "PM":"AM"; 
+         hours = (selectedTime.getUTCHours() > 12)? selectedTime.getUTCHours() -12 : selectedTime.getUTCHours();
+            hours = (hours == '00')? 12 : hours;
+             $scope.enquiryObj.FromTime=''+ hours+':'+ selectedTime.getUTCMinutes() + ' ' + suffix;
+      }
+    },
+    inputTime: 50400,   //Optional
+    format: 12,         //Optional
+    step: 30,           //Optional
+    setLabel: 'Set'    //Optional
+  };
+  
+     var ipObj2 = {
+    callback: function (val) {      //Mandatory
+      if (typeof (val) === 'undefined') {
+        console.log('Time not selected');
+      } else {
+        var selectedTime = new Date(val * 1000);
+        console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), 'H :', selectedTime.getUTCMinutes(), 'M');
+   //   $scope.enquiryObj.ToTime=''+ selectedTime.getUTCHours()+':'+ selectedTime.getUTCMinutes();
+      var suffix = (selectedTime.getUTCHours() >= 12) ? "PM":"AM"; 
+         hours = (selectedTime.getUTCHours() > 12)? selectedTime.getUTCHours() -12 : selectedTime.getUTCHours();
+            hours = (hours == '00')? 12 : hours;
+             $scope.enquiryObj.ToTime=''+ hours+':'+ selectedTime.getUTCMinutes() + ' ' + suffix;
+
+
+     // $scope.enquiryObj.ToTime = ((selectedTime.getUTCHours + 11) % 12 + 1) + selectedTime.getUTCMinutes() + '' + suffix;
+      console.log($scope.enquiryObj.FromTime);
+      }
+       
+    },
+    inputTime: 50400,   //Optional
+    format: 12,         //Optional
+    step: 30,           //Optional
+    setLabel: 'Set'    //Optional
+  };  
+
+    $scope.StartTimePicker = function(){
+// console.log(''+ipObj1.selectedTime.getUTCHours()+ipObj1.selectedTime.getUTCMinutes());
+        ionicTimePicker.openTimePicker(ipObj1);
+       
+
+    }
+
+ $scope.EndTimePicker = function(){
+     ionicTimePicker.openTimePicker(ipObj2);
+    // $scope.enquiryObj.FromTime= ipObj2.SelectedTime;
+
+    }
+
     $scope.$on("$ionicView.beforeEnter", function() {
         $scope.publicMesges = [];
         getAllMessages();
-        $scope.$watch('MessagesList', function(newValue, oldValue) {
+      
+       /* $scope.$watch('MessagesList', function(newValue, oldValue) {
             if (newValue != oldValue) {
                 $scope.neWMeassage = true;
             } else {
                 $scope.neWMeassage = false;
             }
-        });
-    })
+        });*/
 
+        
+    })
+     console.log('Hi am in Public View')
+        loginCred =JSON.parse(loginCrd.getLoinCredentials());
+        console.log(loginCred)
+       if(loginCred!=undefined||loginCred!=null){
+           $rootScope.calenderView=true;
+        }
+       
+$scope.loginView=function(){
+         loginCred =JSON.parse(loginCrd.getLoinCredentials());
+         if(loginCred!=undefined||loginCred!=null){
+           $state.go('openTicket');
+        }else{
+            $rootScope.loginFlag=true;
+           $state.go('login');
+        }
+        }
     $scope.publicSignOut = function() {
 
         loginCrd.removeCredentials()
@@ -331,10 +437,19 @@ if(res.data.UserId==0)
             $rootScope.ShowToast('Enter EventDate')
             return false;
         }
-        $scope.enquiryObj.noOfPersons = parseInt($scope.enquiryObj.noOfPersons);
+        $scope.enquiryObj.NoOfPersons = parseInt($scope.enquiryObj.NoOfPersons);
 
         $scope.enquiryObj.EventDate = $filter('date')($scope.enquiryObj.EventDate, 'dd/MM/yyyy');
 
+   if ($scope.enquiryObj.FromTime == undefined || $scope.enquiryObj.EventDate == "") {
+            $rootScope.ShowToast('Enter Start Time')
+            return false;
+        }
+
+   if ($scope.enquiryObj.ToTime == undefined || $scope.enquiryObj.EventDate == "") {
+            $rootScope.ShowToast('Enter End Time')
+            return false;
+        }
         console.log($scope.enquiryObj);
         var promise = ApiCallService.PostRequest($scope.enquiryObj, '/CreateEnquiry');
 
@@ -569,7 +684,7 @@ if(res.data.UserId==0)
             });
         }
     }
-}).controller('interCtrl', function($timeout, $http, $ionicHistory, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService, loginCrd) {
+}).controller('interCtrl', function($state,$timeout, $http, $ionicHistory, $ionicScrollDelegate, $location, myService, $scope, $rootScope, ApiCallService, loginCrd) {
     $scope.data = {};
     $scope.myId = '12345';
     $scope.messages = [];
@@ -619,12 +734,16 @@ if(res.data.UserId==0)
             console.log(response.data);
         })*/
 
-    $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetAllUsers").then(function(response) {
+    $http.get("http://58.26.82.11/tsrapitest/APIService.svc/GetAllUsers").then(function(response) {
         console.log(response);
         $scope.aggent = response.data;
         console.log(response.data);
     })
 
+
+    $scope.goBack=function(){
+        $state.go('sideMenu')
+    }
     $scope.msgList = function(x) {
         console.log(x);
         myService.set(x);
@@ -717,8 +836,9 @@ if(res.data.UserId==0)
         console.log('Hai')
         $rootScope.admin = false;
         loginCrd.removeCredentials();
-
+        $rootScope.calenderView=false;
         window.history.back();
+        $rootScope.loginFlag=false;
 
     }
 
@@ -811,7 +931,7 @@ if(res.data.UserId==0)
     }
 
 })
-.controller('CalendarCtrl', function ($rootScope,$scope,ApiCallService,$state,myService) {
+.controller('CalendarCtrl', function ($rootScope,$scope,ApiCallService,$state,myService,$ionicModal) {
 $scope.hallEvents=[];
 
 $scope.onezoneDatepicker = {
@@ -827,44 +947,93 @@ $scope.onezoneDatepicker = {
     hideSetButton: false,
     highlights: [],
    callback: function(value){
-       console.log(value);
+      
     }
 };
 
 
  $scope.$on("$ionicView.beforeEnter", function() {
      console.log('I am before')
-  $rootScope.getEventList(myService.getEvent(),new Date().getMonth()+1)  
+ $rootScope.getEventList(myService.getEvent(),new Date().getMonth()+1)  
  })
 
  var promise = ApiCallService.GetRequest({}, '/GetALLHalls');
     promise.then(function(res) {
-       console.log($scope.hallEvents)
+      
     $scope.hallEvents= res.data;
+     console.log($scope.hallEvents)
     }, function() {
         console.log('error')
     })
+var eventDetailsObj={};
 
 $rootScope.getEventList=function (eventList,month) {
-   // $scope.onezoneDatepicker.highlights=[]
-    eventList.Month = month;
-    console.log(eventList);
-    var promise = ApiCallService.GetRequest(eventList, '/SelectAllBookingbyHallMonth');
+  var eventArr=[];
+  eventDetailsObj={};
+  eventList.Month = month;
+ var promise = ApiCallService.GetRequest(eventList, '/SelectAllBookingbyHallMonth');
     promise.then(function(res) {
-        console.log(res.data);
-           
+     //eventDetailsArr=res.data;// $scope.onezoneDatepicker.highlights=[]
+    console.log(res);
         for (var i = 0; i < res.data.length; i++) {
+            console.log(res.data[i].EventDate);
+            console.log(res.data[i]);
+            if(eventDetailsObj[res.data[i].EventDate]!=undefined){
+                eventArr.push(eventDetailsObj[res.data[i].EventDate]);
+                eventArr.push({data:res.data[i]});
+               
+               eventDetailsObj[res.data[i].EventDate]=eventArr;
+            }else{
+            eventDetailsObj[res.data[i].EventDate]={data:res.data[i]};
+           }
            var d=new Date(parseInt(res.data[i].EventDate.slice(6)),parseInt( res.data[i].EventDate.slice(3, 5))-1, parseInt(res.data[i].EventDate.slice(0, 2)))
             console.log(d);
+            $scope.onezoneDatepicker.date=d;
             $scope.onezoneDatepicker.highlights.push({
                 date: d,
-                color: '#8FD4D9',
-                
+             
             });
           
         }
+        console.log(eventDetailsObj['23/11/2017']);
+
     })
 }
+var selectEventDetils=[];
+
+$rootScope.eventDiscription=(selecteDte)=>{
+    console.log(selecteDte);
+    console.log(eventDetailsObj[selecteDte]);
+     var evntDetails=eventDetailsObj[selecteDte];
+    if(evntDetails==undefined){
+       $scope.NoRecord=true; 
+       $scope.value="No Records Found";
+    }else if(angular.isArray(evntDetails)){
+       $scope.evntArrDetails=true;
+         $scope.value=eventDetailsObj[selecteDte];
+    }else{
+      $scope.evntObjDetails=true; 
+     $scope.value=eventDetailsObj[selecteDte];
+    }
+
+   $scope.openModal();
+}
+$ionicModal.fromTemplateUrl('templates/eventDetails.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+      $scope.NoRecord=false;
+      $scope.evntArrDetails=false;
+      $scope.evntObjDetails=false;
+    $scope.modal.hide();
+  };
+
 
 
 $scope.event=function(eventId){

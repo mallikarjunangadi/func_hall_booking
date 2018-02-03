@@ -1,25 +1,23 @@
 <ion-view ng-controller="publicFacility" >
 <ion-content overflow-scroll="true">
 <form id="enquiryForm" name="enquiryFor"  style="margin-top:4vh;height:90%;">
-    <div class="list list-inset" style="background-color:transparent;margin:0!important">
+    <div class="list list-inset" style="background-color:transparent;margin:3px!important">
         <p style="text-align:center;font-size:5vw;font-weight:bold">Enquiry Form</p>
-        <label class="item item-input" style="padding:2vw;">
+        <label class="item item-input" style=";margin:5vw">
             <input type="text" ng-model="enquiryObj.FirstName"  placeholder="First Name" jhipster-maxlength="25">
         </label>
-        <label class="item item-input" style="padding:2vw;">
+        <label class="item item-input" style="margin:5vw;">
             <input type="text" ng-model="enquiryObj.LastName" jhipster-maxlength="25" placeholder="Last Name" >
         </label>
-        <label class="item item-input" style="padding:2vw;">
+        <label class="item item-input" style="margin:5vw">
             <input type="tel" ng-model="enquiryObj.ContactNo" jhipster-maxlength="25" placeholder="Phone Number">
         </label>
         
-        <label class="item item-input" style="padding:2vw;">
-            <input type="date" ng-model="enquiryObj.EventDate "placeholder="Date" required>
-        </label>
-        <label class="item item-input" style="padding:2vw;">
+        
+        <label class="item item-input" style="margin:5vw">
             <input type="email" ng-model="enquiryObj.Email" jhipster-maxlength="30" placeholder="Email" required>
         </label>
-        <label class="item item-input item-select" style="padding:1vh;">
+        <label class="item item-input item-select" style="margin:5vw">
             <div class="input-label" style="color:grey">
                 Select Event Type:
             </div>
@@ -27,16 +25,27 @@
                 <option ng-repeat="event in events" value={{event.EventId}}>{{event.EventName}}</option>
             </select>
         </label>
-        
-        <label class="item item-input" style="padding:2vw;">
-            <input type="text"jhipster-maxlength="30" ng-model="enquiryObj.Others" placeholder="Others" required/>
+       
+        <label class="item item-input" style="margin:5vw">
+            <input type="date" ng-model="enquiryObj.EventDate "datepicker=""  placeholder="Date" required>
         </label>
-        <label class="item item-input" style="padding:2vw;">
+
+           <label class="item item-input" style="margin:5vw">
+            <input type="text" ng-model="enquiryObj.FromTime " ng-click='StartTimePicker()' placeholder="From Time" required>
+        </label>
+
+          <label class="item item-input" style="margin:5vw">
+            <input type="text" ng-model="enquiryObj.ToTime " ng-click='EndTimePicker()'  placeholder="End Time" required>
+        </label>
+
+        <label class="item item-input" style="margin:5vw">
+            <input type="text"  ng-model="enquiryObj.NoOfPersons" placeholder="No Of Guest" numbers-only required/>
+        </label>
+        
+        <label class="item item-input" style="margin:5vw">
             <input type="text" jhipster-maxlength="30" ng-model="enquiryObj.Remarks" placeholder="Remarks" required/>
         </label>
-        <label class="item item-input" style="padding:2vw;">
-            <input type="text"  ng-model="enquiryObj.noOfPersons" placeholder="No of Persons" numbers-only required/>
-        </label>
+        
           <button type="submit" ng-click='enquiryForm()' class="button button-small button-block button-positive" style="background:#8A2BE2 !important">Send Enquiry</button>
 
     </div>

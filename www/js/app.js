@@ -3,7 +3,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('hallBooking', ['ionic', 'onezone-datepicker','hallBooking.controller', 'hallBooking.globalcontroller', 'hallBooking.service', 'ngCordova', 'hallBooking.directiv']).run(function($ionicPlatform) {
+angular.module('hallBooking', ['ionic', 'onezone-datepicker','ionic-timepicker', 'hallBooking.controller', 'hallBooking.globalcontroller', 'hallBooking.service', 'ngCordova', 'hallBooking.directiv','ionic-zoom-view']).run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -19,7 +19,12 @@ angular.module('hallBooking', ['ionic', 'onezone-datepicker','hallBooking.contro
             StatusBar.styleDefault();
         }
     });
-}).run(function($ionicPlatform, $ionicPopup) {
+})
+.run(function($ionicPlatform, $ionicPopup) {
+    $ionicPlatform.onHardwareBackButton(function() {
+    window.history.back();
+    console.log('Performing moblie key Back');
+})
     $ionicPlatform.ready(function() {
         console.log('error')
         // Check for network connection
@@ -42,7 +47,9 @@ angular.module('hallBooking', ['ionic', 'onezone-datepicker','hallBooking.contro
     });
 })
  
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,ionicTimePickerProvider) {
+   
+ 
     $ionicConfigProvider.tabs.position('bottom');
     $stateProvider /*.state('mainHome', {
         url: '/mainHome',
@@ -215,7 +222,7 @@ angular.module('hallBooking', ['ionic', 'onezone-datepicker','hallBooking.contro
 
     }).state('login', {
         url: '/login',
-
+         controller:'loginCtrl',
         templateUrl: 'templates/login.html'
 
     })
@@ -242,5 +249,15 @@ templateUrl: 'templates/calendar.html'
 
     })
     $urlRouterProvider.otherwise('/sideMenu');
+    
+var timePickerObj = {
+      inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
+      format: 12,
+      step: 30,
+      setLabel: 'Set',
+      closeLabel: 'Close'
+    };
+    ionicTimePickerProvider.configTimePicker(timePickerObj);
+
 
 })

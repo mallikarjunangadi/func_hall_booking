@@ -1,0 +1,45 @@
+ <ion-modal-view style="width:100%;text-align:center;min-height:100%;background-color: #2d3243;
+    color: white;">
+    <ion-header-bar>
+     <button class="button button-icon icon-left ion-chevron-left" ng-click="closeModal()"></button>
+      <h1 class="title" style="text-align:center">Event Details</h1>
+     
+    </ion-header-bar>
+    <ion-content>
+      <div class="list card" style="background-color: #2d3243!important;color:white">
+
+  <div class="item item-body" ng-if="evntArrDetails==true" ng-repeat="events in value"style="border:1px solid white;margin:20px;background-color:#2d3257!important;color:white!important">
+    
+    <h2 style="color:white">BookingNo: {{events.data.BookingNo}}</h2>
+    <h2 style="color:white">CustomerName: {{events.data.CustomerName}}</h2>
+    <h2 style="color:white">EventDate: {{events.data.EventDate}}</h2>
+    <h2 style="color:white">EventName: {{events.data.EventName}}</h2>
+        <h2 style="color:white">HallName: {{events.data.HallName}}</h2>
+    <h2 style="color:white">PackageName: {{events.data.PackageName}}</h2>
+    <h2 style="color:white">TimeFrom: {{events.data.TimeFrom}}</h2>
+    <h2 style="color:white">TimeTo: {{events.data.TimeTo}}</h2>
+
+  </div>
+  <div class="item item-body" ng-if="evntObjDetails==true" style="border:1px solid white;margin:20px;background-color:#2d3257!important;color:white!important">
+    
+    <h2 style="color:white">BookingNo: {{value.data.BookingNo}}</h2>
+    <h2 style="color:white">CustomerName: {{value.data.CustomerName}}</h2>
+    <h2 style="color:white">EventDate: {{value.data.EventDate}}</h2>
+    <h2 style="color:white">EventName: {{value.data.EventName}}</h2>
+        <h2 style="color:white">HallName: {{value.data.HallName}}</h2>
+    <h2 style="color:white">PackageName: {{value.data.PackageName}}</h2>
+    <h2 style="color:white">TimeFrom: {{value.data.TimeFrom}}</h2>
+    <h2 style="color:white">TimeTo: {{value.data.TimeTo}}</h2>
+
+  </div>
+
+<div class="item item-body"ng-if="NoRecord==true"style="border:1px solid white;margin:20px;background-color:#2d3257!important;color:white!important">
+    
+  <h2 style="color:white">{{value}}</h2>
+  </div>
+
+
+
+</div>
+    </ion-content>
+  </ion-modal-view>
