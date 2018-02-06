@@ -415,11 +415,12 @@ $scope.loginView=function(){
             console.log('Enter First Name')
             return false;
         }
-        if ($scope.enquiryObj.LastName == undefined || $scope.enquiryObj.LastName == "") {
-            $rootScope.ShowToast('Enter Last Name')
-            console.log('Enter Last Name')
-            return false;
-        }
+       // if ($scope.enquiryObj.LastName == undefined || $scope.enquiryObj.LastName == "") {
+       //     $rootScope.ShowToast('Enter Last Name')
+       //     console.log('Enter Last Name')
+       //     return false;
+       // }
+       $scope.enquiryObj.LastName ='';
         if ($scope.enquiryObj.ContactNo == undefined || $scope.enquiryObj.ContactNo == "") {
             $rootScope.ShowToast('Enter Contact No')
             console.log('Enter Contact No')
@@ -734,7 +735,7 @@ $scope.loginView=function(){
             console.log(response.data);
         })*/
 
-    $http.get("http://58.26.82.11/tsrapitest/APIService.svc/GetAllUsers").then(function(response) {
+    $http.get("http://58.26.82.11/tsrapi/APIService.svc/GetAllUsers").then(function(response) {
         console.log(response);
         $scope.aggent = response.data;
         console.log(response.data);
@@ -1243,7 +1244,7 @@ if(document.getElementById('calendari')!=null){
         
         $location.path('calendarEvent');
     }
- $http.get("http://210.48.150.218/TSRAPI/APIService.svc/GetALLHalls").then(function(response) {
+ $http.get("http://58.26.82.11/tsrapi/APIService.svc/GetALLHalls").then(function(response) {
         console.log(response);
        $scope.hallName = response.data;
         console.log(response.data);
