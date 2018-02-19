@@ -3002,12 +3002,11 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
-  /* padding: 0; */
-  /* border: 0; */
-  /* vertical-align: baseline; */
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
   font: inherit;
-  /* font-size: 100%; */
-  }
+  font-size: 100%; }
 
 ol, ul {
   list-style: none; }
@@ -3064,8 +3063,7 @@ html {
  */
 body {
   margin: 0;
-  /* line-height: 1; */
-  }
+  line-height: 1; }
 
 /**
  * Remove default outlines.
@@ -3304,12 +3302,9 @@ table {
 *,
 *:before,
 *:after {
-  /* -webkit-box-sizing: border-box; */
-  ox; */
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  /* box-sizing: border-box; */
-  ox; */
-  }
+  box-sizing: border-box; }
 
 html {
   overflow: hidden;
@@ -3319,7 +3314,7 @@ html {
 body,
 .ionic-body {
   -webkit-touch-callout: none;
-  /* -webkit-font-smoothing: antialiased; */
+  -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
@@ -3329,7 +3324,7 @@ body,
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  /* user-select: none; */
+  user-select: none;
   top: 0;
   right: 0;
   bottom: 0;
@@ -3337,17 +3332,16 @@ body,
   overflow: hidden;
   margin: 0;
   padding: 0;
-  /* color: #000; */
-  /* word-wrap: break-word; */
-  /* font-size: 14px; */
-  /* font-family: -apple-system; */
-  /* font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; */
-  /* line-height: 20px; */
-  /* text-rendering: optimizeLegibility; */
+  color: #000;
+  word-wrap: break-word;
+  font-size: 14px;
+  font-family: -apple-system;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 20px;
+  text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
   -webkit-user-drag: none;
-  -ms-content-zooming: none;
-  }
+  -ms-content-zooming: none; }
 
 body.grade-b,
 body.grade-c {
@@ -3367,8 +3361,7 @@ body.grade-c {
   padding-top: 1px;
   margin-bottom: -1px;
   width: auto;
-  /* height: auto; */
-  }
+  height: auto; }
 
 .menu .scroll-content.scroll-content-false {
   z-index: 11; }
@@ -3395,17 +3388,16 @@ body.grade-c {
  * scroll view functionality.
  */
 .scroll {
-  /* -webkit-user-select: none; */
+  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  /* user-select: none; */
+  user-select: none;
   -webkit-touch-callout: none;
-  /* -webkit-text-size-adjust: none; */
+  -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
-  /* text-size-adjust: none; */
+  text-size-adjust: none;
   -webkit-transform-origin: left top;
-  /* transform-origin: left top; */
-  }
+  transform-origin: left top; }
 
 /**
  * Set ms-viewport to prevent MS "page squish" and allow fluid scrolling
@@ -3512,8 +3504,7 @@ ion-infinite-scroll {
 
 /* If you change these, change platform.scss as well */
 .has-header {
-  top: 44px;
-  }
+  top: 44px; }
 
 .no-header {
   top: 0; }
@@ -4040,15 +4031,13 @@ a.subdued {
       padding-right: 2px;
       padding-left: 2px;
       font-size: 20px;
-      line-height: 32px;
-      }
+      line-height: 32px; }
     .bar .button.button-icon, .bar button.button-icon {
       font-size: 17px; }
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before {
         vertical-align: top;
-        /* font-size: 32px; */
-        line-height: 32px;
-        }
+        font-size: 32px;
+        line-height: 32px; }
     .bar .button.button-clear, .bar button.button-clear {
       padding-right: 2px;
       padding-left: 2px;
@@ -5352,8 +5341,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   overflow: hidden;
   min-height: 100%;
   width: 100%;
-  background-color: #fff;
-  }
+  background-color: #fff; }
 
 @media (min-width: 680px) {
   .modal {
@@ -6619,12 +6607,11 @@ button.item.item-button-right {
  * --------------------------------------------------
  */
 .list {
-  /* position: relative; */
-  /* padding-top: 1px; */
+  position: relative;
+  padding-top: 1px;
   padding-bottom: 1px;
-  /* padding-left: 0; */
-  margin-bottom: 20px;
-  }
+  padding-left: 0;
+  margin-bottom: 20px; }
 
 .list:last-child {
   margin-bottom: 0px; }
@@ -6653,11 +6640,10 @@ button.item.item-button-right {
  */
 .card,
 .list-inset {
-  /* overflow: hidden; */
+  overflow: hidden;
   margin: 20px 10px;
-  /* border-radius: 2px; */
-  background-color: #fff;
-  }
+  border-radius: 2px;
+  background-color: #fff; }
 
 .card {
   padding-top: 1px;
@@ -7755,8 +7741,7 @@ input[type="color"] {
   color: #111;
   vertical-align: middle;
   font-size: 14px;
-  line-height: 16px;
-  }
+  line-height: 16px; }
 
 .platform-ios input[type="datetime-local"],
 .platform-ios input[type="date"],
@@ -8611,13 +8596,12 @@ progress {
     border-color: #a2a2a2;
     background-color: #e5e5e5; }
   .button:after {
-    /* position: absolute; */
+    position: absolute;
     top: -6px;
-    /* right: -6px; */
+    right: -6px;
     bottom: -6px;
     left: -6px;
-    content: ' ';
-    }
+    content: ' '; }
   .button .icon {
     vertical-align: top;
     pointer-events: none; }
