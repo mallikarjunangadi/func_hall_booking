@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "736261582908",
+    "firebase_url": "https://tsr-halls.firebaseio.com",
+    "project_id": "tsr-halls",
+    "storage_bucket": "tsr-halls.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736261582908:android:9b16be13c4efaa8c",
+        "android_client_info": {
+          "package_name": "com.tsr.hallbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736261582908-qnl7muv8o3588akgb6s1oickd5tt320d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD-Oah_J4moFCeIppDSpaD4OUKchDen2U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
